@@ -1,11 +1,19 @@
 package edu.upc.dsa.models;
 
 public class Usuario {
-    String Username;
-    String Mail;
-    String Name;
-    String LastName;
-    String Password;
+    private String Username;
+    private String Mail;
+    private String Name;
+    private String LastName;
+    private String Password;
+
+    public Usuario(String username, String mail, String name, String lastName, String password) {
+        Username = username;
+        Mail = mail;
+        Name = name;
+        LastName = lastName;
+        Password = password;
+    }
 
     public String getUsername() {
         return Username;
