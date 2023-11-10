@@ -1,0 +1,65 @@
+body {;
+    background-color: blue;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.formRegistro {
+    display: flex;
+    justify-content: center;
+    background-color: white;
+    width: 50%;
+    height: auto;
+    border-top-left-radius: 10%;
+    border-top-right-radius: 10%;
+    border-bottom-left-radius: 10%;
+    border-bottom-right-radius: 10%;
+
+}
+
+.tituloRegistro {
+    font-size: 80px;
+}
+
+.labelRegistro {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.obligatorio {
+    color: darkred;
+    margin-left: 5px;
+}
+
+.input {
+    margin-top: 5px;
+    margin-bottom: 10px;
+    width: 100%;
+    font-size: 15px;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 1px solid blue;
+}
+
+.input:focus {
+    outline: none;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 1px solid red;
+}
+
+.registerBtnDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.registerBtn {
+    background-color: lightgrey;
+    color: black;
+    margin-bottom: 20px;
+    font-size: 20px;
+}
