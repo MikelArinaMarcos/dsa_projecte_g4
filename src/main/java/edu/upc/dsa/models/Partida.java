@@ -1,8 +1,23 @@
 package edu.upc.dsa.models;
 
 public class Partida {
-    String Dificultad;
-    int Duración;
+    private String Id;
+    private String Dificultad;
+    private int Duración;
+
+    public Partida(String id, String dificultad, int duración) {
+        Id = id;
+        Dificultad = dificultad;
+        Duración = duración;
+    }
+
+    public String getId() {
+        return Id;
+    }
+
+    public void setId(String id) {
+        Id = id;
+    }
 
     public String getDificultad() {
         return Dificultad;

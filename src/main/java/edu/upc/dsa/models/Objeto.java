@@ -1,9 +1,9 @@
 package edu.upc.dsa.models;
 
 public class Objeto {
-    String Nombre;
-    int Precio;
-    int Daño;
+    private String Nombre;
+    private int Precio;
+    private int Daño;
 
     public String getNombre() {
         return Nombre;
