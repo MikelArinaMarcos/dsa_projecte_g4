@@ -23,12 +23,6 @@
     </dependencyManagement>
 
     <dependencies>
-<<<<<<< HEAD
-        <dependency>
-            <groupId>org.glassfish.jersey.inject</groupId>
-            <artifactId>jersey-hk2</artifactId>
-            <version>${jersey.version}</version>
-=======
         <!-- https://mvnrepository.com/artifact/net.moznion/random-string -->
         <dependency>
             <groupId>net.moznion</groupId>
