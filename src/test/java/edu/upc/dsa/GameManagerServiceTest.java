@@ -11,7 +11,7 @@ import javax.ws.rs.client.WebTarget;
 
 import static org.junit.Assert.assertEquals;
 
-public class TextServiceTest {
+public class GameManagerServiceTest {
 
     private HttpServer server;
     private WebTarget target;
@@ -45,4 +45,8 @@ public class TextServiceTest {
         String responseMsg = target.path("myresource").request().get(String.class);
         assertEquals("Got it!", responseMsg);
     }
+
+
+
+
 }
