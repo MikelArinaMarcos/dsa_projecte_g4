@@ -10,6 +10,7 @@ import java.util.List;
 
 public class JuegoManagerImpl implements JuegoManager{
     private static JuegoManager instance;
+    protected List<Usuario> Usuarios;
     protected HashMap<VOCredenciales, Usuario> LUsuarios = new HashMap<VOCredenciales, Usuario>();
     protected List<Personaje> Personajes;
     final static Logger logger = Logger.getLogger(JuegoManagerImpl.class);
@@ -29,6 +30,7 @@ public class JuegoManagerImpl implements JuegoManager{
 
         return ret;
     }
+    @Override
     public Usuario RegistrarUsuario(String Username, String Mail, String Name, String Lastname, String Password){
     Usuario U=new Usuario(Username,Mail,Name,Lastname,Password);
     VOCredenciales VOC=new VOCredenciales(Username,Password);

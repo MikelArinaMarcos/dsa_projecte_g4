@@ -14,7 +14,41 @@ import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+@Api(value = "/usuario", description = "Endpoint to usuario Service")
+@Path("/usuario")
 public class UsuarioService {
+    private JuegoManager tm;
+    public UsuarioService() {
+        this.tm = JuegoManagerImpl.getInstance();
+    }
+    @GET
+    @ApiOperation(value = "get all Users", notes = "asdasd")
+    @ApiResponses(value = {
+            @ApiResponse(code = 201, message = "Successful", response = Usuario.class, responseContainer="List"),
+    })
+    @Path("/")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getUsuarios() {
 
+        HashMap<VOCredenciales,Usuario> Users = this.tm.getallusers();
+
+        GenericEntity<HashMap<VOCredenciales,Usuario>> entity = new GenericEntity<HashMap<VOCredenciales,Usuario>>(Users) {};
+        return Response.status(201).entity(entity).build()  ;
+
+    }
+    @GET
+    @ApiOperation(value = "get a User", notes = "asdasd")
+    @ApiResponses(value = {
+            @ApiResponse(code = 201, message = "Successful", response = Usuario.class),
+            @ApiResponse(code = 404, message = "Track not found")
+    })
+    @Path("/{Username}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getUser(@PathParam("id") String id) {
+        Track t = this.tm.getTrack(id);
+        if (t == null) return Response.status(404).build();
+        else  return Response.status(201).entity(t).build();
+    }
 }

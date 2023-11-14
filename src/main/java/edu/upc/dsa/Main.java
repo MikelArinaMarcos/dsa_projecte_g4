@@ -1,10 +1,7 @@
 package edu.upc.dsa;
 
-<<<<<<< HEAD
-=======
 import io.swagger.jaxrs.config.BeanConfig;
 import io.swagger.jersey.listing.ApiListingResourceJSON;
->>>>>>> main
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.grizzly.http.server.StaticHttpHandler;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
@@ -19,11 +16,7 @@ import java.net.URI;
  */
 public class Main {
     // Base URI the Grizzly HTTP server will listen on
-<<<<<<< HEAD
-    public static final String BASE_URI = "http://localhost:8080/myapp/";
-=======
     public static final String BASE_URI = "http://localhost:8080/dsaApp/";
->>>>>>> main
 
     /**
      * Starts Grizzly HTTP server exposing JAX-RS resources defined in this application.
@@ -32,9 +25,6 @@ public class Main {
     public static HttpServer startServer() {
         // create a resource config that scans for JAX-RS resources and providers
         // in edu.upc.dsa package
-<<<<<<< HEAD
-        final ResourceConfig rc = new ResourceConfig().packages("edu.upc.dsa");
-=======
         final ResourceConfig rc = new ResourceConfig().packages("edu.upc.dsa.services");
 
         rc.register(io.swagger.jaxrs.listing.ApiListingResource.class);
@@ -52,7 +42,6 @@ public class Main {
         beanConfig.setTitle("REST API");
         beanConfig.setVersion("1.0.0");
         beanConfig.setScan(true);
->>>>>>> main
 
         // create and start a new instance of grizzly http server
         // exposing the Jersey application at BASE_URI
@@ -79,3 +68,4 @@ public class Main {
         server.stop();
     }
 }
+
