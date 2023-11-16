@@ -5,6 +5,12 @@ public class Objeto {
     private int Precio;
     private int Daño;
 
+    public Objeto(){}
+    public Objeto(String nombre, int precio, int daño){
+        this.setNombre(nombre);
+        this.setPrecio(precio);
+        this.setDaño(daño);
+    }
     public String getNombre() {
         return Nombre;
     }

@@ -1,11 +1,13 @@
 package edu.upc.dsa;
 
+import edu.upc.dsa.models.Objeto;
 import edu.upc.dsa.models.Personaje;
 import edu.upc.dsa.models.Usuario;
 import edu.upc.dsa.models.VOCredenciales;
 import org.apache.log4j.Logger;
 
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 
 public class JuegoManagerImpl implements JuegoManager{
@@ -13,7 +15,12 @@ public class JuegoManagerImpl implements JuegoManager{
     protected List<Usuario> Usuarios;
     protected HashMap<VOCredenciales, Usuario> LUsuarios = new HashMap<VOCredenciales, Usuario>();
     protected List<Personaje> Personajes;
+    protected List<Objeto> Objetos;
     final static Logger logger = Logger.getLogger(JuegoManagerImpl.class);
+
+    public JuegoManagerImpl() {
+        this.Objetos = new LinkedList<Objeto>();
+    }
     public  static JuegoManager getInstance(){
         if (instance==null) instance = new JuegoManagerImpl();
         return instance;
@@ -70,5 +77,19 @@ public class JuegoManagerImpl implements JuegoManager{
         return this.LUsuarios;
     }
 
+    //------------------------------------------Tienda-----------------------------------------------------//
 
+    public List<Objeto> getProductosTienda(){
+
+        Objetos.sort((Objeto o1, Objeto o2) -> Integer.compare(o1.getPrecio(),(o2.getPrecio())));
+        for(Objeto obj : Objetos){
+            logger.info("Producto: " + obj.getNombre() + " - Precio: " + obj.getPrecio());
+        }
+        return Objetos;
+    }
+    public void addProducto(String nombre, int precio, int dmg){
+        logger.info("Inicializando objeto " + nombre);
+        Objeto o = new Objeto(nombre, precio, dmg);
+        Objetos.add(o);
+    }
 }

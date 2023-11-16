@@ -1,11 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>edu.upc.dsa</groupId>
-    <artifactId>Proyecto_DSA_Grup4_23-24</artifactId>
+    <artifactId>rest-example2</artifactId>
     <packaging>jar</packaging>
     <version>1.0-SNAPSHOT</version>
     <name>rest-example2</name>
@@ -38,21 +37,10 @@
         <dependency>
             <groupId>org.glassfish.jersey.containers</groupId>
             <artifactId>jersey-container-grizzly2-http</artifactId>
-            <version>${jersey.version}</version>
         </dependency>
-        <!-- JAXB -->
-        <!-- API, java.xml.bind module -->
         <dependency>
-            <groupId>jakarta.xml.bind</groupId>
-            <artifactId>jakarta.xml.bind-api</artifactId>
-            <version>2.3.2</version>
-        </dependency>
-
-        <!-- Runtime, com.sun.xml.bind module -->
-        <dependency>
-            <groupId>org.glassfish.jaxb</groupId>
-            <artifactId>jaxb-runtime</artifactId>
-            <version>2.3.2</version>
+            <groupId>org.glassfish.jersey.containers</groupId>
+            <artifactId>jersey-container-grizzly2-servlet</artifactId>
         </dependency>
 
         <dependency>
@@ -62,7 +50,7 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.13.1</version>
+            <version>4.9</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -75,6 +63,8 @@
             <artifactId>jaxb-api</artifactId>
             <version>2.3.1</version>
         </dependency>
+
+
     </dependencies>
 
     <build>
@@ -85,8 +75,8 @@
                 <version>2.5.1</version>
                 <inherited>true</inherited>
                 <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
+                    <source>8</source>
+                    <target>8</target>
                 </configuration>
             </plugin>
             <plugin>
@@ -108,9 +98,7 @@
     </build>
 
     <properties>
-        <jersey.version>2.29</jersey.version>
-        <maven.compiler.source>18</maven.compiler.source>
-        <maven.compiler.target>18</maven.compiler.target>
+        <jersey.version>2.24</jersey.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <swagger-jersey2-jaxrs.version>1.5.9</swagger-jersey2-jaxrs.version>
     </properties>

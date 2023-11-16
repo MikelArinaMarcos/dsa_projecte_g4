@@ -15,6 +15,7 @@ public class GameManagerServiceTest {
 
     private HttpServer server;
     private WebTarget target;
+    JuegoManager juegoManager;
 
     @Before
     public void setUp() throws Exception {
@@ -30,6 +31,12 @@ public class GameManagerServiceTest {
         // c.configuration().enable(new org.glassfish.jersey.media.json.JsonJaxbFeature());
 
         target = c.target(Main.BASE_URI);
+
+        juegoManager.addProducto("Baguette", 1, 1);
+        juegoManager.addProducto("Espada rota", 4, 1);
+        juegoManager.addProducto("Machete", 17, 1);
+        juegoManager.addProducto("Palo", 2, 1);
+        juegoManager.addProducto("Mjolnir", 999, 1);
     }
 
     @After
