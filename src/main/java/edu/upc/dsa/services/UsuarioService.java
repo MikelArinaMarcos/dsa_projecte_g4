@@ -86,5 +86,5 @@ public class UsuarioService {
         if (t == null) return Response.status(404).build();
         else  return Response.status(201).entity(t).build();
     }*/
->>>>>>> 8232aa6da9e08e92d481078e7f142153f4d0fbcc
+//>>>>>>> 8232aa6da9e08e92d481078e7f142153f4d0fbcc
 }
