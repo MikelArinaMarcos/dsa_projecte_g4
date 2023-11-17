@@ -20,20 +20,22 @@ import java.util.List;
 @Api(value = "/tienda", description = "Endpoint to tienda Service")
 @Path("/tienda")
 public class TiendaService {
-    private JuegoManager jm;
+    private JuegoManager tm;
     final static Logger logger = Logger.getLogger(JuegoManagerImpl.class);
     public TiendaService(){
-        this.jm = JuegoManagerImpl.getInstance();
-        this.jm.addProducto("Baguette", 1, 1);
-        logger.info("Creado objeto Baguette");
-        this.jm.addProducto("Espada rota", 4, 1);
-        logger.info("Creado objeto Espada rota");
-        this.jm.addProducto("Machete", 17, 1);
-        logger.info("Creado objeto Machete");
-        this.jm.addProducto("Palo", 2, 1);
-        logger.info("Creado objeto Palo");
-        this.jm.addProducto("Mjolnir", 999, 1);
-        logger.info("Creado objeto Mjolnir");
+        this.tm = JuegoManagerImpl.getInstance();
+        if(tm.productoSize() == 0){
+            this.tm.addProducto("Baguette", 1, 1);
+            logger.info("Creado objeto Baguette");
+            this.tm.addProducto("Espada rota", 4, 1);
+            logger.info("Creado objeto Espada rota");
+            this.tm.addProducto("Machete", 17, 1);
+            logger.info("Creado objeto Machete");
+            this.tm.addProducto("Palo", 2, 1);
+            logger.info("Creado objeto Palo");
+            this.tm.addProducto("Mjolnir", 999, 1);
+            logger.info("Creado objeto Mjolnir");
+        }
     }
 
     @GET
@@ -44,7 +46,7 @@ public class TiendaService {
     @Path("/productos")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getProductos() {
-        List<Objeto> objetos = this.jm.getProductosTienda();
+        List<Objeto> objetos = this.tm.getProductosTienda();
         GenericEntity<List<Objeto>> entity = new GenericEntity<List<Objeto>>(objetos) {};
         return Response.status(201).entity(entity).build()  ;
     }

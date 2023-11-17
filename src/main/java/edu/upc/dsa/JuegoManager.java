@@ -14,4 +14,5 @@ public interface JuegoManager {
     public HashMap<VOCredenciales, Usuario> getallusers();
     public List<Objeto> getProductosTienda();
     public void addProducto(String nombre, int precio, int dmg);
+    public int productoSize();
 }

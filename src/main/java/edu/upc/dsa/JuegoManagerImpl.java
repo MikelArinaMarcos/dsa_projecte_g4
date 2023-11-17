@@ -92,4 +92,8 @@ public class JuegoManagerImpl implements JuegoManager{
         Objeto o = new Objeto(nombre, precio, dmg);
         Objetos.add(o);
     }
+    public int productoSize(){
+        logger.info("Size productos " + Objetos.size());
+        return Objetos.size();
+    }
 }
