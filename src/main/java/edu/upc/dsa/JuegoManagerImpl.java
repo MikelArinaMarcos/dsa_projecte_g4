@@ -30,14 +30,21 @@ public class JuegoManagerImpl implements JuegoManager{
 
         return ret;
     }
-    @Override
-    public Usuario RegistrarUsuario(String Username, String Mail, String Name, String Lastname, String Password){
-    Usuario U=new Usuario(Username,Mail,Name,Lastname,Password);
-    VOCredenciales VOC=new VOCredenciales(Username,Password);
+    public int RegistrarUsuario(Usuario usuarios){
+    Usuario U=new Usuario(usuarios.getUsername(),usuarios.getMail(),usuarios.getName(),usuarios.getLastName(),usuarios.getPassword());
+    VOCredenciales VOC=new VOCredenciales(usuarios.getUsername(),usuarios.getPassword());
+    for (HashMap.Entry<VOCredenciales, Usuario> entry : LUsuarios.entrySet()) {
+        if (U.getMail().equals(LUsuarios.get(entry.getKey()).getMail())){
+            return 1;
+    }
+        if (U.getUsername().equals(LUsuarios.get(entry.getKey()).getUsername())){
+            return 2;
+    }
+    }
     logger.info("new user"+U);
     this.LUsuarios.put(VOC,U);
     logger.info("new user added");
-    return U;
+    return 0;
     }
     public Usuario LogIn(VOCredenciales credencialesu) {
         logger.info("login(" + credencialesu +")");
@@ -54,16 +61,16 @@ public class JuegoManagerImpl implements JuegoManager{
         VOCredenciales VOC=new VOCredenciales(U.getUsername(),U.getPassword());
         return VOC;
     }
-    public String getUsername(VOCredenciales Credenciales){
-        logger.info("getUsername("+Credenciales+")");
+    public Usuario getUser(VOCredenciales credenciales){
+        logger.info("getUsername("+credenciales+")");
 
-        logger.info("login(" + Credenciales +")");
-        if (LUsuarios.containsKey(Credenciales)){
-            Usuario U= LUsuarios.get(Credenciales);
-            logger.info("LogIn("+Credenciales+")"+U);
-            return U.getUsername();
+        logger.info("login(" + credenciales +")");
+        if (LUsuarios.containsKey(credenciales)){
+            Usuario U= LUsuarios.get(credenciales);
+            logger.info("LogIn("+credenciales+")"+U);
+            return U;
         }
-        logger.warn(Credenciales+"not found");
+        logger.warn(credenciales+"not found");
         return null;
     }
     public HashMap<VOCredenciales, Usuario> getallusers() {
