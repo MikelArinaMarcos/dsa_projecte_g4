@@ -3,10 +3,6 @@ package edu.upc.dsa.util;
 import java.util.HashMap;
 
 public class QueryHelper {
-    //AQUI PREPARA LA QUERY (INSERT INTO...) Y LOS VALORES DE LA QUERY SE PONEN EN EL SESSION EJ: NAME, SURNAME...
-
-    //EN EL TEST, PODEMOS VER INTERROGANTES (?), QUE ES LO QUE AQUI NO SE ESPECIFICA, Y ES EN EL SESSION DONDE SE AÑADEN
-
 
     /*Query que recibe una entidad/objeto y hace un INSERT de ese elemento*/
 

@@ -32,7 +32,7 @@ public class SesionImpl implements Sesion {
             for (String field: ObjectHelper.getFields(entity)) {
                 pstm.setObject(i++, ObjectHelper.getter(entity, field));
             }
-            System.out.println("!-!-!-!-!-!-!-! SENTENCIA!!!!11!!1!!1!1!!!!!!");
+            System.out.println("!-!-!-!-!-!-!-! SENTENCIA!-!-!-!-!-!-!-!");
             System.out.println(pstm);
             pstm.executeQuery();
 
@@ -83,7 +83,7 @@ public class SesionImpl implements Sesion {
             }
             ptsm.setObject(i,id);
             ptsm.executeQuery();
-            System.out.println("SENTENCIA UPDATE QUE SE EJECUTA FINALMENTE!!!\n"+ptsm);
+            System.out.println("SENTENCIA UPDATE\n"+ptsm);
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -163,7 +163,7 @@ public class SesionImpl implements Sesion {
                 pstm.setObject(x,value.toString());
                 x++;
             }
-            System.out.println("QUERY DEL findByParams QUE SE EJECUTA!\n" + pstm.toString());
+            System.out.println("QUERY DEL findByParams\n" + pstm.toString());
             pstm.executeQuery();
             ResultSet rs = pstm.getResultSet();
             while (rs.next()){
