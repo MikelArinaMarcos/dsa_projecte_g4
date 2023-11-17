@@ -1,5 +1,10 @@
 package edu.upc.dsa;
-
+import edu.upc.dsa.exceptions.EmailNotValidException;
+import edu.upc.dsa.exceptions.IncorrectCredencialsException;
+import edu.upc.dsa.exceptions.NameUserAlreadyInUseException;
+import edu.upc.dsa.models.Usuario;
+import junit.framework.Assert;
+import org.apache.log4j.Logger;
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.junit.After;
 import org.junit.Before;
@@ -15,9 +20,10 @@ public class GameManagerServiceTest {
 
     private HttpServer server;
     private WebTarget target;
+    private static Logger logger = Logger.getLogger(GameManagerServiceTest.class);
+    GameManagerServiceTest manager;
 
-    @Before
-    public void setUp() throws Exception {
+    public void setUp() throws EmailNotValidException, IncorrectCredencialsException, NameUserAlreadyInUseException {
         // start the server
         server = Main.startServer();
         // create the client
@@ -30,6 +36,9 @@ public class GameManagerServiceTest {
         // c.configuration().enable(new org.glassfish.jersey.media.json.JsonJaxbFeature());
 
         target = c.target(Main.BASE_URI);
+        this.manager = new GameManagerServiceTest();
+        this.manager.
+
     }
 
     @After

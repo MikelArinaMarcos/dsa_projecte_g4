@@ -37,7 +37,7 @@ public class UsuarioService {
         GenericEntity<HashMap<VOCredenciales,Usuario>> entity = new GenericEntity<HashMap<VOCredenciales,Usuario>>(Users) {};
         return Response.status(201).entity(entity).build()  ;
 
-    }
+    }/*
     @GET
     @ApiOperation(value = "get a User", notes = "asdasd")
     @ApiResponses(value = {
@@ -46,6 +46,7 @@ public class UsuarioService {
     })
     @Path("/usuario")
     @Produces(MediaType.APPLICATION_JSON)
+<<<<<<< HEAD
     public Response getUser(VOCredenciales credenciales) {
         Usuario U = this.jm.getUser(credenciales);
         if (U == null) return Response.status(404).build();
@@ -79,4 +80,11 @@ public class UsuarioService {
         if (u==2) return Response.status(502).build();
         return Response.status(201).build();
     }
+=======
+    public Response getUser(@PathParam("id") String id) {
+        Track t = this.tm.getTrack(id);
+        if (t == null) return Response.status(404).build();
+        else  return Response.status(201).entity(t).build();
+    }*/
+>>>>>>> 8232aa6da9e08e92d481078e7f142153f4d0fbcc
 }
