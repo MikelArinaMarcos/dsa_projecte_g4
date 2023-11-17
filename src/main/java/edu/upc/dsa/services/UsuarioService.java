@@ -37,7 +37,7 @@ public class UsuarioService {
         GenericEntity<HashMap<VOCredenciales,Usuario>> entity = new GenericEntity<HashMap<VOCredenciales,Usuario>>(Users) {};
         return Response.status(201).entity(entity).build()  ;
 
-    }
+    }/*
     @GET
     @ApiOperation(value = "get a User", notes = "asdasd")
     @ApiResponses(value = {
@@ -50,5 +50,5 @@ public class UsuarioService {
         Track t = this.tm.getTrack(id);
         if (t == null) return Response.status(404).build();
         else  return Response.status(201).entity(t).build();
-    }
+    }*/
 }
