@@ -1,11 +1,17 @@
 package edu.upc.dsa.models;
 
+import jdk.javadoc.internal.doclets.toolkit.taglets.snippet.Style;
+
+import java.util.LinkedList;
+import java.util.List;
+
 public class Usuario {
     private String Username;
     private String Mail;
     private String Name;
     private String LastName;
     private String Password;
+    private List<Objeto> objetos = new LinkedList<Objeto>();
 
     public Usuario(String username, String mail, String name, String lastName, String password) {
         Username = username;
@@ -53,5 +59,17 @@ public class Usuario {
 
     public void setPassword(String password) {
         Password = password;
+    }
+
+    public List<Objeto> getObjetos() {
+        return objetos;
+    }
+
+    public void setObjetos(List<Objeto> objetos) {
+        this.objetos = objetos;
+    }
+
+    public void addObjeto(Objeto o){
+        this.objetos.add(o);
     }
 }

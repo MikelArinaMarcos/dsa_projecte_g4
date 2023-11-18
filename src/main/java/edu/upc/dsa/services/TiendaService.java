@@ -25,16 +25,13 @@ public class TiendaService {
     public TiendaService(){
         this.tm = TiendaManagerImpl.getInstance();
         if(tm.productoSize() == 0){
-            this.tm.addProducto("Baguette", 1, 1);
-            logger.info("Creado objeto Baguette");
-            this.tm.addProducto("Espada rota", 4, 1);
-            logger.info("Creado objeto Espada rota");
-            this.tm.addProducto("Machete", 17, 1);
-            logger.info("Creado objeto Machete");
-            this.tm.addProducto("Palo", 2, 1);
-            logger.info("Creado objeto Palo");
-            this.tm.addProducto("Mjolnir", 999, 1);
-            logger.info("Creado objeto Mjolnir");
+            this.tm.addProducto(1, 1,"DMG+", 1, 1);
+            this.tm.addProducto(2, 1, "Life+", 4, 1);
+            this.tm.addProducto(3, 2, "Crit+", 17, 1);
+            this.tm.addProducto(4, 2, "Stamina+", 2, 1);
+            this.tm.addProducto(5, 3 ,"Xp+", 999, 1);
+            this.tm.addProducto(6, 4, "Fire dmg+", 999, 1);
+            this.tm.addProducto(7, 4, "Freeze shot", 999, 1);
         }
     }
 
@@ -46,7 +43,8 @@ public class TiendaService {
     @Path("/productos")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getProductos() {
-        List<Objeto> objetos = this.tm.getProductosTienda();
+        int nivel = 9;
+        List<Objeto> objetos = this.tm.getProductosTienda(nivel);
         GenericEntity<List<Objeto>> entity = new GenericEntity<List<Objeto>>(objetos) {};
         return Response.status(201).entity(entity).build()  ;
     }
