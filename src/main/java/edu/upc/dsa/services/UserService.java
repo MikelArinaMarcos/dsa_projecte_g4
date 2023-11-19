@@ -23,6 +23,10 @@ public class UserService {
         this.jm = JuegoManagerImpl.getInstance();
         if (jm.size() == 0) {
             this.jm.addUser("jordi@gmail.com", "jordi", "1234");
+            this.jm.addUser("aran@gmail.com", "aran", "1234");
+            this.jm.addUser("pedro@gmail.com", "pedro", "1234");
+            this.jm.addUser("bryan@gmail.com", "bryan", "1234");
+            this.jm.addUser("mikel@gmail.com", "mikel", "1234");
         }
     }
 
