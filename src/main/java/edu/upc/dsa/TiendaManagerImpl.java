@@ -55,4 +55,9 @@ public class TiendaManagerImpl implements TiendaManager{
         logger.info("Size productos " + Objetos.size());
         return Objetos.size();
     }
+
+    @Override
+    public List<Objeto> getAllObjects() {
+        return this.Objetos;
+    }
 }

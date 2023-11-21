@@ -59,4 +59,16 @@ public class TiendaService {
         GenericEntity<List<Objeto>> entity = new GenericEntity<List<Objeto>>(objetos) {};
         return Response.status(201).entity(entity).build()  ;
     }
+
+    @GET
+    @ApiOperation(value = "get all Objects", notes = "asdasd")
+    @ApiResponses(value = {
+            @ApiResponse(code = 201, message = "Successful", response = Objeto.class, responseContainer="List"),
+    })
+    @Path("/objetos")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getObjects() {
+        List<Objeto> listaObjetos = this.gm.getAllObjects();
+        GenericEntity<List<Objeto>> entity = new GenericEntity<List<Objeto>>(listaObjetos){};
+        return Response.status(201).entity(entity).build();
 }
