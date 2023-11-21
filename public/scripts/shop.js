@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Esperamos a que el contenido del DOM esté cargado antes de ejecutar el código
 
     // Realizamos una solicitud al backend para obtener la lista de objetos
-    fetch('/ruta/a/tu/endpoint')
+    fetch('/dsaApp/tienda/objetos')
         .then(response => response.json())
         .then(data => {
             // Manejamos los datos y llamamos a la función para mostrar la lista de objetos
@@ -21,19 +21,19 @@ function mostrarListaObjetos(listaObjetos) {
 
         const nombreObjetoHeading = document.createElement('h2');
         nombreObjetoHeading.classList.add('nombreObjeto');
-        nombreObjetoHeading.textContent = objeto.Nombre;
+        nombreObjetoHeading.textContent = objeto.nombre;
 
         const descripcionP = document.createElement('p');
         descripcionP.classList.add('descripcion');
-        descripcionP.textContent = objeto.Descripcion;
+        descripcionP.textContent = objeto.id;
 
         const atributoPrecioP = document.createElement('p');
         atributoPrecioP.classList.add('atributo');
-        atributoPrecioP.textContent = `Precio: $${objeto.Precio}`;
+        atributoPrecioP.textContent = `Precio: $${objeto.precio}`;
 
         const atributoDanioP = document.createElement('p');
         atributoDanioP.classList.add('atributo');
-        atributoDanioP.textContent = `Daño: ${objeto.Daño}`;
+        atributoDanioP.textContent = `Daño: ${objeto.daño}`;
 
         const comprarBtn = document.createElement('button');
         comprarBtn.classList.add('comprarBtn');
