@@ -1,0 +1,61 @@
+body {
+    font-family: Arial, sans-serif;
+    background: url(../images/militar.jpg) fixed;
+    background-size: contain;
+    margin: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+
+    background: url(../images/estampado.jpg) fixed;
+    background-size: contain;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.tituloTienda {
+    text-align: center;
+    color: #e7040f;
+    font-size: 30px;
+}
+
+.item {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px 0;
+    background-color: rgba(255, 255, 255, 0.8); /* Fondo semi-transparente blanco */
+}
+
+.nombreObjeto {
+    color: #007bff;
+    font-size: 20px;
+}
+
+.descripcion {
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.atributo {
+    margin: 5px 0;
+    font-size: 16px;
+}
+
+.comprarBtn {
+    background-color: lightgrey;
+    color: black;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.comprarBtn:hover {
+    background-color: #d3d3d3;
+}
+
