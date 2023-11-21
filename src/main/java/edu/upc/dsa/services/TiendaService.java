@@ -34,15 +34,26 @@ public class TiendaService {
             this.tm.addProducto(7, 4, "Freeze shot", 999, 1);
         }
     }
-
+    @GET
+    @ApiOperation(value = "Get objetos", notes = "Devuelve el listado de todos los objetos por precio")
+    @ApiResponses(value = {
+            @ApiResponse(code = 201, message = "Successful", response = Objeto.class, responseContainer="List"),
+    })
+    @Path("/objetos")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getListaProductos() {
+        List<Objeto> objetos = this.tm.listaObjetos();
+        GenericEntity<List<Objeto>> entity = new GenericEntity<List<Objeto>>(objetos) {};
+        return Response.status(201).entity(entity).build()  ;
+    }
     @GET
     @ApiOperation(value = "Get objetos tienda", notes = "Devuelve un listado de objetos de la tienda en orden ascendiente de precio")
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "Successful", response = Objeto.class, responseContainer="List"),
     })
-    @Path("/productos")
+    @Path("/objetosTienda")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getProductos() {
+    public Response getProductosTienda() {
         int nivel = 9;
         List<Objeto> objetos = this.tm.getProductosTienda(nivel);
         GenericEntity<List<Objeto>> entity = new GenericEntity<List<Objeto>>(objetos) {};

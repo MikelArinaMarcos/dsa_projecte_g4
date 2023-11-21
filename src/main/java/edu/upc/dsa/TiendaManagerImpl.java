@@ -18,6 +18,13 @@ public class TiendaManagerImpl implements TiendaManager{
         if (instance==null) instance = new TiendaManagerImpl();
         return instance;
     }
+    public List<Objeto> listaObjetos(){
+        Objetos.sort((Objeto o1, Objeto o2) -> Integer.compare(o1.getPrecio(),(o2.getPrecio())));
+        for(Objeto obj : Objetos){
+            logger.info("Producto: " + obj.getNombre() + " - Precio: " + obj.getPrecio());
+        }
+        return Objetos;
+    }
     public List<Objeto> getProductosTienda(int nivel){
         List<Objeto> oTienda = new LinkedList<Objeto>();
         for (int i = 0 ; i < 5 ; i++){
