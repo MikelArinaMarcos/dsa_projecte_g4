@@ -22,53 +22,47 @@ import java.util.List;
 public class TiendaService {
     private TiendaManager tm;
     final static Logger logger = Logger.getLogger(TiendaManagerImpl.class);
-    public TiendaService(){
+
+    public TiendaService() {
         this.tm = TiendaManagerImpl.getInstance();
-        if(tm.productoSize() == 0){
-            this.tm.addProducto(1, 1,"DMG+", 1, 1);
+        if (tm.productoSize() == 0) {
+            this.tm.addProducto(1, 1, "DMG+", 1, 1);
             this.tm.addProducto(2, 1, "Life+", 4, 1);
             this.tm.addProducto(3, 2, "Crit+", 17, 1);
             this.tm.addProducto(4, 2, "Stamina+", 2, 1);
-            this.tm.addProducto(5, 3 ,"Xp+", 999, 1);
+            this.tm.addProducto(5, 3, "Xp+", 999, 1);
             this.tm.addProducto(6, 4, "Fire dmg+", 999, 1);
             this.tm.addProducto(7, 4, "Freeze shot", 999, 1);
         }
     }
+
     @GET
     @ApiOperation(value = "Get objetos", notes = "Devuelve el listado de todos los objetos por precio")
     @ApiResponses(value = {
-            @ApiResponse(code = 201, message = "Successful", response = Objeto.class, responseContainer="List"),
+            @ApiResponse(code = 201, message = "Successful", response = Objeto.class, responseContainer = "List"),
     })
     @Path("/objetos")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getListaProductos() {
         List<Objeto> objetos = this.tm.listaObjetos();
-        GenericEntity<List<Objeto>> entity = new GenericEntity<List<Objeto>>(objetos) {};
-        return Response.status(201).entity(entity).build()  ;
+        GenericEntity<List<Objeto>> entity = new GenericEntity<List<Objeto>>(objetos) {
+        };
+        return Response.status(201).entity(entity).build();
     }
+
     @GET
     @ApiOperation(value = "Get objetos tienda", notes = "Devuelve un listado de objetos de la tienda en orden ascendiente de precio")
     @ApiResponses(value = {
-            @ApiResponse(code = 201, message = "Successful", response = Objeto.class, responseContainer="List"),
+            @ApiResponse(code = 201, message = "Successful", response = Objeto.class, responseContainer = "List"),
     })
     @Path("/objetosTienda")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getProductosTienda() {
         int nivel = 9;
         List<Objeto> objetos = this.tm.getProductosTienda(nivel);
-        GenericEntity<List<Objeto>> entity = new GenericEntity<List<Objeto>>(objetos) {};
-        return Response.status(201).entity(entity).build()  ;
+        GenericEntity<List<Objeto>> entity = new GenericEntity<List<Objeto>>(objetos) {
+        };
+        return Response.status(201).entity(entity).build();
     }
 
-    @GET
-    @ApiOperation(value = "get all Objects", notes = "asdasd")
-    @ApiResponses(value = {
-            @ApiResponse(code = 201, message = "Successful", response = Objeto.class, responseContainer="List"),
-    })
-    @Path("/objetos")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response getObjects() {
-        List<Objeto> listaObjetos = this.gm.getAllObjects();
-        GenericEntity<List<Objeto>> entity = new GenericEntity<List<Objeto>>(listaObjetos){};
-        return Response.status(201).entity(entity).build();
 }
