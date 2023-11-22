@@ -20,6 +20,7 @@ $(document).ready(function(){
         })
             .done(function (data, status){
                 alert("¡Inicio de sesión exitoso!");
+                location.href = "/shop.html";
                 // Redirigir o realizar otras acciones después del inicio de sesión exitoso
                 // location.href = "/ruta-a-la-página-post-login";
             })

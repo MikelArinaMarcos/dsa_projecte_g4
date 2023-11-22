@@ -1,6 +1,7 @@
 function entrarJuego(){
-    window.location="/public/login.html";
+    location.href="/login.html";
+
 }
 function registrar() {
-    window.location = "/public/register.html";
+    location.href = "/register.html";
 }
