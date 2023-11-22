@@ -1,0 +1,10 @@
+    .container-fluid {
+    	display: flex;
+      	justify-content: center;
+      	margin: 20px;
+    }
+
+    .container-fluid button {
+        height: 50px;
+        width: 300px;
+    }
