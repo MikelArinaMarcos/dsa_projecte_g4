@@ -3,43 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <title>REGISTRO</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" type="text/css" href="styles/register.css">
+
+    <script src="https://kit.fontawesome.com/fbbddd9141.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="scripts/register.js"></script>
 </head>
 <body>
-    <div class="formRegistro">
-        <form action="" class="form">
-            <h1 class="tituloRegistro">REGÍSTRATE</h1>
-    <div class="inputContainer">
-        <label for="" class="labelRegistro">Nombre</label><label class="obligatorio">*</label>
-        <br>
-        <input type="text" class="input" placeholder="Introduzca su nombre">
-    </div>
-    <div class="inputContainer">
-        <label for="" class="labelRegistro">Apellido</label><label class="obligatorio">*</label>
-        <input type="text" class="input" placeholder="Introduzca su apellido">
-    </div>
-    <div class="inputContainer">
-        <label for="" class="labelRegistro">Correo electrónico</label><label class="obligatorio">*</label>
-        <input type="text" class="input" placeholder="Introduzca su correo electrónico">
-    </div>
-    <div class="inputContainer">
-        <label for="" class="labelRegistro">Nombre de usuario</label><label class="obligatorio">*</label>
-        <input type="text" class="input" placeholder="Introduzca el nombre de usuario deseado">
-    </div>
-    <div class="inputContainer">
-        <label for="" class="labelRegistro">Contraseña</label><label class="obligatorio">*</label>
-        <input type="text" class="input" placeholder="Introduzca su contraseña">
-    </div>
-    <div class="inputContainer">
-        <label for="" class="labelRegistro">Confirmación de contraseña</label><label class="obligatorio">*</label>
-        <input type="text" class="input" placeholder="Vuelva a introducir su contraseña">
-    </div>
-            <p>Los campos marcados con <label class="obligatorio">*</label>    son obligatorios.</p>
-            <div class="registerBtnDiv">
-                <button class="registerBtn">REGISTRARSE</button>
-            </div>
-        </form>
-    </div>
+    <form action="" method="post">
+        <h1 class="title">REGISTER</h1>
+        <label>
+            <i class="fa-solid fa-user"></i>
+            <input type="name" id="name" name="name" class="name" placeholder="Name">
+        </label>
+        <label>
+            <i class="fa-solid fa-user"></i>
+            <input type="lastName" id="lastName" name="lastName" class="lastName" placeholder="Last Name">
+        </label>
+        <label>
+            <i class="fa-regular fa-envelope"></i>
+            <input type="mail" id="mail" name="mail" class="mail" placeholder="Mail">
+        </label>
+        <label>
+            <i class="fa-regular fa-user"></i>
+            <input type="text" id="username" name="username" class="username" placeholder="Username">
+        </label>
+        <label>
+            <i class="fa-solid fa-lock"></i>
+            <input type="password" id="password" name="password" class="password" placeholder="Password">
+        </label>
+        <button class="button" id="signupButton" onclick=""><a>Sign me up</a></button>
+    </form>
 </body>
 </html>
