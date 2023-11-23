@@ -16,7 +16,7 @@ $(document).ready(function(){
         var body = {"name": name, "password": password, "mail": mail, "username": username, "lastName": lastName};
 
         $.post({
-            url: '/dsaApp/users/register',
+            url: '/dsaApp/usuarios/register',
             data: JSON.stringify(body),
             contentType: 'application/json; charset=utf8'
         })

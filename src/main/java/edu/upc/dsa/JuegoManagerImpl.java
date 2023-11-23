@@ -11,11 +11,7 @@ import java.util.List;
 
 public class JuegoManagerImpl implements JuegoManager{
     private static JuegoManager instance;
-
     protected List<Usuario> Usuarios;
-    private JuegoManagerImpl() {
-        this.Usuarios = new LinkedList<>();
-    }
     protected HashMap<VOCredenciales, Usuario> LUsuarios = new HashMap<VOCredenciales, Usuario>();
     protected List<Personaje> Personajes;
     final static Logger logger = Logger.getLogger(JuegoManagerImpl.class);
@@ -35,15 +31,31 @@ public class JuegoManagerImpl implements JuegoManager{
 
         return ret;
     }
-
-    public Usuario RegistrarUsuario(String mail, String username, String password){
-        Usuario U=new Usuario(mail,username,password);
-        VOCredenciales VOC=new VOCredenciales(username,password);
+    public Usuario addUsuario(String username, String mail, String name, String lastName, String password){
+        Usuario u=new Usuario(username, mail, name, lastName, password);
+        VOCredenciales VOC=new VOCredenciales(username, password);
+        logger.info("new user"+u);
+        this.LUsuarios.put(VOC,u);
+        logger.info("new user added");
+        return u;
+    }
+    public int RegistrarUsuario(Usuario usuarios){
+        Usuario U=new Usuario(usuarios.getUsername(),usuarios.getMail(),usuarios.getName(),usuarios.getLastName(),usuarios.getPassword());
+        VOCredenciales VOC=new VOCredenciales(usuarios.getUsername(),usuarios.getPassword());
+        for (HashMap.Entry<VOCredenciales, Usuario> entry : LUsuarios.entrySet()) {
+            if (U.getMail().equals(LUsuarios.get(entry.getKey()).getMail())){
+                return 1;
+            }
+            if (U.getUsername().equals(LUsuarios.get(entry.getKey()).getUsername())){
+                return 2;
+            }
+        }
         logger.info("new user"+U);
         this.LUsuarios.put(VOC,U);
         logger.info("new user added");
-        return U;
+        return 0;
     }
+    @Override
     public Usuario LogIn(VOCredenciales credencialesu) {
         logger.info("login(" + credencialesu +")");
         if (LUsuarios.containsKey(credencialesu)){
@@ -59,121 +71,31 @@ public class JuegoManagerImpl implements JuegoManager{
         VOCredenciales VOC=new VOCredenciales(U.getUsername(),U.getPassword());
         return VOC;
     }
-    public String getUsername(VOCredenciales Credenciales){
-        logger.info("getUsername("+Credenciales+")");
+    public Usuario getUser(VOCredenciales credenciales){
+        logger.info("getUsername("+credenciales+")");
 
-        logger.info("login(" + Credenciales +")");
-        if (LUsuarios.containsKey(Credenciales)){
-            Usuario U= LUsuarios.get(Credenciales);
-            logger.info("LogIn("+Credenciales+")"+U);
-            return U.getUsername();
+        logger.info("login(" + credenciales +")");
+        if (LUsuarios.containsKey(credenciales)){
+            Usuario U= LUsuarios.get(credenciales);
+            logger.info("LogIn("+credenciales+")"+U);
+            return U;
         }
-        logger.warn(Credenciales+"not found");
+        logger.warn(credenciales+"not found");
         return null;
     }
     public HashMap<VOCredenciales, Usuario> getallusers() {
         return this.LUsuarios;
     }
-
-    //update
-    public int size() {
-        int ret = this.Usuarios.size();
-        logger.info("size " + ret);
-
-        return ret;
-    }
-
-    public Usuario addUser(Usuario u) {
-
-        logger.info("El nuevo usuario: " + u + " debe ser añadido");
-
-        for (Usuario a : this.Usuarios) {
-            if (a.getMail().equals(u.getMail())){
-                logger.warn("Ya existe un usuario con este correo");
-                return null;
-            }
+    @Override
+    public Usuario deleteUsuario(VOCredenciales credenciales) {
+        logger.info("deleteUsuario(" + credenciales +")");
+        if (LUsuarios.containsKey(credenciales)){
+            Usuario U= LUsuarios.get(credenciales);
+            LUsuarios.remove(credenciales);
+            logger.info("deleteUsuario("+credenciales+")"+U);
+            return U;
         }
-        this.Usuarios.add(u);
-        logger.info("nuevo usuario " + u + " añadido");
-        return u;
-    }
-
-    public Usuario addUser(String mail, String username, String password) {
-        return this.addUser(new Usuario(mail, username, password));
-    }
-
-    public Usuario getUser(String id) {
-
-        logger.info("Queremos asociar el usuario con: " + id);
-
-        for (Usuario u: this.Usuarios) {
-            if (u.getId().equals(id)) {
-                logger.info("El usuario es " + u);
-                return u;
-            }
-        }
-        logger.warn("Ningún usuario asociado con: " + id);
+        logger.warn(credenciales+"not found");
         return null;
     }
-    public List<Usuario> findAll() {
-        return this.Usuarios;
-    }
-
-    @Override
-    public Usuario deleteUser(String id) {
-
-        Usuario u = this.getUser(id);
-
-        if (u==null) {
-            logger.warn("Ningún usuario asociado con: " + id);
-        }
-        else {
-            logger.info(u +" eliminado ");
-            this.Usuarios.remove(u);
-        }
-        return u;
-    }
-
-    // Función para cambiar el nombre de usuario
-    @Override
-    public Usuario updateUser(Usuario u) {
-
-        Usuario t = this.getUser(u.getId());
-
-        if (t!=null) {
-            logger.info(u + " ¡Recibido! ");
-
-            t.setUsername(u.getUsername());
-            t.setMail(u.getMail());
-            t.setPassword(u.getPassword());
-
-            logger.info(t + " Actualizado ");
-        }
-        else {
-            logger.warn("Ningún usuario asociado con: " + u);
-        }
-
-        return t;
-    }
-
-    @Override
-    public Usuario authentification(String mail, String password) {
-
-        for (Usuario c: this.Usuarios) {
-            if (c.getMail().equals(mail)) {
-                if (c.getPassword().equals(password)) {
-                    logger.info("Usuario encontrado");
-                    return c;
-                } else {
-                    logger.warn("Contraseña incorrecta");
-                    return null;
-                }
-            }
-        }
-        logger.warn("Usuario no encontrado");
-        return null;
-    }
-
-
-
 }

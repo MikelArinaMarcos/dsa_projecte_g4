@@ -14,7 +14,7 @@ $(document).ready(function(){
 
         // Enviar la solicitud POST al servidor para el inicio de sesión
         $.post({
-            url: '/dsaApp/juego/users/login', // Ajusta la URL según tu estructura de carpetas y rutas
+            url: '/dsaApp/usuarios/login', // Ajusta la URL según tu estructura de carpetas y rutas
             data: JSON.stringify(body),
             contentType: 'application/json; charset=utf8'
         })

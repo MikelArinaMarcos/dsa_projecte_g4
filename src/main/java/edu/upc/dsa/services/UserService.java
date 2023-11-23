@@ -1,8 +1,9 @@
 package edu.upc.dsa.services;
-
+/*
 import edu.upc.dsa.JuegoManager;
 import edu.upc.dsa.JuegoManagerImpl;
 import edu.upc.dsa.models.Usuario;
+import edu.upc.dsa.models.VOCredenciales;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -13,6 +14,7 @@ import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
+
 @Api(value = "/users", description = "Endpoint to User Service")
 @Path("/users")
 
@@ -84,6 +86,25 @@ public class UserService {
         }
     }
 
+    @POST
+    @ApiOperation(value = "LOGIN", notes = "asdasd")
+    @ApiResponses(value = {
+            @ApiResponse(code = 201, message = "Successful", response = Usuario.class),
+            @ApiResponse(code = 404, message = "User not found")
+    })
+    @Path("/Login")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response authentificate(VOCredenciales credenciales) {
+
+        Usuario user = this.jm.authentification(credenciales.getUsername(), credenciales.getPassword());
+
+        if (user == null) {
+            return Response.status(404).build();
+        } else {
+            return Response.status(201).entity(user).build();
+        }
+    }
+
     @DELETE
     @ApiOperation(value = "Elimina a un usuario", notes = "asdasd")
     @ApiResponses(value = {
@@ -128,7 +149,7 @@ public class UserService {
 
     })
 
-    @Path("/")
+    @Path("/Register")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response newUser(Usuario u) {
         Usuario t = this.jm.addUser(u);
@@ -139,4 +160,4 @@ public class UserService {
             return Response.status(201).entity(u).build();
         }
     }
-}
+}*/

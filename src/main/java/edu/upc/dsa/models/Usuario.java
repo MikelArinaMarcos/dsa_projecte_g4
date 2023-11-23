@@ -1,50 +1,57 @@
 package edu.upc.dsa.models;
-import edu.upc.dsa.util.RandomUtils;
+
 public class Usuario {
-    String id;
-    String mail;
-    String username;
-    String password;
+    private String Username;
+    private String Mail;
+    private String Name;
+    private String LastName;
+    private String Password;
 
-    public Usuario() {this.id = RandomUtils.getId();}
-
-    public Usuario(String mail, String username, String password) {
-        this();
-        this.setMail(mail);
-        this.setUsername(username);
-        this.setPassword(password);
-    }
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-    public String getMail() {
-        return this.mail;
-    }
-    public void setMail(String mail) {
-        this.mail=mail;
+    public Usuario(String username, String mail, String name, String lastName, String password) {
+        Username = username;
+        Mail = mail;
+        Name = name;
+        LastName = lastName;
+        Password = password;
     }
 
     public String getUsername() {
-        return this.username;
+        return Username;
     }
+
     public void setUsername(String username) {
-        this.username=username;
+        Username = username;
+    }
+
+    public String getMail() {
+        return Mail;
+    }
+
+    public void setMail(String mail) {
+        Mail = mail;
+    }
+
+    public String getName() {
+        return Name;
+    }
+
+    public void setName(String name) {
+        Name = name;
+    }
+
+    public String getLastName() {
+        return LastName;
+    }
+
+    public void setLastName(String lastName) {
+        LastName = lastName;
     }
 
     public String getPassword() {
-        return this.password;
-    }
-    public void setPassword(String password) {
-        this.password=password;
+        return Password;
     }
 
-    @Override
-    public String toString() {
-        return "User [mail=" + mail + ", username=" + username +", password=" + password+"]";
+    public void setPassword(String password) {
+        Password = password;
     }
 }
-
