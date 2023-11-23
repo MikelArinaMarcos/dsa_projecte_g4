@@ -128,7 +128,7 @@ public class UserService {
 
     })
 
-    @Path("/")
+    @Path("/register")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response newUser(Usuario u) {
         Usuario t = this.jm.addUser(u);
