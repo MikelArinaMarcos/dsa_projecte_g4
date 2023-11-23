@@ -21,4 +21,6 @@ public interface JuegoManager {
     public Usuario deleteUser(String id);
     public Usuario updateUser(Usuario u);
     public Usuario authentification(String mail, String password);
+    public Usuario loginJugador(VOCredenciales credenciales);
+    Usuario loginUsuario(VOCredenciales credencials);
 }

@@ -3,6 +3,7 @@ package edu.upc.dsa.services;
 import edu.upc.dsa.JuegoManager;
 import edu.upc.dsa.JuegoManagerImpl;
 import edu.upc.dsa.models.Usuario;
+import edu.upc.dsa.models.VOCredenciales;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -65,7 +66,7 @@ public class UserService {
         }
     }
 
-    @GET
+   /* @POST
     @ApiOperation(value = "Autenticar usuario", notes = "asdasd")
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "Successful", response = Usuario.class),
@@ -83,6 +84,27 @@ public class UserService {
             return Response.status(201).entity(user).build();
         }
     }
+    */
+
+    @POST
+    @ApiOperation(value = "login", notes = "Realitzar el login")
+    @ApiResponses(value = {
+            @ApiResponse(code = 201, message = "Successful", response= Usuario.class),
+            @ApiResponse(code = 500, message = "Validation Error")
+
+    })
+    @Path("/login")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response logIn(VOCredenciales credencials) {
+        System.out.println("-----LOGIN-----");
+        System.out.println("Mail: "+ credencials.getMail());
+        Usuario u = this.jm.loginUsuario(credencials);
+        if (u==null)
+            return Response.status(500).build();
+        else
+            return Response.status(201).entity(u).build();
+    }
+
 
     @DELETE
     @ApiOperation(value = "Elimina a un usuario", notes = "asdasd")

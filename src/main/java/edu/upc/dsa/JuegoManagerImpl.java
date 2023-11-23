@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
-public class JuegoManagerImpl implements JuegoManager{
+public abstract class JuegoManagerImpl implements JuegoManager{
     private static JuegoManager instance;
 
     protected List<Usuario> Usuarios;
@@ -20,7 +20,17 @@ public class JuegoManagerImpl implements JuegoManager{
     protected List<Personaje> Personajes;
     final static Logger logger = Logger.getLogger(JuegoManagerImpl.class);
     public  static JuegoManager getInstance(){
-        if (instance==null) instance = new JuegoManagerImpl();
+        if (instance==null) instance = new JuegoManagerImpl() {
+            @Override
+            public Usuario loginJugador(VOCredenciales credenciales) {
+                return null;
+            }
+
+            @Override
+            public Usuario loginUsuario(VOCredenciales credencials) {
+                return null;
+            }
+        };
         return instance;
     }
     public int sizeusers(){

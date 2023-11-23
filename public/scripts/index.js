@@ -5,3 +5,6 @@ function entrarJuego(){
 function registrar() {
     location.href = "/register.html";
 }
+function entrarTienda() {
+    location.href = "/shop.html";
+}
