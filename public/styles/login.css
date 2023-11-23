@@ -1,66 +1,69 @@
 body {
-    background-color: lightblue;
-    align-items: center;
-    justify-content: center;
-    display: flex;
+    font-family: 'Courier New', monospace;
+    background: #f4f4f4;
     margin: 0;
-    height: 100vh;
 }
 
 .formLogin {
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: white;
-    width: 50%;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    min-height: 100vh;
+    background: linear-gradient(to right, #0D0291, #ce1d61);
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    text-align: center;
+    padding: 20px 25px;
+    box-shadow: 0 5px 10px rgba(71, 3, 6, 0.7);
 }
 
 .tituloLogin {
-    font-size: 40px;
+    color: #252525;
+    font-size: 35px;
+    font-weight: 800;
+    margin-bottom: 30px;
+}
+
+.inputContainer {
+    margin-bottom: 35px;
 }
 
 .labelLogin {
     font-size: 20px;
-    font-weight: bold;
-}
-
-.obligatorio {
-    color: darkred;
-    margin-left: 5px;
+    color: #cb232c;
 }
 
 .input {
-    margin-top: 5px;
-    margin-bottom: 10px;
-    width: 100%;
-    font-size: 15px;
-    border: 1px solid lightblue;
-    padding: 8px;
-    box-sizing: border-box;
+    outline: none;
+    border: none;
+    color: #252525;
+    border-bottom: solid 1px #ce1d61;
+    padding: 0 5px;
+    font-size: 18px;
 }
 
-.input:focus {
-    outline: none;
-    border: 1px solid blue;
+.input::placeholder {
+    color: rgba(37, 37, 37, 0.5);
+}
+
+.obligatorio {
+    color: red;
 }
 
 .loginBtnDiv {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .loginBtn {
-    background-color: lightgrey;
-    color: black;
-    font-size: 18px;
-    padding: 10px 15px;
+    color: #fff;
     border: none;
-    border-radius: 5px;
+    background: linear-gradient(to right, #cb232c, #ce1d61);
+    padding: 10px 15px;
     cursor: pointer;
+    font-size: 20px;
 }
+
