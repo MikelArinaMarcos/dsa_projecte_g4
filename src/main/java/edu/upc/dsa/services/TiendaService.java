@@ -1,9 +1,12 @@
 package edu.upc.dsa.services;
 
+import edu.upc.dsa.JuegoManager;
+import edu.upc.dsa.JuegoManagerImpl;
 import edu.upc.dsa.TiendaManager;
 import edu.upc.dsa.TiendaManagerImpl;
 import edu.upc.dsa.models.Objeto;
-import edu.upc.dsa.models.Personaje;
+import edu.upc.dsa.models.Usuario;
+import edu.upc.dsa.models.VOCredenciales;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -67,4 +70,18 @@ public class TiendaService {
         return Response.status(201).entity(entity).build();
     }
 
+    @PUT
+    @ApiOperation(value = "Comprar objeto", notes = "asdasd")
+    @ApiResponses(value = {
+            @ApiResponse(code = 201, message = "Successful"),
+            @ApiResponse(code = 501, message = "Estas pobre")
+    })
+    @Path("/comprarObjeto")
+    public Response comprarObjeto(Objeto o) {
+        int res = 0;
+        if(res != 0){
+            return Response.status(501).build();
+        }
+        return Response.status(201).build();
+    }
 }

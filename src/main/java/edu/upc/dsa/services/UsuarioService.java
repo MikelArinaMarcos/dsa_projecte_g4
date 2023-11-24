@@ -2,6 +2,7 @@ package edu.upc.dsa.services;
 
 import edu.upc.dsa.JuegoManager;
 import edu.upc.dsa.JuegoManagerImpl;
+import edu.upc.dsa.models.Objeto;
 import edu.upc.dsa.models.Usuario;
 import edu.upc.dsa.models.VOCredenciales;
 import io.swagger.annotations.Api;
@@ -15,6 +16,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 
 @Api(value = "/usuario", description = "Endpoint to usuario Service")
@@ -25,11 +27,12 @@ public class UsuarioService {
     public UsuarioService() {
         this.jm = JuegoManagerImpl.getInstance();
         if (jm.sizeusers() == 0) {
-            this.jm.addUsuario("j","jordi@gmail.com", "jordi", "l","1234");
-            this.jm.addUsuario("a","aran@gmail.com", "aran", "a","1234");
-            this.jm.addUsuario("p","pedro@gmail.com", "pedro","s", "1234");
-            this.jm.addUsuario("b","bryan@gmail.com", "bryan", "t","1234");
-            this.jm.addUsuario("m","mikel@gmail.com", "mikel", "n","1234");
+            LinkedList<Objeto> objetos = new LinkedList<Objeto>();
+            this.jm.addUsuario("j","jordi@gmail.com", "jordi", "l","1234", 500, objetos);
+            this.jm.addUsuario("a","aran@gmail.com", "aran", "a","1234", 500, objetos);
+            this.jm.addUsuario("p","pedro@gmail.com", "pedro","s", "1234", 500, objetos);
+            this.jm.addUsuario("b","bryan@gmail.com", "bryan", "t","1234", 500, objetos);
+            this.jm.addUsuario("m","mikel@gmail.com", "mikel", "n","1234", 500, objetos);
         }
     }
 

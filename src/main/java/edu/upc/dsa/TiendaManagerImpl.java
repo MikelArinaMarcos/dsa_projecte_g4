@@ -1,6 +1,6 @@
 package edu.upc.dsa;
 import edu.upc.dsa.models.Objeto;
-import edu.upc.dsa.models.Personaje;
+import edu.upc.dsa.models.Usuario;
 import org.apache.log4j.Logger;
 
 import java.util.LinkedList;
@@ -57,14 +57,14 @@ public class TiendaManagerImpl implements TiendaManager{
         return Objetos.size();
     }
 
-    public int compararObjeto(Objeto o, Personaje p){
-        if (o.getPrecio() > p.getBolivares()){
+    public int compararObjeto(Objeto o, Usuario u){
+        if (o.getPrecio() > u.getBolivares()){
             logger.info("Estas pobre");
             return -1;
         }
         logger.info("Comprando onjeto " + o.getNombre());
-        p.setBolivares(p.getBolivares() - o.getPrecio());
-        p.addObjeto(o);
+        u.setBolivares(u.getBolivares() - o.getPrecio());
+        u.addObjeto(o);
         return 0;
     }
 }

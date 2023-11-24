@@ -1,6 +1,6 @@
 package edu.upc.dsa;
 
-import edu.upc.dsa.models.Personaje;
+import edu.upc.dsa.models.Objeto;
 import edu.upc.dsa.models.Usuario;
 import edu.upc.dsa.models.VOCredenciales;
 import org.apache.log4j.Logger;
@@ -9,13 +9,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class JuegoManagerImpl implements JuegoManager{
     private static JuegoManager instance;
     protected List<Usuario> Usuarios;
     protected HashMap<String, Usuario> lUsuarios = new HashMap<String, Usuario>();
-    protected List<Personaje> Personajes;
     final static Logger logger = Logger.getLogger(JuegoManagerImpl.class);
     public  static JuegoManager getInstance(){
         if (instance==null) instance = new JuegoManagerImpl();
@@ -27,14 +25,8 @@ public class JuegoManagerImpl implements JuegoManager{
 
         return ret;
     }
-    public int partidassize() {
-        int ret = this.Personajes.size();
-        logger.info("size " + ret);
-
-        return ret;
-    }
-    public int addUsuario(String username, String mail, String name, String lastName, String password){
-        Usuario u=new Usuario(username, mail, name, lastName, password);
+    public int addUsuario(String username, String mail, String name, String lastName, String password, int bolivares, List<Objeto> objetos){
+        Usuario u=new Usuario(username, mail, name, lastName, password, bolivares, objetos);
         if (lUsuarios.containsKey(mail)){
             logger.info("Mail ya en uso");
             return 1;
