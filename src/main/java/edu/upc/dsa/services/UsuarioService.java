@@ -42,25 +42,25 @@ public class UsuarioService {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getUsuarios() {
 
-        HashMap<VOCredenciales,Usuario> Users = this.jm.getallusers();
+        List<Usuario> Users = this.jm.getallusers();
 
-        GenericEntity<HashMap<VOCredenciales,Usuario>> entity = new GenericEntity<HashMap<VOCredenciales,Usuario>>(Users) {};
-        return Response.status(201).entity(entity).build()  ;
+        GenericEntity<List<Usuario>> entity = new GenericEntity<List<Usuario>>(Users) {};
+        return Response.status(201).entity(entity).build();
 
     }
-    @GET
-    @ApiOperation(value = "get a User", notes = "asdasd")
-    @ApiResponses(value = {
-            @ApiResponse(code = 201, message = "Successful", response = Usuario.class),
-            @ApiResponse(code = 404, message = "User not found")
-    })
-    @Path("/usuario")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response getUser(VOCredenciales credenciales) {
-        Usuario U = this.jm.getUser(credenciales);
-        if (U == null) return Response.status(404).build();
-        else  return Response.status(201).entity(U).build();
-    }
+//    @GET
+//    @ApiOperation(value = "get a User", notes = "asdasd")
+//    @ApiResponses(value = {
+//            @ApiResponse(code = 201, message = "Successful", response = Usuario.class),
+//            @ApiResponse(code = 404, message = "User not found")
+//    })
+//    @Path("/usuario")
+//    @Produces(MediaType.APPLICATION_JSON)
+//    public Response getUser(VOCredenciales credenciales) {
+//        Usuario U = this.jm.getUser(credenciales);
+//        if (U == null) return Response.status(404).build();
+//        else  return Response.status(201).entity(U).build();
+//    }
     @POST
     @ApiOperation(value = "Log in", notes = "ole")
     @ApiResponses(value = {
@@ -69,7 +69,7 @@ public class UsuarioService {
     })
     @Path("/login")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response LogIn(VOCredenciales credenciales){
+    public Response logIn(VOCredenciales credenciales){
         Usuario u = this.jm.LogIn(credenciales);
         if (u==null) return Response.status(501).build();
         return Response.status(201).entity(u).build();
@@ -83,10 +83,10 @@ public class UsuarioService {
     })
     @Path("/registrar")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response RegistrarUsuario(Usuario usuarios){
-        int u = this.jm.RegistrarUsuario(usuarios);
-        if (u==1) return Response.status(501).build();
-        if (u==2) return Response.status(502).build();
+    public Response RegistrarUsuario(Usuario u){
+        int n = this.jm.registrarUsuario(u);
+        if (n==1) return Response.status(501).build();
+        if (n==2) return Response.status(502).build();
         return Response.status(201).build();
     }
     @DELETE

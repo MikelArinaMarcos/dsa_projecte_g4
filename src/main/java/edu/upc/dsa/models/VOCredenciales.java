@@ -1,27 +1,29 @@
 package edu.upc.dsa.models;
 
 public class VOCredenciales {
-    private String Username;
-    private String Password;
+    private String mail;
+    private String password;
+
+    public VOCredenciales(){}
 
     public VOCredenciales(String username, String password) {
-        Username = username;
-        Password = password;
+        this.setMail(mail);
+        this.setPassword(password);
     }
 
-    public String getUsername() {
-        return Username;
+    public String getMail() {
+        return mail;
     }
 
-    public void setUsername(String username) {
-        Username = username;
+    public void setMail(String mail) {
+        this.mail = mail;
     }
 
     public String getPassword() {
-        return Password;
+        return password;
     }
 
     public void setPassword(String password) {
-        Password = password;
+        this.password = password;
     }
 }

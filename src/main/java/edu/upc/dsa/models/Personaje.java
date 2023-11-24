@@ -1,27 +1,58 @@
 package edu.upc.dsa.models;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class Personaje {
-    private int Vida;
-    private int Alimento;
+    private int vida;
+    private int bolivares;
+    private int alimento;
+    private List<Objeto> objetos;
 
     public Personaje(int vida, int alimento) {
-        Vida = vida;
-        Alimento = alimento;
+        this.setVida(vida);
+        this.setBolivares(100);
+        this.setAlimento(alimento);
+        this.inicializarObjetos();
     }
 
     public int getVida() {
-        return Vida;
+        return vida;
     }
 
     public void setVida(int vida) {
-        Vida = vida;
+        this.vida = vida;
+    }
+
+    public int getBolivares() {
+        return bolivares;
+    }
+
+    public void setBolivares(int bolivares) {
+        this.bolivares = bolivares;
     }
 
     public int getAlimento() {
-        return Alimento;
+        return alimento;
     }
 
     public void setAlimento(int alimento) {
-        Alimento = alimento;
+        this.alimento = alimento;
+    }
+
+    public List<Objeto> getObjetos() {
+        return objetos;
+    }
+
+    public void setObjetos(List<Objeto> objetos) {
+        this.objetos = objetos;
+    }
+
+    public void addObjeto(Objeto o){
+        this.objetos.add(o);
+    }
+
+    public void inicializarObjetos(){
+        this.objetos = new LinkedList<Objeto>();
     }
 }

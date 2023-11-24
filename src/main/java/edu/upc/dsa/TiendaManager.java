@@ -9,6 +9,4 @@ public interface TiendaManager {
     public List<Objeto> getProductosTienda(int nivel);
     public void addProducto(int id, int rareza, String nombre, int precio, int dmg);
     public int productoSize();
-
-    public List<Objeto> getAllObjects();
 }

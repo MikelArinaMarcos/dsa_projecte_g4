@@ -3,6 +3,7 @@ package edu.upc.dsa.services;
 import edu.upc.dsa.TiendaManager;
 import edu.upc.dsa.TiendaManagerImpl;
 import edu.upc.dsa.models.Objeto;
+import edu.upc.dsa.models.Personaje;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -10,6 +11,7 @@ import io.swagger.annotations.ApiResponses;
 import org.apache.log4j.Logger;
 
 import javax.ws.rs.GET;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.GenericEntity;
