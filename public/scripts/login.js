@@ -2,7 +2,7 @@ $(document).ready(function() {
     $('#loginBtn').click(function(event){
         event.preventDefault();
 
-        var mail = $("#email").val();
+        var mail = $("#mail").val();
         var password = $("#password").val();
         console.log(mail,password);
         if (mail == '' || password == '') {
@@ -34,9 +34,9 @@ $(document).ready(function() {
         });
     });
 
-    function isValidEmail(email) {
+    function isValidEmail(mail) {
         var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email);
+        return emailRegex.test(mail);
     }
 });
 
