@@ -1,57 +1,58 @@
 package edu.upc.dsa.models;
 
 public class Usuario {
-    private String Username;
-    private String Mail;
-    private String Name;
-    private String LastName;
-    private String Password;
+    private String username;
+    private String mail;
+    private String name;
+    private String lastname;
+    private String password;
 
+    public Usuario(){}
     public Usuario(String username, String mail, String name, String lastName, String password) {
-        Username = username;
-        Mail = mail;
-        Name = name;
-        LastName = lastName;
-        Password = password;
+        this.username = username;
+        this.mail = mail;
+        this.name = name;
+        lastname = lastName;
+        this.password = password;
     }
 
     public String getUsername() {
-        return Username;
+        return username;
     }
 
     public void setUsername(String username) {
-        Username = username;
+        this.username = username;
     }
 
     public String getMail() {
-        return Mail;
+        return mail;
     }
 
     public void setMail(String mail) {
-        Mail = mail;
+        this.mail = mail;
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public void setName(String name) {
-        Name = name;
+        this.name = name;
     }
 
-    public String getLastName() {
-        return LastName;
+    public String getLastname() {
+        return lastname;
     }
 
-    public void setLastName(String lastName) {
-        LastName = lastName;
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
     public String getPassword() {
-        return Password;
+        return password;
     }
 
     public void setPassword(String password) {
-        Password = password;
+        this.password = password;
     }
 }

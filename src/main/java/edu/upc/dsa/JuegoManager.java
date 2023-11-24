@@ -11,7 +11,7 @@ public interface JuegoManager {
     public Usuario LogIn(VOCredenciales credencialesu);
     public VOCredenciales getCredenciales(Usuario U);
     public Usuario getUser(VOCredenciales Credenciales);
-    public HashMap<VOCredenciales, Usuario> getallusers();
+    public HashMap<String, Usuario> getallusers();
     public int sizeusers();
     public Usuario deleteUsuario(VOCredenciales credenciales);
 }
