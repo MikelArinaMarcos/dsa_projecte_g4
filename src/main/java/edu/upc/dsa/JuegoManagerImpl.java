@@ -43,7 +43,6 @@ public class JuegoManagerImpl implements JuegoManager{
     }
     public int addUsuario(String username, String mail, String name, String lastName, String password){
         Usuario u=new Usuario(username, mail, name, lastName, password);
-<<<<<<< HEAD
         if (lUsuarios.containsKey(mail)){
             logger.info("Mail ya en uso");
             return 1;
@@ -68,7 +67,6 @@ public class JuegoManagerImpl implements JuegoManager{
         }
         logger.info("new user "+u.getName());
         this.lUsuarios.put(u.getMail(),u);
-=======
         logger.info("new user"+u);
         this.LUsuarios.put(u.getMail(),u);
         logger.info("new user added");

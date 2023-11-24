@@ -36,23 +36,15 @@ public class UsuarioService {
     @GET
     @ApiOperation(value = "get all Users", notes = "asdasd")
     @ApiResponses(value = {
-            @ApiResponse(code = 201, message = "Successful", response = Hash, responseContainer="List"),
+            @ApiResponse(code = 201, message = "Successful", response = class.Usuario, responseContainer="List"),
     })
     @Path("/usuarios")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getUsuarios() {
-
-<<<<<<< HEAD
         List<Usuario> Users = this.jm.getallusers();
 
         GenericEntity<List<Usuario>> entity = new GenericEntity<List<Usuario>>(Users) {};
         return Response.status(201).entity(entity).build();
-=======
-        HashMap<String,Usuario> Users = this.jm.getallusers();
-
-        GenericEntity<HashMap<String,Usuario>> entity = new GenericEntity<HashMap<String,Usuario>>(Users) {};
-        return Response.status(201).entity(entity).build()  ;
->>>>>>> 54dbfb67f107444cc37fc18782cdc9a37fbc6e69
 
     }
 //    @GET
