@@ -36,7 +36,7 @@ public class UsuarioService {
     @GET
     @ApiOperation(value = "get all Users", notes = "asdasd")
     @ApiResponses(value = {
-            @ApiResponse(code = 201, message = "Successful", response = class.Usuario, responseContainer="List"),
+            @ApiResponse(code = 201, message = "Successful", response = Usuario.class, responseContainer="List"),
     })
     @Path("/usuarios")
     @Produces(MediaType.APPLICATION_JSON)

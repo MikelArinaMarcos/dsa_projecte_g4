@@ -5,6 +5,7 @@ import edu.upc.dsa.models.Usuario;
 import edu.upc.dsa.models.VOCredenciales;
 import org.apache.log4j.Logger;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -90,7 +91,7 @@ public class JuegoManagerImpl implements JuegoManager{
         return null;
     }
     public List<Usuario> getallusers() {
-        return this.lUsuarios.values().stream().collect(Collectors.toList());
+        return new ArrayList<>(this.lUsuarios.values());
     }
     @Override
     public Usuario deleteUsuario(VOCredenciales credenciales) {
