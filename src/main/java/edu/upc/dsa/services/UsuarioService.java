@@ -89,20 +89,17 @@ public class UsuarioService {
         return Response.status(201).build();
     }
     @DELETE
-    @ApiOperation(value = "Elimina a un usuario", notes = "asdasd")
+    @ApiOperation(value = "delete user", notes = "asdasd")
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "Successful"),
             @ApiResponse(code = 404, message = "User not found")
     })
-    @Path("/eliminar")
-    public Response deleteUsuario(VOCredenciales credenciales) {
-        Usuario U = this.jm.deleteUsuario(credenciales);
-
-        if (U == null) {
-            return Response.status(404).build();
-        } else {
-            return Response.status(201).build();
-        }
+    @Path("/deleteUser/{mail}/{password}")
+    public Response deleteUser(@PathParam("mail") String mail, @PathParam("password") String password) {
+        VOCredenciales voc = new VOCredenciales(mail, password);
+        if (jm.getUser(voc) == null) return Response.status(404).build();
+        else this.jm.deleteUsuario(voc);
+        return Response.status(201).build();
     }
 }
 

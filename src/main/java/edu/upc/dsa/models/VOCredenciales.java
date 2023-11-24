@@ -5,7 +5,7 @@ public class VOCredenciales {
     private String password;
     public VOCredenciales(){}
 
-    public VOCredenciales(String username, String password) {
+    public VOCredenciales(String mail, String password) {
         this.setMail(mail);
         this.setPassword(password);
     }
