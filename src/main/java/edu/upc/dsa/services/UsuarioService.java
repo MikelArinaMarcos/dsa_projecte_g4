@@ -26,14 +26,6 @@ public class UsuarioService {
 
     public UsuarioService() {
         this.jm = JuegoManagerImpl.getInstance();
-        if (jm.sizeusers() == 0) {
-            LinkedList<Objeto> objetos = new LinkedList<Objeto>();
-            this.jm.addUsuario("j","jordi@gmail.com", "jordi", "l","1234", 500, objetos);
-            this.jm.addUsuario("a","aran@gmail.com", "aran", "a","1234", 500, objetos);
-            this.jm.addUsuario("p","pedro@gmail.com", "pedro","s", "1234", 500, objetos);
-            this.jm.addUsuario("b","bryan@gmail.com", "bryan", "t","1234", 500, objetos);
-            this.jm.addUsuario("m","mikel@gmail.com", "mikel", "n","1234", 500, objetos);
-        }
     }
 
     @GET
@@ -95,13 +87,15 @@ public class UsuarioService {
     @ApiOperation(value = "delete user", notes = "asdasd")
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "Successful"),
-            @ApiResponse(code = 404, message = "User not found")
+            @ApiResponse(code = 404, message = "User not found"),
+            @ApiResponse(code = 501, message = "Contra incorrecta")
     })
     @Path("/deleteUser/{mail}/{password}")
     public Response deleteUser(@PathParam("mail") String mail, @PathParam("password") String password) {
         VOCredenciales voc = new VOCredenciales(mail, password);
-        if (jm.getUser(voc) == null) return Response.status(404).build();
-        else this.jm.deleteUsuario(voc);
+        if (jm.getUser(mail) == null) return Response.status(404).build();
+        else if(this.jm.deleteUsuario(voc) == -1)
+            return Response.status(501).build();
         return Response.status(201).build();
     }
 }

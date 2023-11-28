@@ -46,10 +46,12 @@ public class JuegoManagerImpl implements JuegoManager{
             return 1;
         }
         for(Map.Entry<String, Usuario> e : lUsuarios.entrySet()){
-            if(e.getValue().getName() == u.getUsername())
+            if(e.getValue().getName().equals(u.getUsername()))
                 return 2;
         }
         logger.info("new user "+u.getName());
+        u.setBolivares(500);
+        u.iniObjetos();
         this.lUsuarios.put(u.getMail(),u);
         logger.info("new user added");
         return 0;
@@ -70,31 +72,31 @@ public class JuegoManagerImpl implements JuegoManager{
         VOCredenciales VOC=new VOCredenciales(U.getUsername(),U.getPassword());
         return VOC;
     }
-    public Usuario getUser(VOCredenciales credenciales){
-        logger.info("getUsername("+credenciales+")");
+    public Usuario getUser(String mail){
+        logger.info("getUsername("+mail+")");
 
-        logger.info("login(" + credenciales +")");
-        if (lUsuarios.containsKey(credenciales.getMail())){
-            Usuario U= lUsuarios.get(credenciales.getMail());
-            logger.info("LogIn("+credenciales+")"+U);
+        logger.info("login(" + mail +")");
+        if (lUsuarios.containsKey(mail)){
+            Usuario U= lUsuarios.get(mail);
+            logger.info("LogIn("+mail+")"+U);
             return U;
         }
-        logger.warn(credenciales+"not found");
+        logger.warn(mail+"not found");
         return null;
     }
     public List<Usuario> getallusers() {
         return new ArrayList<>(this.lUsuarios.values());
     }
     @Override
-    public Usuario deleteUsuario(VOCredenciales credenciales) {
+    public int deleteUsuario(VOCredenciales credenciales) {
         logger.info("deleteUsuario(" + credenciales +")");
-        if (lUsuarios.containsKey(credenciales.getMail())){
-            Usuario U= lUsuarios.get(credenciales.getMail());
+        if (lUsuarios.get(credenciales.getMail()).getPassword().equals(credenciales.getPassword())){
+            Usuario U = lUsuarios.get(credenciales.getMail());
             lUsuarios.remove(credenciales.getMail());
             logger.info("deleteUsuario("+credenciales+")"+U);
-            return U;
+            return 1;
         }
         logger.warn(credenciales+"not found");
-        return null;
+        return -1;
     }
 }

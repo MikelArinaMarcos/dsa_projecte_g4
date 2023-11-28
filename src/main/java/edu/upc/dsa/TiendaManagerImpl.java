@@ -3,28 +3,27 @@ import edu.upc.dsa.models.Objeto;
 import edu.upc.dsa.models.Usuario;
 import org.apache.log4j.Logger;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class TiendaManagerImpl implements TiendaManager{
     private static TiendaManager instance;
-    protected List<Objeto> Objetos;
+    protected Map<String, Objeto> Objetos;
     final static Logger logger = Logger.getLogger(TiendaManagerImpl.class);
 
     public TiendaManagerImpl() {
-        this.Objetos = new LinkedList<Objeto>();
+        this.Objetos = new HashMap<String, Objeto>();
     }
     public  static TiendaManager getInstance(){
         if (instance==null) instance = new TiendaManagerImpl();
         return instance;
     }
     public List<Objeto> listaObjetos(){
-        Objetos.sort((Objeto o1, Objeto o2) -> Integer.compare(o1.getPrecio(),(o2.getPrecio())));
-        for(Objeto obj : Objetos){
+        List<Objeto> lObjetos = new LinkedList<Objeto>(Objetos.values());
+        lObjetos.sort((Objeto o1, Objeto o2) -> Integer.compare(o1.getPrecio(),(o2.getPrecio())));
+        for(Objeto obj : lObjetos){
             logger.info("Producto: " + obj.getNombre() + " - Precio: " + obj.getPrecio());
         }
-        return Objetos;
+        return lObjetos;
     }
     public List<Objeto> getProductosTienda(int nivel){
         List<Objeto> oTienda = new LinkedList<Objeto>();
@@ -50,19 +49,30 @@ public class TiendaManagerImpl implements TiendaManager{
     public void addProducto(int id, int rareza, String nombre, int precio, int dmg){
         logger.info("Inicializando objeto " + nombre);
         Objeto o = new Objeto(id, rareza, nombre, precio, dmg);
-        Objetos.add(o);
+        Objetos.put(nombre, o);
     }
+
+    public Objeto getObjeto(String nombre){
+        if (Objetos.containsKey(nombre)){
+            logger.info(nombre + "found");
+            Objeto o = Objetos.get(nombre);
+            return o;
+        }
+        logger.warn(nombre + " not found");
+        return null;
+    }
+
     public int productoSize(){
         logger.info("Size productos " + Objetos.size());
         return Objetos.size();
     }
 
-    public int compararObjeto(Objeto o, Usuario u){
+    public int comprarObjeto(Objeto o, Usuario u){
         if (o.getPrecio() > u.getBolivares()){
             logger.info("Estas pobre");
             return -1;
         }
-        logger.info("Comprando onjeto " + o.getNombre());
+        logger.info("Comprando objeto " + o.getNombre());
         u.setBolivares(u.getBolivares() - o.getPrecio());
         u.addObjeto(o);
         return 0;

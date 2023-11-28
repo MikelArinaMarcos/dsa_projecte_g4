@@ -13,10 +13,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.apache.log4j.Logger;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.PUT;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -26,10 +23,12 @@ import java.util.List;
 @Path("/tienda")
 public class TiendaService {
     private TiendaManager tm;
+    private JuegoManager jm;
     final static Logger logger = Logger.getLogger(TiendaManagerImpl.class);
 
     public TiendaService() {
         this.tm = TiendaManagerImpl.getInstance();
+        this.jm = JuegoManagerImpl.getInstance();
         if (tm.productoSize() == 0) {
             this.tm.addProducto(1, 1, "DMG+", 1, 1);
             this.tm.addProducto(2, 1, "Life+", 4, 1);
@@ -55,30 +54,17 @@ public class TiendaService {
         return Response.status(201).entity(entity).build();
     }
 
-    @GET
-    @ApiOperation(value = "Get objetos tienda", notes = "Devuelve un listado de objetos de la tienda en orden ascendiente de precio")
-    @ApiResponses(value = {
-            @ApiResponse(code = 201, message = "Successful", response = Objeto.class, responseContainer = "List"),
-    })
-    @Path("/objetosTienda")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response getProductosTienda() {
-        int nivel = 9;
-        List<Objeto> objetos = this.tm.getProductosTienda(nivel);
-        GenericEntity<List<Objeto>> entity = new GenericEntity<List<Objeto>>(objetos) {
-        };
-        return Response.status(201).entity(entity).build();
-    }
-
     @PUT
     @ApiOperation(value = "Comprar objeto", notes = "asdasd")
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "Successful"),
             @ApiResponse(code = 501, message = "Estas pobre")
     })
-    @Path("/comprarObjeto")
-    public Response comprarObjeto(Objeto o) {
-        int res = 0;
+    @Path("/comprarObjeto/{Mail}/{Objeto}")
+    public Response comprarObjeto(@PathParam("Mail") String mail, @PathParam("Objeto") String objeto) {
+        Usuario u = jm.getUser(mail);
+        Objeto o = tm.getObjeto(objeto);
+        int res = tm.comprarObjeto(o,u);
         if(res != 0){
             return Response.status(501).build();
         }

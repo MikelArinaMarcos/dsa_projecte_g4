@@ -11,8 +11,8 @@ public interface JuegoManager {
     public int registrarUsuario(Usuario u);
     public Usuario LogIn(VOCredenciales credencialesu);
     public VOCredenciales getCredenciales(Usuario U);
-    public Usuario getUser(VOCredenciales Credenciales);
+    public Usuario getUser(String mail);
     public List<Usuario> getallusers();
     public int sizeusers();
-    public Usuario deleteUsuario(VOCredenciales credenciales);
+    public int deleteUsuario(VOCredenciales credenciales);
 }
