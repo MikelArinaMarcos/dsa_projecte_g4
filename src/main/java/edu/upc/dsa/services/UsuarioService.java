@@ -64,7 +64,7 @@ public class UsuarioService {
     @Path("/login")
     @Produces(MediaType.APPLICATION_JSON)
     public Response logIn(VOCredenciales credenciales){
-        Usuario u = this.jm.LogIn(credenciales);
+        Usuario u = this.jm.login(credenciales);
         if (u==null) return Response.status(501).build();
         return Response.status(201).entity(u).build();
     }

@@ -9,7 +9,7 @@ import java.util.List;
 public interface JuegoManager {
     public int addUsuario(String username, String mail, String name, String lastName, String password, int bolivares, List<Objeto> objetos);
     public int registrarUsuario(Usuario u);
-    public Usuario LogIn(VOCredenciales credencialesu);
+    public Usuario login(VOCredenciales credencialesu);
     public VOCredenciales getCredenciales(Usuario U);
     public Usuario getUser(String mail);
     public List<Usuario> getallusers();

@@ -57,16 +57,26 @@ public class JuegoManagerImpl implements JuegoManager{
         return 0;
     }
     @Override
-    public Usuario LogIn(VOCredenciales credencialesu) {
+    public Usuario login(VOCredenciales credencialesu) {
         logger.info("login(" + credencialesu +")");
-        if (lUsuarios.containsKey(credencialesu.getMail())){
-            Usuario U= lUsuarios.get(credencialesu.getMail());
-            logger.info("LogIn("+credencialesu.getMail()+")"+U.getUsername());
-            return U;
+
+        if (lUsuarios.containsKey(credencialesu.getMail())) {
+            Usuario usuario = lUsuarios.get(credencialesu.getMail());
+
+            // Verificar la contraseña
+            if (usuario.getPassword().equals(credencialesu.getPassword())) {
+                logger.info("Login successful for user: " + usuario.getUsername());
+                return usuario;
+            } else {
+                logger.warn("Incorrect password for user: " + usuario.getUsername());
+            }
+        } else {
+            logger.warn("User with email " + credencialesu.getMail() + " not found");
         }
-        logger.warn(credencialesu+"not found");
+
         return null;
     }
+
     public VOCredenciales getCredenciales(Usuario U){
         logger.info("getCredenciales("+U+")");
         VOCredenciales VOC=new VOCredenciales(U.getUsername(),U.getPassword());
