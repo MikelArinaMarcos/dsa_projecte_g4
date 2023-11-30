@@ -60,6 +60,11 @@ public class SesionImpl implements Sesion {
         }
     }
 
+    @Override
+    public Object get(Class theClass, String mail) {
+        return null;
+    }
+
     public Object get(Class theClass, int ID) { //Aqui el mateix que el save pero amb la query del select
         try {
             Object entity = theClass.newInstance();

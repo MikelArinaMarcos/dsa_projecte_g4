@@ -1,5 +1,7 @@
 package edu.upc.dsa.models;
 
+import edu.upc.dsa.exceptions.NotSufficientMoneyException;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -85,4 +87,12 @@ public class Usuario {
     public void addObjeto(Objeto o){
         this.objetos.add(o);
     }
+
+    public void adquirirObjeto(Objeto objeto) throws NotSufficientMoneyException {
+        if(objeto.getPrecio()>this.bolivares){
+            throw new NotSufficientMoneyException();
+        }
+        this.bolivares = this.bolivares - objeto.getPrecio();
+    }
+
 }
