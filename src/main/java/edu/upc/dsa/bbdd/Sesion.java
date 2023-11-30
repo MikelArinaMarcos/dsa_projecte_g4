@@ -7,7 +7,7 @@ public interface Sesion<E> {
     void save(Object entity);
     void close();
     void clean();
-    Object get(Class theClass, int ID);
+    Object get(Class theClass, String mail);
     void update(Object object, int id);
     //void delete(Object object);
     List<Object> findAll(Class theClass);

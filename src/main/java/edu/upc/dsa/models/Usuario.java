@@ -23,6 +23,8 @@ public class Usuario {
         this.setObjetos(objetos);
     }
 
+
+
     public String getUsername() {
         return username;
     }
