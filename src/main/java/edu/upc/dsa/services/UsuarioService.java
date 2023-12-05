@@ -59,28 +59,28 @@ public class UsuarioService {
     @ApiOperation(value = "Log in", notes = "ole")
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "Succesfull", response=Usuario.class),
-            @ApiResponse(code = 501, message = "Usuario o contraseña incorrectos"),
+            @ApiResponse(code = 301, message = "Usuario o contraseña incorrectos"),
     })
     @Path("/login")
     @Produces(MediaType.APPLICATION_JSON)
     public Response logIn(VOCredenciales credenciales){
         Usuario u = this.jm.login(credenciales);
-        if (u==null) return Response.status(501).build();
+        if (u==null) return Response.status(301).build();
         return Response.status(201).entity(u).build();
     }
     @POST
     @ApiOperation(value = "Registrar", notes = "ole")
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "Succesfull", response=Usuario.class),
-            @ApiResponse(code = 501, message = "Mail en uso"),
-            @ApiResponse(code = 502, message = "Usuario en uso"),
+            @ApiResponse(code = 301, message = "Mail en uso"),
+            @ApiResponse(code = 302, message = "Usuario en uso"),
     })
     @Path("/registrar")
     @Produces(MediaType.APPLICATION_JSON)
     public Response RegistrarUsuario(Usuario u){
         int n = this.jm.registrarUsuario(u);
-        if (n==1) return Response.status(501).build();
-        if (n==2) return Response.status(502).build();
+        if (n==1) return Response.status(301).build();
+        if (n==2) return Response.status(302).build();
         return Response.status(201).build();
     }
     @DELETE
@@ -88,14 +88,14 @@ public class UsuarioService {
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "Successful"),
             @ApiResponse(code = 404, message = "User not found"),
-            @ApiResponse(code = 501, message = "Contra incorrecta")
+            @ApiResponse(code = 301, message = "Contra incorrecta")
     })
     @Path("/deleteUser/{mail}/{password}")
     public Response deleteUser(@PathParam("mail") String mail, @PathParam("password") String password) {
         VOCredenciales voc = new VOCredenciales(mail, password);
         if (jm.getUser(mail) == null) return Response.status(404).build();
         else if(this.jm.deleteUsuario(voc) == -1)
-            return Response.status(501).build();
+            return Response.status(301).build();
         return Response.status(201).build();
     }
 }
