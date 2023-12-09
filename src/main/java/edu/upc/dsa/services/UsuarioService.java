@@ -91,6 +91,7 @@ public class UsuarioService {
             @ApiResponse(code = 301, message = "Contra incorrecta")
     })
     @Path("/deleteUser/{mail}/{password}")
+    @Produces(MediaType.APPLICATION_JSON)
     public Response deleteUser(@PathParam("mail") String mail, @PathParam("password") String password) {
         VOCredenciales voc = new VOCredenciales(mail, password);
         if (jm.getUser(mail) == null) return Response.status(404).build();

@@ -57,17 +57,16 @@ public class TiendaService {
     @PUT
     @ApiOperation(value = "Comprar objeto", notes = "asdasd")
     @ApiResponses(value = {
-            @ApiResponse(code = 201, message = "Successful"),
+            @ApiResponse(code = 201, message = "Successful", response= Objeto.class),
             @ApiResponse(code = 501, message = "Estas pobre")
     })
-    @Path("/comprarObjeto/{Mail}/{Objeto}")
-    public Response comprarObjeto(@PathParam("Mail") String mail, @PathParam("Objeto") String objeto) {
+    @Path("/comprarObjeto/{Mail}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response comprarObjeto(Objeto o, @PathParam("Mail") String mail) {
         Usuario u = jm.getUser(mail);
-        Objeto o = tm.getObjeto(objeto);
-        int res = tm.comprarObjeto(o,u);
-        if(res != 0){
-            return Response.status(501).build();
-        }
-        return Response.status(201).build();
+        Objeto object = tm.comprarObjeto(o, u);
+        if (object == null) {return Response.status(404).build();}
+        else {return Response.status(201).entity(o).build();}
     }
 }

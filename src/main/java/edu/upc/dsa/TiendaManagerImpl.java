@@ -67,14 +67,14 @@ public class TiendaManagerImpl implements TiendaManager{
         return Objetos.size();
     }
 
-    public int comprarObjeto(Objeto o, Usuario u){
+    public Objeto comprarObjeto(Objeto o, Usuario u){
         if (o.getPrecio() > u.getBolivares()){
-            logger.info("Estas pobre");
-            return -1;
+            logger.info("Estás pobre");
+            return null;
         }
         logger.info("Comprando objeto " + o.getNombre());
         u.setBolivares(u.getBolivares() - o.getPrecio());
         u.addObjeto(o);
-        return 0;
+        return o;
     }
 }

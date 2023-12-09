@@ -11,5 +11,5 @@ public interface TiendaManager {
     public void addProducto(int id, int rareza, String nombre, int precio, int dmg);
     public Objeto getObjeto(String nombre);
     public int productoSize();
-    public int comprarObjeto(Objeto o, Usuario u);
+    public Objeto comprarObjeto(Objeto o, Usuario u);
 }
