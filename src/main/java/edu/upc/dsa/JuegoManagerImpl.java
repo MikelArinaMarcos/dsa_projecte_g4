@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 
 public class JuegoManagerImpl implements JuegoManager{
     private static JuegoManager instance;
@@ -18,6 +21,13 @@ public class JuegoManagerImpl implements JuegoManager{
     public  static JuegoManager getInstance(){
         if (instance==null) instance = new JuegoManagerImpl();
         return instance;
+    }
+
+    private boolean isValidEmail(String email) {
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+        Pattern pattern = Pattern.compile(emailRegex);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
     }
     public int sizeUsers(){
         int ret = this.lUsuarios.size();
@@ -41,6 +51,12 @@ public class JuegoManagerImpl implements JuegoManager{
         return 0;
     }
     public int registrarUsuario(Usuario u){
+
+        if (!isValidEmail(u.getMail())) {
+            logger.info("Formato de correo electrónico no válido");
+            return 3;
+        }
+
         if (lUsuarios.containsKey(u.getMail())){
             logger.info("Mail ya en uso");
             return 1;
@@ -59,6 +75,12 @@ public class JuegoManagerImpl implements JuegoManager{
     @Override
     public Usuario login(VOCredenciales credencialesu) {
         logger.info("login(" + credencialesu +")");
+
+        // Validar el formato del correo electrónico
+        if (!isValidEmail(credencialesu.getMail())) {
+            logger.info("Formato de correo electrónico no válido");
+            return null;
+        }
 
         if (lUsuarios.containsKey(credencialesu.getMail())) {
             Usuario usuario = lUsuarios.get(credencialesu.getMail());

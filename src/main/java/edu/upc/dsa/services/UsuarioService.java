@@ -50,19 +50,7 @@ public class UsuarioService {
         return Response.status(201).entity(entity).build();
 
     }
-//    @GET
-//    @ApiOperation(value = "get a User", notes = "asdasd")
-//    @ApiResponses(value = {
-//            @ApiResponse(code = 201, message = "Successful", response = Usuario.class),
-//            @ApiResponse(code = 404, message = "User not found")
-//    })
-//    @Path("/usuario")
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public Response getUser(VOCredenciales credenciales) {
-//        Usuario U = this.jm.getUser(credenciales);
-//        if (U == null) return Response.status(404).build();
-//        else  return Response.status(201).entity(U).build();
-//    }
+
     @POST
     @ApiOperation(value = "Log in", notes = "ole")
     @ApiResponses(value = {
@@ -89,7 +77,11 @@ public class UsuarioService {
         int n = this.jm.registrarUsuario(u);
         if (n==1) return Response.status(301).build();
         if (n==2) return Response.status(302).build();
-        return Response.status(201).build();
+        if (n==3) return Response.status(303).build();
+        if (n==0) return Response.status(201).build();
+
+        //En caso de un valor inesperado, devolver código de Internal Server Error
+        return Response.status(500).build();
     }
     @DELETE
     @ApiOperation(value = "delete user", notes = "asdasd")
