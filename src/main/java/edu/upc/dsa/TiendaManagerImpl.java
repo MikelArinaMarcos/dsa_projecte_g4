@@ -72,9 +72,16 @@ public class TiendaManagerImpl implements TiendaManager{
             logger.info("Estás pobre");
             return null;
         }
+
+        if (u.tieneObjeto(o)) {
+            logger.info("Ya tienes el objeto " + o.getNombre());
+            return null;
+        }
+
         logger.info("Comprando objeto " + o.getNombre());
         u.setBolivares(u.getBolivares() - o.getPrecio());
         u.addObjeto(o);
         return o;
     }
+
 }

@@ -60,10 +60,10 @@ public class TiendaService {
             @ApiResponse(code = 201, message = "Successful", response= Objeto.class),
             @ApiResponse(code = 501, message = "Estas pobre")
     })
-    @Path("/comprarObjeto/{Mail}")
+    @Path("/comprarObjeto/{mail}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response comprarObjeto(Objeto o, @PathParam("Mail") String mail) {
+    public Response comprarObjeto(Objeto o, @PathParam("mail") String mail) {
         Usuario u = jm.getUser(mail);
         Objeto object = tm.comprarObjeto(o, u);
         if (object == null) {return Response.status(404).build();}

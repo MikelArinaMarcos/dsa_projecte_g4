@@ -94,5 +94,8 @@ public class Usuario {
         }
         this.bolivares = this.bolivares - objeto.getPrecio();
     }
+    public boolean tieneObjeto(Objeto o) {
+        return this.objetos.stream().anyMatch(obj -> obj.getId() == o.getId());
+    }
 
 }
