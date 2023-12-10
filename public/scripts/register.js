@@ -10,6 +10,7 @@ $(document).ready(function(){
 
         var name = $('#name').val();
         var password = $('#password').val();
+        var password2 = $('#password2').val();
         var mail = $('#mail').val();
         var username = $('#username').val();
         var lastName = $('#lastName').val();
@@ -24,6 +25,13 @@ $(document).ready(function(){
             },
         ];
         var body = {"name": name, "password": password, "mail": mail, "username": username, "lastName": lastName ,"bolivares": bolivares, "objetos": objetos};
+
+        if (password != password2) {
+            alert("Las contraseñas no coinciden. Por favor, inténtalo de nuevo.");
+        } else {
+            // Aquí puedes enviar el formulario o realizar otras acciones necesarias
+            alert("Usuario registrado correctamente.");
+
 
         $.post({
             url: '/dsaApp/usuario/register',
@@ -40,5 +48,6 @@ $(document).ready(function(){
                 //location.reload();
             });
         return true;
+    }
     });
 });
