@@ -3,12 +3,12 @@ $(document).ready(function(){
         event.preventDefault();
 
         // Obtener los datos del formulario
-        var usernameOrEmail = $('#usernameOrEmail').val();
+        var usernameOrEmail = $('#mmail').val();
         var password = $('#password').val();
 
         // Crear el objeto de datos para enviar al servidor
         var body = {
-            "usernameOrEmail": usernameOrEmail,
+            "mail": usernameOrEmail,
             "password": password
         };
 
