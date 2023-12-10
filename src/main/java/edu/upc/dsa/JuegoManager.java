@@ -13,6 +13,6 @@ public interface JuegoManager {
     public VOCredenciales getCredenciales(Usuario U);
     public Usuario getUser(String mail);
     public List<Usuario> getallusers();
-    public int sizeusers();
+    public int sizeUsers();
     public int deleteUsuario(VOCredenciales credenciales);
 }

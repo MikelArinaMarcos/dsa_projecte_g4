@@ -26,8 +26,16 @@ public class UsuarioService {
 
     public UsuarioService() {
         this.jm = JuegoManagerImpl.getInstance();
+        if (jm.sizeUsers() == 0) {
+            List<Objeto> objetos = new ArrayList<>();
+            this.jm.addUsuario("jordi", "jordi@gmail.com", "Jordi", "Figueras", "1234", 500, objetos);
+            this.jm.addUsuario("aran", "aran@gmail.com", "Arán", "Huarte", "1234", 500, objetos);
+            this.jm.addUsuario("bryan", "bryan@gmail.com", "Bryan", "García", "1234", 500, objetos);
+            this.jm.addUsuario("mikel", "mikel@gmail.com", "Mikel", "Arina", "1234", 500, objetos);
+            this.jm.addUsuario("pedro", "pedro@gmail.com", "Pedro", "Jordán", "1234", 500, objetos);
+            this.jm.addUsuario("a", "a@gmail.com", "A", "B", "1234", 500, objetos);
+        }
     }
-
     @GET
     @ApiOperation(value = "get all Users", notes = "asdasd")
     @ApiResponses(value = {

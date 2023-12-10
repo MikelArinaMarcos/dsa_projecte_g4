@@ -19,7 +19,7 @@ public class JuegoManagerImpl implements JuegoManager{
         if (instance==null) instance = new JuegoManagerImpl();
         return instance;
     }
-    public int sizeusers(){
+    public int sizeUsers(){
         int ret = this.lUsuarios.size();
         logger.info("size " + ret);
 
