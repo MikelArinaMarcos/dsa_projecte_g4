@@ -90,14 +90,17 @@ public class UsuarioService {
             @ApiResponse(code = 404, message = "User not found"),
             @ApiResponse(code = 301, message = "Contra incorrecta")
     })
-    @Path("/deleteUser/{mail}/{password}")
+    @Path("/deleteUser/{mail}&{password}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response deleteUser(@PathParam("mail") String mail, @PathParam("password") String password) {
         VOCredenciales voc = new VOCredenciales(mail, password);
         if (jm.getUser(mail) == null) return Response.status(404).build();
-        else if(this.jm.deleteUsuario(voc) == -1)
-            return Response.status(301).build();
-        return Response.status(201).build();
+        /*if(this.jm.deleteUsuario(voc) == -1)
+            return Response.status(301).build();*/
+        if(this.jm.deleteUsuario(voc) == 1)
+            return Response.status(201).build();
+        //En caso de un valor inesperado, devolver código de Internal Server Error
+        return Response.status(500).build();
     }
 }
 
