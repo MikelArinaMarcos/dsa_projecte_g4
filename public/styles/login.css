@@ -64,3 +64,11 @@ body {
     border-radius: 5px;
     cursor: pointer;
 }
+
+
+.error {
+    margin: 0;
+    font-size: large;
+    color: red;
+    font-style: italic;
+}

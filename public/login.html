@@ -3,7 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>INICIO DE SESIÓN</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" type="text/css" href="styles/login.css">
+
+    <script src="https://kit.fontawesome.com/fbbddd9141.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="scripts/login.js"></script>
 </head>
 <body>
@@ -13,23 +20,25 @@
 
 
         <div class="inputContainer">
-            <label for="" class="labelLogin">Nombre de usuario o Correo electrónico</label><label class="obligatorio">*</label>
+            <label class="labelLogin">Nombre de usuario o Correo electrónico</label><label class="obligatorio">*</label>
             <br>
-            <input type="text" id="mail" class="input" placeholder="Introduzca su nombre de usuario o correo electrónico">
+            <i class="fa-solid fa-user"></i>
+            <input type="mail" id="maill" name="mail" class="input" placeholder="Introduzca su nombre de usuario o correo electrónico">
         </div>
 
 
         <div class="inputContainer">
 
 
-            <label for="" class="labelLogin">Contraseña</label><label class="obligatorio">*</label>
-            <input id="password" type="password" class="input" placeholder="Introduzca su contraseña">
+            <label class="labelLogin">Contraseña</label><label class="obligatorio">*</label>
+            <i class="fa-solid fa-user"></i>
+            <input id="passwordd" type="password" name="password" class="input" placeholder="Introduzca su contraseña">
         </div>
         <p>Los campos marcados con <label class="obligatorio">*</label> son obligatorios.</p>
 
 
-        <div class="loginBtnDiv">
-            <button class="loginBtn">INICIAR SESIÓN</button>
+        <div class="loginBtn">
+            <button class="loginBtn" id="loginBtn" onclick="">INICIAR SESIÓN</button>
         </div>
     </form>
 </div>
