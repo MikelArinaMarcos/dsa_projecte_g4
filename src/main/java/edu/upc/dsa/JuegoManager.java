@@ -15,4 +15,7 @@ public interface JuegoManager {
     public List<Usuario> getallusers();
     public int sizeUsers();
     public int deleteUsuario(VOCredenciales credenciales);
-}
+
+    public int actualizarUsuario(String mail, String newUsername, String newName, String newLastName, String newPassword, String newMail);
+
+    }
