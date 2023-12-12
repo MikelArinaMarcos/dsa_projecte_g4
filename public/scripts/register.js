@@ -39,8 +39,7 @@ $(document).ready(function(){
             contentType: 'application/json; charset=utf8'
         })
             .done(function (data, status){
-                alert("***************** Usuario registrado correctamente.");
-                location.href = "/shop.html";
+                location.href = "/principal.html";
             })
             .fail(function(xhr, err){
                 console.log("ERRO", err);
