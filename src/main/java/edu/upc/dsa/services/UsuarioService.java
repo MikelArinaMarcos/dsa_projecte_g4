@@ -102,5 +102,41 @@ public class UsuarioService {
         //En caso de un valor inesperado, devolver código de Internal Server Error
         return Response.status(500).build();
     }
+
+    @PUT
+    @ApiOperation(value = "Actualizar usuario", notes = "Actualiza la información del usuario")
+    @ApiResponses(value = {
+            @ApiResponse(code = 201, message = "Actualización exitosa"),
+            @ApiResponse(code = 404, message = "Usuario no encontrado"),
+            @ApiResponse(code = 301, message = "Contraseña incorrecta"),
+            @ApiResponse(code = 5, message = "Correo electrónico ya en uso")
+    })
+    @Path("/actualizarUsuario/{mail}/{newPassword}/{newUsername}/{newName}/{newLastName}/{newMail}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response actualizarUsuario(
+            @PathParam("mail") String mail,
+            @PathParam("newPassword") String newPassword,
+            @PathParam("newUsername") String newUsername,
+            @PathParam("newName") String newName,
+            @PathParam("newLastName") String newLastName,
+            @PathParam("newMail") String newMail) {
+
+        int result = this.jm.actualizarUsuario(mail, newUsername, newName, newLastName, newPassword, newMail);
+
+        switch (result) {
+            case 1:
+                return Response.status(201).build(); // Actualización exitosa
+            case 404:
+                return Response.status(404).build(); // Usuario no encontrado
+            case 301:
+                return Response.status(301).build(); // Contraseña incorrecta
+            case 5:
+                return Response.status(5).build(); // Correo electrónico ya en uso
+            default:
+                return Response.status(500).build(); // Error interno del servidor
+        }
+    }
+
+
 }
 
