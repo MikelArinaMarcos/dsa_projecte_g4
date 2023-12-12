@@ -1,4 +1,4 @@
-package edu.upc.dsa.models;
+package edu.upc.dsa.services;
 /*
 import edu.upc.dsa.JuegoManager;
 import edu.upc.dsa.JuegoManagerImpl;
