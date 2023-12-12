@@ -121,21 +121,16 @@ public class UsuarioService {
             @PathParam("newLastName") String newLastName,
             @PathParam("newMail") String newMail) {
 
-        int result = this.jm.actualizarUsuario(mail, newUsername, newName, newLastName, newPassword, newMail);
+        Usuario usuarioActualizado = this.jm.actualizarUsuario(mail, newUsername, newName, newLastName, newPassword, newMail);
 
-        switch (result) {
-            case 1:
-                return Response.status(201).build(); // Actualización exitosa
-            case 404:
-                return Response.status(404).build(); // Usuario no encontrado
-            case 301:
-                return Response.status(301).build(); // Contraseña incorrecta
-            case 5:
-                return Response.status(5).build(); // Correo electrónico ya en uso
-            default:
-                return Response.status(500).build(); // Error interno del servidor
+        if (usuarioActualizado != null) {
+            return Response.status(201).entity(usuarioActualizado).build(); // Retornar código 201 para indicar actualización exitosa
+        } else {
+            return Response.status(404).build(); // Retornar código 404 para indicar que el usuario no fue encontrado
         }
     }
+
+
 
 
 }

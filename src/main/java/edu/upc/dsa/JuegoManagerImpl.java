@@ -148,7 +148,7 @@ public class JuegoManagerImpl implements JuegoManager {
         }
     }
 
-    public int actualizarUsuario(String mail, String newUsername, String newName, String newLastName, String newPassword, String newMail) {
+    public Usuario actualizarUsuario(String mail, String newUsername, String newName, String newLastName, String newPassword, String newMail) {
         logger.info("actualizarUsuario(" + mail + ")");
 
         // Verificar si el usuario existe
@@ -156,9 +156,8 @@ public class JuegoManagerImpl implements JuegoManager {
             Usuario usuario = lUsuarios.get(mail);
 
             // Verificar que la nueva contraseña sea diferente de la contraseña actual
-            if (newPassword != null && !newPassword.isEmpty() && usuario.getPassword().equals(newPassword)) {
-                logger.warn("La nueva contraseña debe ser diferente de la contraseña actual");
-                return 7; // Código para nueva contraseña igual a la actual
+            if (newPassword != null && !newPassword.isEmpty() && !usuario.getPassword().equals(newPassword)) {
+                usuario.setPassword(newPassword);
             }
 
             // Actualizar la información del usuario
@@ -172,29 +171,30 @@ public class JuegoManagerImpl implements JuegoManager {
                 usuario.setLastName(newLastName);
             }
             if (newMail != null && !newMail.isEmpty()) {
-                // Verificar si el nuevo correo ya está en uso por otro usuario
-                if (!lUsuarios.containsKey(newMail)) {
-                    // Eliminar la entrada antigua y agregar la entrada actualizada con la nueva clave
-                    lUsuarios.remove(mail);
-                    lUsuarios.put(newMail, usuario);
-                    usuario.setMail(newMail);  // Actualizar el correo en el objeto usuario
-                } else {
-                    logger.warn("El nuevo correo electrónico ya está en uso");
-                    return 5; // Código para correo electrónico ya en uso
+                // Verificar si el nuevo correo es diferente del anterior
+                if (!newMail.equals(mail)) {
+                    // Verificar si el nuevo correo ya está en uso por otro usuario
+                    if (!lUsuarios.containsKey(newMail)) {
+                        // Eliminar la entrada antigua y agregar la entrada actualizada con la nueva clave
+                        lUsuarios.remove(mail);
+                        lUsuarios.put(newMail, usuario);
+                        usuario.setMail(newMail);  // Actualizar el correo en el objeto usuario
+                    } else {
+                        logger.warn("El nuevo correo electrónico ya está en uso");
+                        return null; // Retornar null para indicar que el nuevo correo ya está en uso
+                    }
                 }
             }
 
-            // Actualizar la contraseña si se proporciona una nueva
-            if (newPassword != null && !newPassword.isEmpty()) {
-                usuario.setPassword(newPassword);
-            }
-
             logger.info("Usuario actualizado exitosamente: " + usuario.getUsername());
-            return 1; // Código para actualización exitosa
+            return usuario; // Retornar el objeto Usuario actualizado
         } else {
             logger.warn("Usuario con correo electrónico " + mail + " no encontrado");
-            return 404; // Código para usuario no encontrado
+            return null; // Retornar null para indicar que el usuario no fue encontrado
         }
     }
+
+
+
 
 }
