@@ -14,7 +14,17 @@ $(document).ready(function(){
         var mail = $('#mail').val();
         var username = $('#username').val();
         var lastName = $('#lastName').val();
-        var body = {"name": name, "password": password, "mail": mail, "username": username, "lastName": lastName};
+        var bolivares = parseInt('0',10);
+        var objetos = [
+            {
+                id:parseInt('0',10),
+                rareza:parseInt('0',10),
+                Nombre:"a",
+                Precio:parseInt('0',10),
+                Damage:parseInt('0',10),
+            },
+        ];
+        var body = {"name": name, "password": password, "mail": mail, "username": username, "lastName": lastName ,"bolivares": bolivares, "objetos": objetos};
 
         if (password != password2) {
             alert("Las contraseñas no coinciden. Por favor, inténtalo de nuevo.");
@@ -24,7 +34,7 @@ $(document).ready(function(){
 
 
         $.post({
-            url: '/dsaApp/usuarios/register',
+            url: '/dsaApp/usuario/register',
             data: JSON.stringify(body),
             contentType: 'application/json; charset=utf8'
         })

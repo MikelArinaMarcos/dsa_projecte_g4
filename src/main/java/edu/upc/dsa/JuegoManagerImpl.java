@@ -38,8 +38,8 @@ public class JuegoManagerImpl implements JuegoManager {
         return ret;
     }
 
-    public int addUsuario(String username, String mail, String name, String lastName, String password, int bolivares, List<Objeto> objetos) {
-        Usuario u = new Usuario(username, mail, name, lastName, password, bolivares, objetos);
+    public int addUsuario(String username, String mail, String name, String lastName, String password) {
+        Usuario u = new Usuario(username, mail, name, lastName, password);
         if (lUsuarios.containsKey(mail)) {
             logger.info("Mail ya en uso");
             return 1;

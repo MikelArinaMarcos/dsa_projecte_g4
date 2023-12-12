@@ -37,7 +37,7 @@ public class UsuarioDAOImpl {
         int employeeID = 0;
         try {
             sesion = FactorySesion.open();
-            Usuario user = new Usuario( username,mail , name, lastName , password,bolivares, objetos );
+            Usuario user = new Usuario( username,mail , name, lastName , password);
             sesion.save(user);
         }
         catch (Exception e) {

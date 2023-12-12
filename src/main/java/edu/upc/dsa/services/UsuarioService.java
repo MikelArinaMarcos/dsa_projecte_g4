@@ -28,12 +28,12 @@ public class UsuarioService {
         this.jm = JuegoManagerImpl.getInstance();
         if (jm.sizeUsers() == 0) {
             List<Objeto> objetos = new ArrayList<>();
-            this.jm.addUsuario("jordi", "jordi@gmail.com", "Jordi", "Figueras", "1234", 500, objetos);
-            this.jm.addUsuario("aran", "aran@gmail.com", "Arán", "Huarte", "1234", 500, objetos);
-            this.jm.addUsuario("bryan", "bryan@gmail.com", "Bryan", "García", "1234", 500, objetos);
-            this.jm.addUsuario("mikel", "mikel@gmail.com", "Mikel", "Arina", "1234", 500, objetos);
-            this.jm.addUsuario("pedro", "pedro@gmail.com", "Pedro", "Jordán", "1234", 500, objetos);
-            this.jm.addUsuario("a", "a@gmail.com", "A", "B", "1234", 500, objetos);
+            this.jm.addUsuario("jordi", "jordi@gmail.com", "Jordi", "Figueras", "1234");
+            this.jm.addUsuario("aran", "aran@gmail.com", "Arán", "Huarte", "1234");
+            this.jm.addUsuario("bryan", "bryan@gmail.com", "Bryan", "García", "1234");
+            this.jm.addUsuario("mikel", "mikel@gmail.com", "Mikel", "Arina", "1234");
+            this.jm.addUsuario("pedro", "pedro@gmail.com", "Pedro", "Jordán", "1234");
+            this.jm.addUsuario("a", "a@gmail.com", "A", "B", "1234");
         }
     }
     @GET
@@ -71,7 +71,7 @@ public class UsuarioService {
             @ApiResponse(code = 301, message = "Mail en uso"),
             @ApiResponse(code = 302, message = "Usuario en uso"),
     })
-    @Path("/registrar")
+    @Path("/register")
     @Produces(MediaType.APPLICATION_JSON)
     public Response RegistrarUsuario(Usuario u){
         int n = this.jm.registrarUsuario(u);
