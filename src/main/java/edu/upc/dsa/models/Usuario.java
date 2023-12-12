@@ -2,8 +2,7 @@ package edu.upc.dsa.models;
 
 import edu.upc.dsa.exceptions.NotSufficientMoneyException;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class Usuario {
     private String username;
@@ -15,14 +14,130 @@ public class Usuario {
     private List<Objeto> objetos;
     public Usuario(){}
 
-    public Usuario(String username, String mail, String name, String lastName, String password, int bolivares, List<Objeto> objetos) {
+    public Usuario(String username, String mail, String name, String lastName, String password) {
         this.setUsername(username);
         this.setMail(mail);
         this.setName(name);
         this.setLastName(lastName);
         this.setPassword(password);
-        this.setBolivares(bolivares);
-        this.setObjetos(objetos);
+        this.bolivares = 500;
+        this.objetos = new List<Objeto>() {
+            @Override
+            public int size() {
+                return 0;
+            }
+
+            @Override
+            public boolean isEmpty() {
+                return false;
+            }
+
+            @Override
+            public boolean contains(Object o) {
+                return false;
+            }
+
+            @Override
+            public Iterator<Objeto> iterator() {
+                return null;
+            }
+
+            @Override
+            public Object[] toArray() {
+                return new Object[0];
+            }
+
+            @Override
+            public <T> T[] toArray(T[] a) {
+                return null;
+            }
+
+            @Override
+            public boolean add(Objeto objeto) {
+                return false;
+            }
+
+            @Override
+            public boolean remove(Object o) {
+                return false;
+            }
+
+            @Override
+            public boolean containsAll(Collection<?> c) {
+                return false;
+            }
+
+            @Override
+            public boolean addAll(Collection<? extends Objeto> c) {
+                return false;
+            }
+
+            @Override
+            public boolean addAll(int index, Collection<? extends Objeto> c) {
+                return false;
+            }
+
+            @Override
+            public boolean removeAll(Collection<?> c) {
+                return false;
+            }
+
+            @Override
+            public boolean retainAll(Collection<?> c) {
+                return false;
+            }
+
+            @Override
+            public void clear() {
+
+            }
+
+            @Override
+            public Objeto get(int index) {
+                return null;
+            }
+
+            @Override
+            public Objeto set(int index, Objeto element) {
+                return null;
+            }
+
+            @Override
+            public void add(int index, Objeto element) {
+
+            }
+
+            @Override
+            public Objeto remove(int index) {
+                return null;
+            }
+
+            @Override
+            public int indexOf(Object o) {
+                return 0;
+            }
+
+            @Override
+            public int lastIndexOf(Object o) {
+                return 0;
+            }
+
+            @Override
+            public ListIterator<Objeto> listIterator() {
+                return null;
+            }
+
+            @Override
+            public ListIterator<Objeto> listIterator(int index) {
+                return null;
+            }
+
+            @Override
+            public List<Objeto> subList(int fromIndex, int toIndex) {
+                return null;
+            }
+        };
+
     }
 
 

@@ -3,9 +3,9 @@ package edu.upc.dsa.models;
 public class Objeto {
     int id;
     int rareza;
-    private String Nombre;
-    private int Precio;
-    private int Daño;
+    private String nombre;
+    private int precio;
+    private int daño;
 
     public Objeto(){}
     public Objeto(int id, int rareza, String nombre, int precio, int daño){
@@ -33,26 +33,26 @@ public class Objeto {
     }
 
     public String getNombre() {
-        return Nombre;
+        return nombre;
     }
 
     public void setNombre(String nombre) {
-        Nombre = nombre;
+        this.nombre = nombre;
     }
 
     public int getPrecio() {
-        return Precio;
+        return precio;
     }
 
     public void setPrecio(int precio) {
-        Precio = precio;
+        this.precio = precio;
     }
 
     public int getDaño() {
-        return Daño;
+        return daño;
     }
 
     public void setDaño(int daño) {
-        Daño = daño;
+        this.daño = daño;
     }
 }

@@ -15,7 +15,7 @@ import java.sql.SQLException;
 
 public interface UsuarioDAO {
 
-    public int addUser(String username, String mail, String name, String lastName, String password, int bolivares, List<Objeto> objetos);
+    public int addUser(String username, String mail, String name, String lastName, String password);
     public Usuario getUsuario(String mail);
 
     /*public Usuario getUsuarioPorEmail(String mail)*/
