@@ -24,29 +24,41 @@ $(document).ready(function(){
                 Damage:parseInt('0',10),
             },
         ];
-        var body = {"name": name, "password": password, "mail": mail, "username": username, "lastName": lastName ,"bolivares": bolivares, "objetos": objetos};
+        var body = {
+            "name": name,
+            "password": password,
+            "mail": mail,
+            "username": username,
+            "lastName": lastName,
+            "bolivares": bolivares,
+            "objetos": objetos
+        };
 
+        // Comprobamos si los dos campos de contraseña tienen el mismo contenido o no.
         if (password != password2) {
+            // Si las dos constraseñas no coinciden, mandamos un aviso al usuario para que lo revise.
             alert("Las contraseñas no coinciden. Por favor, inténtalo de nuevo.");
-        } else {
-            // Aquí puedes enviar el formulario o realizar otras acciones necesarias
-            alert("Usuario registrado correctamente.");
-
-
-        $.post({
-            url: '/dsaApp/usuario/register',
-            data: JSON.stringify(body),
-            contentType: 'application/json; charset=utf8'
-        })
+        }
+        else {
+            // Si los dos campos son iguales, intentamos realizar el registro.
+            $.post({
+                url: '/dsaApp/usuario/register',
+                data: JSON.stringify(body),
+                contentType: 'application/json; charset=utf8'
+            })
+            // Si es correcto, mandamos mensaje a usuario y redirigimos a la página principal.
             .done(function (data, status){
+                alert("Usuario registrado correctamente.");
+                localStorage.setItem("mail", mail);
                 location.href = "/principal.html";
             })
+            // Si ha habido algún error, le informamos al usuario que debe revisar los datos introducidos.
             .fail(function(xhr, err){
                 console.log("ERRO", err);
                 alert("Por favor, revisa los datos introducidos");
                 //location.reload();
             });
-        return true;
-    }
+            return true;
+        }
     });
 });
