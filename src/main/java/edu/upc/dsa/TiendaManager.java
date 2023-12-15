@@ -1,4 +1,3 @@
-/*
 package edu.upc.dsa;
 
 import edu.upc.dsa.models.Objeto;
@@ -14,4 +13,3 @@ public interface TiendaManager {
     public int productoSize();
     public Objeto comprarObjeto(Objeto o, Usuario u);
 }
-*/
