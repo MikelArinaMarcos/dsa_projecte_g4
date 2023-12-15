@@ -1,11 +1,9 @@
 package edu.upc.dsa.bbdd;
 
+import edu.upc.dsa.models.Usuario;
 import edu.upc.dsa.util.*;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -48,7 +46,7 @@ public class SesionImpl implements Sesion {
 
     @Override
     public void clean() {
-        String query = "TRUNCATE TABLE Usuario";
+        String query = "TRUNCATE TABLE usuario";
         try {
             PreparedStatement pstm = conn.prepareStatement(query);
             pstm.executeQuery(); //Aqui en teoria limpiamos Usuario
@@ -60,12 +58,50 @@ public class SesionImpl implements Sesion {
         }
     }
 
-    @Override
-    public Object get(Class theClass, String mail) {
-        return null;
+    public Object get(Class theClass, String pk, Object value) {
+        String selectQuery  = QueryHelper.createQuerySELECT(theClass, pk);
+        ResultSet rs;
+        PreparedStatement pstm = null;
+        boolean empty = true;
+
+        try {
+            pstm = conn.prepareStatement(selectQuery);
+            pstm.setObject(1, value);
+            rs = pstm.executeQuery();
+
+            ResultSetMetaData rsmd = rs.getMetaData();
+            //
+            int numberOfColumns = rsmd.getColumnCount();
+            //
+            Object o = theClass.newInstance();
+            //
+            Object valueColumn = null;
+            while (rs.next()){
+                for (int i=1; i<=numberOfColumns; i++){
+                    String columnName = rsmd.getColumnName(i);
+                    ObjectHelper.setter(o, columnName, rs.getObject(i));
+                    System.out.println(columnName);
+                    System.out.println(rs.getObject(i));
+                    valueColumn = rs.getObject(i);
+
+                }
+            }
+            return o;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            throw new RuntimeException(e);
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
+
+        return Usuario.class;
     }
 
-    public Object get(Class theClass, int ID) { //Aqui el mateix que el save pero amb la query del select
+/*
+    @Override
+    public Object get(Class theClass, String mail) { //Aqui el mateix que el save pero amb la query del select
         try {
             Object entity = theClass.newInstance();
 
@@ -75,8 +111,8 @@ public class SesionImpl implements Sesion {
             throw new RuntimeException(e);
         }
         return null;
-    }
-
+    }*/
+@Override
     public void update(Object object, int id) {
         String updateQuery  = QueryHelper.createQueryUPDATE(object);
         PreparedStatement ptsm = null;
@@ -97,7 +133,7 @@ public class SesionImpl implements Sesion {
     }
 
 
-
+@Override
     public int delete(Object object, HashMap params) {
         String deleteQuery = QueryHelper.createQueryDELETE(object,params);
         PreparedStatement pstm = null;

@@ -32,14 +32,22 @@ public class QueryHelper {
 
         return sb.toString();
     }
-
-    public static String createQuerySELECT(Object entity) {
+    public static String createQuerySELECT(Class theClass, String pk) {
         StringBuffer sb = new StringBuffer();
-        sb.append("SELECT * FROM ").append(entity.getClass().getSimpleName());
-        sb.append(" WHERE ID = ?");
+        sb.append("SELECT * FROM ").append(theClass.getSimpleName().toLowerCase());
+        sb.append(" WHERE "+pk+"= ?");
 
         return sb.toString();
     }
+/*
+    public static String createQuerySELECT(Object entity) {
+        StringBuffer sb = new StringBuffer();
+        sb.append("SELECT * FROM ").append(entity.getClass().getSimpleName());
+        sb.append(" WHERE mail= ?");
+
+        return sb.toString();
+    }
+    */
     /*Query que recibe una entidad/objeto y hace un SELECT ALL de ese elemento*/
     public static String createQuerySELECTAll(Class theClass){
         StringBuffer sb = new StringBuffer();

@@ -11,9 +11,17 @@ public class Usuario {
     private String lastName;
     private String password;
     private int bolivares;
-    private List<Objeto> objetos;
+    //private List<Objeto> objetos;
     public Usuario(){}
 
+    public Usuario(String username, String mail, String name, String lastName, String password, int bolivares) {
+        this.setUsername(username);
+        this.setMail(mail);
+        this.setName(name);
+        this.setLastName(lastName);
+        this.setPassword(password);
+        this.setBolivares(bolivares);
+    }
     public Usuario(String username, String mail, String name, String lastName, String password) {
         this.setUsername(username);
         this.setMail(mail);
@@ -21,7 +29,7 @@ public class Usuario {
         this.setLastName(lastName);
         this.setPassword(password);
         this.bolivares = 500;
-        this.objetos = new List<Objeto>() {
+       /*this.objetos = new List<Objeto>() {
             @Override
             public int size() {
                 return 0;
@@ -136,7 +144,7 @@ public class Usuario {
             public List<Objeto> subList(int fromIndex, int toIndex) {
                 return null;
             }
-        };
+        };*/
 
     }
 
@@ -188,7 +196,7 @@ public class Usuario {
     public void setBolivares(int bolivares) {
         this.bolivares = bolivares;
     }
-
+/*
     public List<Objeto> getObjetos() {
         return objetos;
     }
@@ -212,5 +220,7 @@ public class Usuario {
     public boolean tieneObjeto(Objeto o) {
         return this.objetos.stream().anyMatch(obj -> obj.getId() == o.getId());
     }
+
+*/
 
 }

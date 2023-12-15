@@ -8,7 +8,9 @@ import edu.upc.dsa.exceptions.ObjectNotExistException;
 import edu.upc.dsa.models.Objeto;
 import org.apache.log4j.Logger;
 
+import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
 
 import edu.upc.dsa.exceptions.ObjectNotExistException;
@@ -30,7 +32,7 @@ public class ObjetosDAOImpl implements ObjetosDAO {
         Objeto objeto = null;
         try {
             sesion = FactorySesion.open();
-            objeto = (Objeto) sesion.get(Objeto.class, id);
+            objeto = (Objeto) sesion.get(Objeto.class,"id", id);
         } finally {
             //sesion.save(item);
             sesion.close();
@@ -55,7 +57,21 @@ public class ObjetosDAOImpl implements ObjetosDAO {
         return objetos;
     }
 
+    public static void main(String[] args) {
+        ObjetosDAO dao = new ObjetosDAOImpl();
 
+        try {
+           List<Objeto> list = dao.getObjetos();
+
+            for(Objeto o : list) {
+                System.out.println(o);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
 
 
 
