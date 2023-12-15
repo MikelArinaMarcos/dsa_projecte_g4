@@ -1,4 +1,3 @@
-/*
 package edu.upc.dsa.services;
 
 import edu.upc.dsa.JuegoManager;
@@ -71,4 +70,3 @@ public class TiendaService {
         else {return Response.status(201).entity(o).build();}
     }
 }
-*/
