@@ -5,6 +5,7 @@ import edu.upc.dsa.DAO.UsuarioDAO;
 import edu.upc.dsa.bbdd.FactorySesion;
 import edu.upc.dsa.bbdd.Sesion;
 
+import edu.upc.dsa.bbdd.SesionImpl;
 import edu.upc.dsa.models.Objeto;
 import edu.upc.dsa.models.Usuario;
 
@@ -22,80 +23,58 @@ import edu.upc.dsa.exceptions.EmailNotValidException;
 import edu.upc.dsa.exceptions.IncorrectCredencialsException;
 import edu.upc.dsa.exceptions.NameUserAlreadyInUseException;
 
-public class UsuarioDAOImpl {
+public class UsuarioDAOImpl implements UsuarioDAO {
 
     final static Logger logger = Logger.getLogger(UsuarioDAOImpl.class);
     private static UsuarioDAOImpl instance;
 
     public static UsuarioDAOImpl getInstance() {
-        if (instance==null) instance = new UsuarioDAOImpl();
+        if (instance == null) instance = new UsuarioDAOImpl();
         return instance;
     }
 
-    public int addUser(String username, String mail, String name, String lastName, String password, int bolivares, List<Objeto> objetos) {
+    public int addUser(String username, String mail, String name, String lastName, String password, int bolivares) {
         Sesion sesion = null;
-        int employeeID = 0;
+
         try {
             sesion = FactorySesion.open();
-            Usuario user = new Usuario( username,mail , name, lastName , password);
+            Usuario user = new Usuario(username, mail, name, lastName, password, bolivares);
             sesion.save(user);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             // LOG
-        }
-        finally {
+        } finally {
             sesion.close();
         }
-
-        return employeeID;
+        logger.info("usuario registrado");
+        return 1;
     }
-    public Usuario getUsuario(String mail) {
+
+
+    public Usuario getUserbymail(String mail) {
         Sesion sesion = null;
         Usuario user = null;
         try {
             sesion = FactorySesion.open();
-            user = (Usuario) sesion.get(Usuario.class, mail);
-        }
-        catch (Exception e) {
+            user = (Usuario) sesion.get(Usuario.class, "mail", mail);
+        } catch (Exception e) {
             e.printStackTrace();
             // LOG
-        }
-        finally {
+        } finally {
             sesion.close();
         }
-        logger.info("identificador del usuario con mail: "+ user.getMail());
+
         return user;
     }
-
-    /*public Usuario getUsuarioPorEmail(String mail) {
-        Sesion sesion = null;
-        Usuario user = null;
-        try {
-            sesion = FactorySesion.open();
-            user = (Usuario) sesion.get(Usuario.class, mail);
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-            // LOG
-        }
-        finally {
-            sesion.close();
-        }
-
-        return user;
-    }*/
 
     public List<Objeto> getObjetos() {
         Sesion sesion = null;
-        List<Objeto> objetos=null;
+        List<Objeto> objetos = null;
         try {
             sesion = FactorySesion.open();
-            objetos = sesion.findAll(Usuario.class);
-        }
-        catch (Exception e) {
+            objetos = sesion.findAll(Objeto.class);
+        } catch (Exception e) {
             // LOG
-        }
-        finally {
+        } finally {
             sesion.close();
         }
         return objetos;
@@ -104,27 +83,25 @@ public class UsuarioDAOImpl {
     public List<Usuario> getUsuarios() {
 
         Sesion sesion = null;
-        List<Usuario> listaUsuarios=null;
+        List<Usuario> listaUsuarios = null;
         try {
             sesion = FactorySesion.open();
             listaUsuarios = sesion.findAll(Usuario.class);
-        }
-        catch (Exception e) {
-            // LOG
-        }
-        finally {
+        } catch (Exception e) {
+
+        } finally {
             sesion.close();
         }
         return listaUsuarios;
     }
 
-    public void buyItem(String id, String name, String mail) throws NotSufficientMoneyException, ObjectNotExistException,  SQLException {
+    /*public void buyItem(String id, String name, String mail) throws NotSufficientMoneyException, ObjectNotExistException,  SQLException {
 
         logger.info("Comprar objeto "+ id + " Para el usuario con mail " + mail);
         Sesion sesion = null;
         ObjetosDAO objetosDAO = new ObjetosDAOImpl();
         Objeto objeto = objetosDAO.getObjeto(id);
-        Usuario user = getUsuario(mail);
+        Usuario user = getUserbymail(mail);
         logger.info(objeto.getPrecio());
         try {
             sesion = FactorySesion.open();
@@ -138,15 +115,16 @@ public class UsuarioDAOImpl {
         } catch (NotSufficientMoneyException e) {
             logger.warn("No tienes suficiente dinero exception");
             throw new NotSufficientMoneyException();
-        } /*catch(SQLException e){
+        } catch(SQLException e){
             logger.warn("Objeto ya adquirido");
-            throw new SQLException();
-        }*/
+        throw new SQLException();
+        }
         finally {
 
             sesion.close();
         }
-    }
+}}*/
+
 
 
 

@@ -71,7 +71,7 @@ public class JuegoManagerImpl implements JuegoManager {
         }
         logger.info("new user " + u.getName());
         u.setBolivares(500);
-        u.iniObjetos();
+        //u.iniObjetos();
         this.lUsuarios.put(u.getMail(), u);
         logger.info("new user added");
         return 0;

@@ -20,7 +20,7 @@ public class FactorySesion {
         Connection conn = null;
         try {
             conn =
-                    DriverManager.getConnection("jdbc:mariadb://localhost:3306/dsaDB?" + "user=bryanb&password=1234");
+                    DriverManager.getConnection("jdbc:mariadb://localhost:3306/juego?user=root&password=grupo4");
 
         } catch (SQLException ex) {
             // handle any errors
