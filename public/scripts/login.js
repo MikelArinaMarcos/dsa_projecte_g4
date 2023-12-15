@@ -5,8 +5,8 @@ $(document).ready(function(){
     $('#loginBtn').click(function(event){
         event.preventDefault();
         // Obtener los datos del formulario
-        var mail = $('#maill').val();
-        var password = $('#passwordd').val();
+        var mail = $('#mail').val();
+        var password = $('#password').val();
 
         // Crear el objeto de datos para enviar al servidor
         var body = {
@@ -22,10 +22,8 @@ $(document).ready(function(){
         })
             .done(function (data, status){
                 alert("¡Inicio de sesión exitoso!");
-                location.href = "/shop.html";
                 localStorage.setItem("mail", mail);
-                // Redirigir o realizar otras acciones después del inicio de sesión exitoso
-                // location.href = "/ruta-a-la-página-post-login";
+                location.href = "/principal.html";
             })
             .fail(function(xhr, err){
                 console.log("ERROR", err);

@@ -3,5 +3,7 @@ function asegurarRegistro() {
     if (mail === null){
         location.href="/index.html"
     } else {
+
     }
+    console.log('La página ha terminado de cargarse!');
 }
