@@ -5,5 +5,5 @@ function asegurarRegistro() {
     } else {
 
     }
-    console.log('La página ha terminado de cargarse 1!!');
+    console.log('La página ha terminado de cargarse!');
 }
