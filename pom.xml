@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>edu.upc.dsa</groupId>
-    <artifactId>rest-example2</artifactId>
+    <artifactId>ProjecteDSA2324</artifactId>
     <packaging>jar</packaging>
     <version>1.0-SNAPSHOT</version>
     <name>rest-example2</name>
