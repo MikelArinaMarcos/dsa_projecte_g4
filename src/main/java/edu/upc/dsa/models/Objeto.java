@@ -6,14 +6,16 @@ public class Objeto {
     private String nombre;
     private int precio;
     private int daño;
+    private String url;
 
     public Objeto(){}
-    public Objeto(int id, int rareza, String nombre, int precio, int daño){
+    public Objeto(int id, int rareza, String nombre, int precio, int daño, String url){
         this.setId(id);
         this.setRareza(rareza);
         this.setNombre(nombre);
         this.setPrecio(precio);
         this.setDaño(daño);
+        this.setUrl(url);
     }
 
     public int getId() {
@@ -54,5 +56,13 @@ public class Objeto {
 
     public void setDaño(int daño) {
         this.daño = daño;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }

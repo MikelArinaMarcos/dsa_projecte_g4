@@ -2,6 +2,7 @@ package edu.upc.dsa.services;
 
 import edu.upc.dsa.JuegoManager;
 import edu.upc.dsa.JuegoManagerImpl;
+import edu.upc.dsa.models.Insignia;
 import edu.upc.dsa.models.Objeto;
 import edu.upc.dsa.models.Usuario;
 import edu.upc.dsa.models.VOCredenciales;
@@ -34,6 +35,22 @@ public class UsuarioService {
             this.jm.addUsuario("mikel", "mikel@gmail.com", "Mikel", "Arina", "1234");
             this.jm.addUsuario("pedro", "pedro@gmail.com", "Pedro", "Jordán", "1234");
             this.jm.addUsuario("a", "a@gmail.com", "A", "B", "1234");
+            List<Insignia> i = new LinkedList<Insignia>();
+            Insignia ins;
+            i.add(ins = new Insignia("Tienes el pito gordo!", "https://cdn.pixabay.com/photo/2017/07/11/15/51/kermit-2493979_1280.png"));
+            i.add(ins = new Insignia("Tienes el pito pequeño :(", "https://koalarojo.com/12639-large_default/silbato-o-pito-de-animacion-en-varios-colores-con-cordon-a-juego.jpg"));
+            i.add(ins = new Insignia("Tienes el pito mediano!", "https://link.es"));
+            i.add(ins = new Insignia("La homosexualidad deberia ser castigada!", "https://link.es"));
+            i.add(ins = new Insignia("FRANCOFRANCOFRANCOFRANCO!", "https://link.es"));
+            i.add(ins = new Insignia("Porque digo franco?", "https://link.es"));
+            i.add(ins = new Insignia("Se ha matado paco!", "https://link.es"));
+            i.add(ins = new Insignia("LA inquisicion española", "https://link.es"));
+            i.add(ins = new Insignia("1", "https://link.es"));
+            i.add(ins = new Insignia("2", "https://link.es"));
+            i.add(ins = new Insignia("3", "https://link.es"));
+            i.add(ins = new Insignia("4", "https://link.es"));
+            i.add(ins = new Insignia("5", "https://link.es"));
+            jm.addInsignias(i, "a");
         }
     }
     @GET
@@ -130,7 +147,20 @@ public class UsuarioService {
         }
     }
 
+    @GET
+    @ApiOperation(value = "get all insignias", notes = "asdasd")
+    @ApiResponses(value = {
+            @ApiResponse(code = 201, message = "Successful", response = Insignia.class, responseContainer="List"),
+    })
+    @Path("/usuarios/insignias/{Username}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getInsignias(@PathParam("Username") String user) {
 
+        List<Insignia> insignias = jm.getInsignias(user);
+        GenericEntity<List<Insignia>> entity = new GenericEntity<List<Insignia>>(insignias) {};
+        return Response.status(201).entity(entity).build();
+
+    }
 
 
 }

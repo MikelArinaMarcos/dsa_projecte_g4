@@ -47,9 +47,9 @@ public class TiendaManagerImpl implements TiendaManager{
         }
         return oTienda;
     }
-    public void addProducto(int id, int rareza, String nombre, int precio, int dmg){
+    public void addProducto(int id, int rareza, String nombre, int precio, int dmg, String url){
         logger.info("Inicializando objeto " + nombre);
-        Objeto o = new Objeto(id, rareza, nombre, precio, dmg);
+        Objeto o = new Objeto(id, rareza, nombre, precio, dmg, url);
         Objetos.put(nombre, o);
     }
 

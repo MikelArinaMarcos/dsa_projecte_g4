@@ -30,13 +30,13 @@ public class TiendaService {
         this.tm = TiendaManagerImpl.getInstance();
         this.jm = JuegoManagerImpl.getInstance();
         if (tm.productoSize() == 0) {
-            this.tm.addProducto(1, 1, "DMG+", 1, 1);
-            this.tm.addProducto(2, 1, "Life+", 4, 1);
-            this.tm.addProducto(3, 2, "Crit+", 17, 1);
-            this.tm.addProducto(4, 2, "Stamina+", 2, 1);
-            this.tm.addProducto(5, 3, "Xp+", 999, 1);
-            this.tm.addProducto(6, 4, "Fire dmg+", 999, 1);
-            this.tm.addProducto(7, 4, "Freeze shot", 999, 1);
+            this.tm.addProducto(1, 1, "DMG+", 1, 1,"https://media.istockphoto.com/id/1434218035/es/foto/antena-suburbana-de-austin.jpg?s=612x612&w=0&k=20&c=a2rxyTry_BZR3OwlbxhpCYWGzb4nlHFmCSBhWuSMOAs=");
+            this.tm.addProducto(2, 1, "Life+", 4, 1,"https://media.istockphoto.com/id/1295384747/es/vector/hermoso-paisaje-de-monta%C3%B1a-verde-de-agua-de-marea.jpg?s=612x612&w=0&k=20&c=1ZB6dVPl1Phs4VN97SaPcbrrTJvHVh0FvW-alucpzDI=");
+            this.tm.addProducto(3, 2, "Crit+", 17, 1,"https://media.istockphoto.com/id/1316663402/es/foto/pareja-de-pie-en-la-playa-y-disfrutando-de-la-puesta-de-sol-de-arriba-hacia-abajo-vista-a%C3%A9rea.jpg?s=612x612&w=0&k=20&c=7VRKBN0oYkNPeaYaVsgGPGVjRIahvpfpjXyWwN17FFM=");
+            this.tm.addProducto(4, 2, "Stamina+", 2, 1,"https://media.istockphoto.com/id/1311458015/es/foto/pasillos-oscuros-con-escaleras-iluminadas-subiendo.jpg?s=612x612&w=0&k=20&c=rA-897aCxA9r53TOoSnYGn3o-s5ArTl4FNLj6K7a01Y=");
+            this.tm.addProducto(5, 3, "Xp+", 999, 1,"https://media.istockphoto.com/id/1491157294/es/foto/escritorio-a-la-luz-de-una-l%C3%A1mpara-a-altas-horas-de-la-noche.jpg?s=612x612&w=0&k=20&c=GDt8CgB4lgoMH2ym0idl5Po--_MoDHp9-mnP2sdcHto=");
+            this.tm.addProducto(6, 4, "Fire dmg+", 999, 1,"https://media.istockphoto.com/id/1346029435/es/foto/vista-de-drones-de-estacionamientos-al-aire-libre.jpg?s=612x612&w=0&k=20&c=Shey0U4oPqHRYLLjV3YhBUrI4ANkKtyBQWvAT3mT80Q=");
+            this.tm.addProducto(7, 4, "Freeze shot", 999, 1,"https://media.istockphoto.com/id/1365849981/es/foto/vista-de-alto-%C3%A1ngulo-de-las-dunas-texturizadas-del-desierto-al-amanecer.jpg?s=612x612&w=0&k=20&c=Deel0ejewe1okVHFOw371EmUlrNyMBRHRSuBL1r5KDk=");
         }
     }
 

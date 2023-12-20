@@ -1,5 +1,6 @@
 package edu.upc.dsa;
 
+import edu.upc.dsa.models.Insignia;
 import edu.upc.dsa.models.Objeto;
 import edu.upc.dsa.models.Usuario;
 import edu.upc.dsa.models.VOCredenciales;
@@ -17,6 +18,7 @@ public class JuegoManagerImpl implements JuegoManager {
     private static JuegoManager instance;
     protected List<Usuario> Usuarios;
     protected HashMap<String, Usuario> lUsuarios = new HashMap<String, Usuario>();
+    protected HashMap<String, List<Insignia>> Insignias = new HashMap<String, List<Insignia>>();
     final static Logger logger = Logger.getLogger(JuegoManagerImpl.class);
 
     public static JuegoManager getInstance() {
@@ -194,7 +196,12 @@ public class JuegoManagerImpl implements JuegoManager {
         }
     }
 
-
+    public ArrayList<Insignia> getInsignias(String id){
+        return new ArrayList<>(this.Insignias.get(id));
+    }
+    public void addInsignias(List<Insignia> i, String id){
+        Insignias.put(id, i);
+    }
 
 
 }

@@ -1,9 +1,11 @@
 package edu.upc.dsa;
 
+import edu.upc.dsa.models.Insignia;
 import edu.upc.dsa.models.Objeto;
 import edu.upc.dsa.models.Usuario;
 import edu.upc.dsa.models.VOCredenciales;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 public interface JuegoManager {
@@ -17,5 +19,8 @@ public interface JuegoManager {
     public int deleteUsuario(VOCredenciales credenciales);
 
     public Usuario actualizarUsuario(String mail, String newUsername, String newName, String newLastName, String newPassword, String newMail);
+
+    public ArrayList<Insignia> getInsignias(String id);
+    public void addInsignias(List<Insignia> i, String id);
 
     }
