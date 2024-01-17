@@ -22,6 +22,7 @@ public interface UsuarioDAO {
     /*public Usuario getUsuarioPorEmail(String mail)*/
 
     public List<Usuario> getUsuarios();
+    public void updateUsuario(Usuario u1, int id);
 
 
 }

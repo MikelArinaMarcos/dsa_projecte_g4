@@ -95,6 +95,18 @@ public class UsuarioDAOImpl implements UsuarioDAO {
         return listaUsuarios;
     }
 
+    public void updateUsuario(Usuario u1,int id){
+        Sesion sesion = null;
+        try {
+            sesion = FactorySesion.open();
+            sesion.update(u1, id);
+        } catch (Exception e) {
+
+        } finally {
+            sesion.close();
+        }
+
+    }
     /*public void buyItem(String id, String name, String mail) throws NotSufficientMoneyException, ObjectNotExistException,  SQLException {
 
         logger.info("Comprar objeto "+ id + " Para el usuario con mail " + mail);
