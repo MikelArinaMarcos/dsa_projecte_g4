@@ -46,7 +46,7 @@ public class UsuarioDAOImpl implements UsuarioDAO {
             sesion.close();
         }
         logger.info("usuario registrado");
-        return 1;
+        return 0;
     }
 
 

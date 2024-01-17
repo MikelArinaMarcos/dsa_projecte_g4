@@ -1,5 +1,7 @@
 package edu.upc.dsa;
 
+import edu.upc.dsa.bbdd.Sesion;
+import edu.upc.dsa.DAO.*;
 import edu.upc.dsa.models.Insignia;
 import edu.upc.dsa.models.Objeto;
 import edu.upc.dsa.models.Usuario;
@@ -57,7 +59,12 @@ public class JuegoManagerImpl implements JuegoManager {
     }
 
     public int registrarUsuario(Usuario u) {
-
+        UsuarioDAO usuarioDAO = new UsuarioDAOImpl();
+        int res = usuarioDAO.addUser(u.getUsername(),u.getMail(),u.getName(),u.getLastName(),u.getPassword(),50);
+        if (res == 0) {
+            logger.info("La base de datos funciona");
+            return res;
+        }
         if (!isValidEmail(u.getMail())) {
             logger.info("Formato de correo electrónico no válido");
             return 3;
@@ -81,6 +88,16 @@ public class JuegoManagerImpl implements JuegoManager {
 
     @Override
     public Usuario login(VOCredenciales credencialesu) {
+        UsuarioDAO usuarioDAO = new UsuarioDAOImpl();
+        Usuario usuario1 = usuarioDAO.getUserbymail(credencialesu.getMail());
+        if (usuario1.getPassword().equals(credencialesu.getPassword())){
+            logger.info("Logeado en la base de datos");
+            return usuario1;
+        } else {
+            logger.info("Contraseña incorrecta");
+            //return null;
+        }
+
         logger.info("login(" + credencialesu + ")");
 
         // Validar el formato del correo electrónico
