@@ -1,4 +1,4 @@
-
+/*
 package edu.upc.dsa;
 import edu.upc.dsa.models.Objeto;
 import edu.upc.dsa.models.Usuario;
@@ -78,7 +78,7 @@ public class TiendaManagerImpl implements TiendaManager{
             logger.info("Ya tienes el objeto " + o.getNombre());
             return null;
         }*/
-
+/*
         logger.info("Comprando objeto " + o.getNombre());
         u.setBolivares(u.getBolivares() - o.getPrecio());
         //u.addObjeto(o);
@@ -86,3 +86,4 @@ public class TiendaManagerImpl implements TiendaManager{
     }
 
 }
+*/ 
