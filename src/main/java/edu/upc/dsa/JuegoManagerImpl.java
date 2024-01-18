@@ -59,7 +59,7 @@ public class JuegoManagerImpl implements JuegoManager {
     }
 
     public int registrarUsuario(Usuario u) {
-        /*UsuarioDAO usuarioDAO = new UsuarioDAOImpl();
+        UsuarioDAO usuarioDAO = new UsuarioDAOImpl();
         int res = usuarioDAO.addUser(u.getUsername(),u.getMail(),u.getName(),u.getLastName(),u.getPassword(),500);
         if (res == 0) {
             logger.info("La base de datos funciona");
@@ -69,7 +69,7 @@ public class JuegoManagerImpl implements JuegoManager {
             logger.info("Formato de correo electrónico no válido");
             return 3;
         }
-        */
+
         if (lUsuarios.containsKey(u.getMail())) {
             logger.info("Mail ya en uso");
             return 1;
