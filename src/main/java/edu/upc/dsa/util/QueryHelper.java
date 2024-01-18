@@ -63,7 +63,7 @@ public class QueryHelper {
         System.out.println(sb.toString());
         return sb.toString();
     }
-    public static String createQueryUPDATE(Object entity){
+    public static String createQueryUPDATE(Object entity, String pk){
         System.out.println("VAMOS A HACER UPDATE DE "+entity.getClass().getSimpleName());
         StringBuffer sb = new StringBuffer();
         sb.append("UPDATE ").append(entity.getClass().getSimpleName()).append(" SET "); //UPDATE Cosa SET
@@ -72,7 +72,7 @@ public class QueryHelper {
             sb.append(field).append(" = ?, ");
         }
         sb=sb.replace(sb.length()-2,sb.length()-1,"");
-        sb.append("WHERE mail").append(entity.getClass().getSimpleName()).append(" = ?");
+        sb.append("WHERE"+pk+" = ?");
         System.out.println("QUERY DEL UPDATE-->\n" +sb.toString());
         return sb.toString();
     }

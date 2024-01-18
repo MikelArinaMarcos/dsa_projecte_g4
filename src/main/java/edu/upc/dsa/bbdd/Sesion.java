@@ -12,7 +12,7 @@ public interface Sesion<E> {
 
     Object get(Class theClass, String pk, Object value);
     /*Object get(Class theClass, String mail);*/
-    void update(Object object, String mail);
+    void update(Object object, String pk, String mail);
     //void delete(Object object);
     List<Object> findAll(Class theClass);
     List<Object> findAll(Class theClass, HashMap params);

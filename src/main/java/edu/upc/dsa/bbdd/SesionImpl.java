@@ -113,8 +113,8 @@ public class SesionImpl implements Sesion {
         return null;
     }*/
 @Override
-    public void update(Object object, String mail) {
-        String updateQuery  = QueryHelper.createQueryUPDATE(object);
+    public void update(Object object, String pk,String mail) {
+        String updateQuery  = QueryHelper.createQueryUPDATE(object, pk);
         PreparedStatement ptsm = null;
         try {
             ptsm = conn.prepareStatement(updateQuery);
