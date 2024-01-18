@@ -188,12 +188,12 @@ public class UsuarioService {
     @GET
     @ApiOperation(value = "get mapa", notes = "asdasd")
     @ApiResponses(value = {
-            @ApiResponse(code = 201, message = "Successful", response = Mapas.class, responseContainer="List"),
+            @ApiResponse(code = 201, message = "Successful", response = Mapas.class),
     })
-    @Path("/mapas")
+    @Path("/mapas/{idMapa}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getMapas(int idMapa) {
-        Mapas mapa = this.jm.getMap(idMapa);
+    public Response getMapas(@PathParam("idMapa") String idMapa) {
+        Mapas mapa = this.jm.getMap(Integer.parseInt(idMapa));
         return Response.status(201).entity(mapa).build();
 
     }
