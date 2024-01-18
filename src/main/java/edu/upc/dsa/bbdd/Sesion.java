@@ -18,5 +18,5 @@ public interface Sesion<E> {
     List<Object> findAll(Class theClass, HashMap params);
     List<Object> query(String query, Class theClass, HashMap params);
     public List<Object> findByParams(Object entity, HashMap params);
-    public int delete(Object object,String mail);
+    public int delete(Object object,String pk,Object value);
 }

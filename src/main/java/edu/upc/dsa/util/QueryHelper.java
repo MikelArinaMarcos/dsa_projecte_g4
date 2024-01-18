@@ -76,8 +76,15 @@ public class QueryHelper {
         System.out.println("QUERY DEL UPDATE-->\n" +sb.toString());
         return sb.toString();
     }
+    public static String createQueryDELETE(Object object, String pk) {
+        StringBuffer sb = new StringBuffer();
+        sb.append("DELETE FROM ").append(object.getClass().getSimpleName());
+        sb.append(" WHERE "+pk+"= ?");
 
-    public static String createQueryDELETE(Object object, String mail){
+        return sb.toString();
+    }
+
+    public static String createQueryDELETE2(Object object, String mail){
         StringBuffer sb = new StringBuffer();
         sb.append("DELETE FROM ").append(object.getClass().getSimpleName()); //Por ej employee = DELETE FROM Employee
         sb.append(" WHERE mail ="+mail);
