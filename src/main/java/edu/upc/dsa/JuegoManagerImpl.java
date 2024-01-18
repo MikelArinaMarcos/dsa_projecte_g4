@@ -88,7 +88,7 @@ public class JuegoManagerImpl implements JuegoManager {
 
     @Override
     public Usuario login(VOCredenciales credencialesu) {
-        UsuarioDAO usuarioDAO = new UsuarioDAOImpl();
+        /*UsuarioDAO usuarioDAO = new UsuarioDAOImpl();
         Usuario usuario1 = usuarioDAO.getUserbymail(credencialesu.getMail());
         if (usuario1.getPassword().equals(credencialesu.getPassword())){
             logger.info("Logeado en la base de datos");
@@ -96,7 +96,7 @@ public class JuegoManagerImpl implements JuegoManager {
         } else {
             logger.info("Contraseña incorrecta");
             //return null;
-        }
+        }*/
 
         logger.info("login(" + credencialesu + ")");
 
@@ -142,8 +142,8 @@ public class JuegoManagerImpl implements JuegoManager {
     }
 
     public List<Usuario> getallusers() {
-        UsuarioDAO usuarioDAO = new UsuarioDAOImpl();
-        new ArrayList<>(usuarioDAO.getUsuarios());
+        /*UsuarioDAO usuarioDAO = new UsuarioDAOImpl();
+        new ArrayList<>(usuarioDAO.getUsuarios());*/
         return new ArrayList<>(this.lUsuarios.values());
     }
 
@@ -171,9 +171,9 @@ public class JuegoManagerImpl implements JuegoManager {
 
     public Usuario actualizarUsuario(String mail, String newUsername, String newName, String newLastName, String newPassword, String newMail) {
         logger.info("actualizarUsuario(" + mail + ")");
-        UsuarioDAO usuarioDAO = new UsuarioDAOImpl();
+        /*UsuarioDAO usuarioDAO = new UsuarioDAOImpl();
         Usuario u1= new Usuario(newUsername, newName, newLastName, newPassword, newMail);
-        usuarioDAO.updateUsuario(u1, 12);
+        usuarioDAO.updateUsuario(u1, 12);*/
         // Verificar si el usuario existe
         if (lUsuarios.containsKey(mail)) {
             Usuario usuario = lUsuarios.get(mail);
