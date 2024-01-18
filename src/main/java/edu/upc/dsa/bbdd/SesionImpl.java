@@ -151,7 +151,7 @@ public class SesionImpl implements Sesion {
         return -1;
     }
     /*Crea una lista de los objetos que pasamos como parametro (relamente pasamos una clase?)*/
-    public List<Object> findAll(Class theClass) {
+    public List<Object> findAll2(Class theClass) {
         String findQuery = QueryHelper.createQuerySELECTAll(theClass);
         System.out.println(findQuery);
         List<Object> listaObjeto = new ArrayList<Object>();
@@ -178,6 +178,31 @@ public class SesionImpl implements Sesion {
 
         return listaObjeto;
     }
+    public List<Object> findAll(Class theClass) {
+        String findQuery = QueryHelper.createQuerySELECTAll(theClass);
+        System.out.println(findQuery);
+        List<Object> listaObjeto = new ArrayList<>();
+        try (PreparedStatement pstm = conn.prepareStatement(findQuery)) {
+            System.out.println("!-!-!-!-!-!-!-! SENTENCIA !-!-!-!-!-!-!-!");
+            System.out.println(pstm);
+
+            try (ResultSet rs = pstm.executeQuery()) {
+                while (rs.next()) {
+                    Object o = theClass.getDeclaredConstructor().newInstance();
+                    for (int i = 1; i <= rs.getMetaData().getColumnCount(); i++) {
+                        ObjectHelper.setter(o, rs.getMetaData().getColumnName(i), rs.getObject(i));
+                    }
+                    listaObjeto.add(o);
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return listaObjeto;
+    }
+
 
     public List<Object> findAll(Class theClass, HashMap params) {
         return null;
