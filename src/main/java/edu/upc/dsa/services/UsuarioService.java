@@ -2,10 +2,7 @@ package edu.upc.dsa.services;
 
 import edu.upc.dsa.JuegoManager;
 import edu.upc.dsa.JuegoManagerImpl;
-import edu.upc.dsa.models.Insignia;
-import edu.upc.dsa.models.Objeto;
-import edu.upc.dsa.models.Usuario;
-import edu.upc.dsa.models.VOCredenciales;
+import edu.upc.dsa.models.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -58,6 +55,11 @@ public class UsuarioService {
             k.add(ins = new Insignia("Badass badge", "https://www.mundodeportivo.com/alfabeta/hero/2020/10/levi-ackerman-abj.jpg?width=768&aspect_ratio=16:9&format=nowebp"));
             k.add(ins = new Insignia("Unity master", "https://cink.es/wp-content/uploads/2022/03/unity-3d-como-hacer-juegos.jpg"));
             jm.addInsignias(k, "aran");
+
+            List<Mensaje> mensajesPredeterminados = new LinkedList<>();
+            mensajesPredeterminados.add(new Mensaje("Bienvenido a Pollopeta"));
+            mensajesPredeterminados.add(new Mensaje("Espero que le guste el juego, que se divierta!"));
+            jm.addMensajesGenerales(mensajesPredeterminados);
         }
     }
     @GET
@@ -167,6 +169,21 @@ public class UsuarioService {
         GenericEntity<List<Insignia>> entity = new GenericEntity<List<Insignia>>(insignias) {};
         return Response.status(201).entity(entity).build();
 
+    }
+    @GET
+    @ApiOperation(value = "get all system messages", notes = "asdasd")
+    @ApiResponses(value = {
+            @ApiResponse(code = 201, message = "Successful", response = Mensaje.class, responseContainer="List"),
+    })
+    //en el swagger se ve la ruta /usuario/posts get all system messages porque está en el UsuarioService
+
+    @Path("/posts")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getMensajesGenerales() {
+        List<Mensaje> mensajes = this.jm.getMensajesGenerales();
+
+        GenericEntity<List<Mensaje>> entity = new GenericEntity<List<Mensaje>>(mensajes) {};
+        return Response.status(201).entity(entity).build();
     }
 
 }

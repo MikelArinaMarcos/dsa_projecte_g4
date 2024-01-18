@@ -1,9 +1,6 @@
 package edu.upc.dsa;
 
-import edu.upc.dsa.models.Insignia;
-import edu.upc.dsa.models.Objeto;
-import edu.upc.dsa.models.Usuario;
-import edu.upc.dsa.models.VOCredenciales;
+import edu.upc.dsa.models.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,5 +19,9 @@ public interface JuegoManager {
 
     public void addInsignias(List<Insignia> i, String username);
     public ArrayList<Insignia> getInsignias(String username);
+
+    List<Mensaje> getMensajesGenerales();
+
+    public void addMensajesGenerales(List<Mensaje> mensajes);
 
     }

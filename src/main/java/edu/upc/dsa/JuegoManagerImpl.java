@@ -2,10 +2,7 @@ package edu.upc.dsa;
 
 import edu.upc.dsa.bbdd.Sesion;
 import edu.upc.dsa.DAO.*;
-import edu.upc.dsa.models.Insignia;
-import edu.upc.dsa.models.Objeto;
-import edu.upc.dsa.models.Usuario;
-import edu.upc.dsa.models.VOCredenciales;
+import edu.upc.dsa.models.*;
 import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
@@ -224,5 +221,12 @@ public class JuegoManagerImpl implements JuegoManager {
         Insignias.put(username, i);
     }
 
+    protected List<Mensaje> MensajesGenerales = new ArrayList<>();
+    public List<Mensaje> getMensajesGenerales() {
+        return new ArrayList<>(this.MensajesGenerales);
+    }
+    public void addMensajesGenerales(List<Mensaje> mensajes) {
+        this.MensajesGenerales.addAll(mensajes);
+    }
 
 }
