@@ -243,9 +243,11 @@ public class SesionImpl implements Sesion {
         return Usuario.class;
     }
     public List<Object> findAllbyId(Class theClass, String pk, Object value) {
-        String selectQuery  = QueryHelper.createQuerySELECT(theClass, pk);
+        String selectQuery = QueryHelper.createQuerySELECT(theClass, pk);
         List<Object> listaObjeto = new ArrayList<>();
+
         try (PreparedStatement pstm = conn.prepareStatement(selectQuery)) {
+            pstm.setObject(1, value); // Establecer el valor proporcionado en la consulta
             System.out.println("!-!-!-!-!-!-!-! SENTENCIA !-!-!-!-!-!-!-!");
             System.out.println(pstm);
 
@@ -258,13 +260,13 @@ public class SesionImpl implements Sesion {
                     listaObjeto.add(o);
                 }
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         return listaObjeto;
     }
+
 
 
     public List<Object> findAll(Class theClass, HashMap params) {
