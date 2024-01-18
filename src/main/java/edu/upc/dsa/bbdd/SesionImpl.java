@@ -134,8 +134,8 @@ public class SesionImpl implements Sesion {
 
 
 @Override
-    public int delete(Object object) {
-        String deleteQuery = QueryHelper.createQueryDELETE(object);
+    public int delete(Object object,String mail) {
+        String deleteQuery = QueryHelper.createQueryDELETE(object,mail);
         PreparedStatement pstm = null;
         try{
             pstm = conn.prepareStatement(deleteQuery);

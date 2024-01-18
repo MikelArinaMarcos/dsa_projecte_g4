@@ -112,7 +112,7 @@ public class UsuarioDAOImpl implements UsuarioDAO {
         Sesion sesion = null;
         try {
             sesion = FactorySesion.open();
-            int res = sesion.delete(u1);
+            int res = sesion.delete(u1,u1.getMail());
         } catch (Exception e) {
             return 1;
         } finally {
