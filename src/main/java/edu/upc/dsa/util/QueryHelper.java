@@ -54,6 +54,11 @@ public class QueryHelper {
         sb.append("SELECT * FROM ").append(theClass.getSimpleName()); //Por ej employee = SELECT * FROM Employee
         return sb.toString();
     }
+    public static String createQuerySELECTAllbyId(Class theClass){
+        StringBuffer sb = new StringBuffer();
+        sb.append("SELECT * FROM ").append(theClass.getSimpleName()); //Por ej employee = SELECT * FROM Employee
+        return sb.toString();
+    }
     public static String createQuerySELECTByParams(Object object, HashMap params){
         StringBuffer sb = new StringBuffer();
         sb.append("SELECT * FROM ").append(object.getClass().getSimpleName()).append(" ");

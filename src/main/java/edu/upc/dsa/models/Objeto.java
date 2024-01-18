@@ -5,16 +5,16 @@ public class Objeto {
     int rareza;
     private String nombre;
     private int precio;
-    private int daño;
+    private int damage;
     private String url;
 
     public Objeto(){}
-    public Objeto(int id, int rareza, String nombre, int precio, int daño, String url){
+    public Objeto(int id, int rareza, String nombre, int precio, int damage, String url){
         this.setId(id);
         this.setRareza(rareza);
         this.setNombre(nombre);
         this.setPrecio(precio);
-        this.setDaño(daño);
+        this.setDamage(damage);
         this.setUrl(url);
     }
 
@@ -50,12 +50,12 @@ public class Objeto {
         this.precio = precio;
     }
 
-    public int getDaño() {
-        return daño;
+    public int getDamage() {
+        return damage;
     }
 
-    public void setDaño(int daño) {
-        this.daño = daño;
+    public void setDamage(int damage) {
+        this.damage = damage;
     }
 
     public String getUrl() {

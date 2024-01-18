@@ -19,4 +19,5 @@ public interface Sesion<E> {
     List<Object> query(String query, Class theClass, HashMap params);
     public List<Object> findByParams(Object entity, HashMap params);
     public int delete(Object object,String pk,Object value);
+    public List<Object> findAllbyId(Class theClass, String pk, Object value);
 }

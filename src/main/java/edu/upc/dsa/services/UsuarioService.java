@@ -197,5 +197,18 @@ public class UsuarioService {
         return Response.status(201).entity(mapa).build();
 
     }
+    @GET
+    @ApiOperation(value = "get mapa", notes = "asdasd")
+    @ApiResponses(value = {
+            @ApiResponse(code = 201, message = "Successful", response = Mapas.class, responseContainer="List"),
+    })
+    @Path("/backpack/{mail}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getMyBackpack(@PathParam("mail") String mail) {
+        List<Backpack> backpack = this.jm.getMyBackpack(mail);
+        GenericEntity<List<Backpack>> entity = new GenericEntity<List<Backpack>>(backpack) {};
+        return Response.status(201).entity(entity).build();
+
+    }
 }
 

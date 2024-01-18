@@ -202,6 +202,69 @@ public class SesionImpl implements Sesion {
 
         return listaObjeto;
     }
+    public Object get2(Class theClass, String pk, Object value) {
+        String selectQuery  = QueryHelper.createQuerySELECT(theClass, pk);
+        ResultSet rs;
+        PreparedStatement pstm = null;
+        boolean empty = true;
+
+        try {
+            pstm = conn.prepareStatement(selectQuery);
+            pstm.setObject(1, value);
+            rs = pstm.executeQuery();
+
+            ResultSetMetaData rsmd = rs.getMetaData();
+            //
+            int numberOfColumns = rsmd.getColumnCount();
+            //
+            Object o = theClass.newInstance();
+            //
+            Object valueColumn = null;
+            while (rs.next()){
+                for (int i=1; i<=numberOfColumns; i++){
+                    String columnName = rsmd.getColumnName(i);
+                    ObjectHelper.setter(o, columnName, rs.getObject(i));
+                    System.out.println(columnName);
+                    System.out.println(rs.getObject(i));
+                    valueColumn = rs.getObject(i);
+
+                }
+            }
+            return o;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            throw new RuntimeException(e);
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
+
+        return Usuario.class;
+    }
+    public List<Object> findAllbyId(Class theClass, String pk, Object value) {
+        String selectQuery  = QueryHelper.createQuerySELECT(theClass, pk);
+        List<Object> listaObjeto = new ArrayList<>();
+        try (PreparedStatement pstm = conn.prepareStatement(selectQuery)) {
+            System.out.println("!-!-!-!-!-!-!-! SENTENCIA !-!-!-!-!-!-!-!");
+            System.out.println(pstm);
+
+            try (ResultSet rs = pstm.executeQuery()) {
+                while (rs.next()) {
+                    Object o = theClass.getDeclaredConstructor().newInstance();
+                    for (int i = 1; i <= rs.getMetaData().getColumnCount(); i++) {
+                        ObjectHelper.setter(o, rs.getMetaData().getColumnName(i), rs.getObject(i));
+                    }
+                    listaObjeto.add(o);
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return listaObjeto;
+    }
 
 
     public List<Object> findAll(Class theClass, HashMap params) {

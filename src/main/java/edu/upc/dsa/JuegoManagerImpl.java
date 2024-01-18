@@ -240,4 +240,9 @@ public class JuegoManagerImpl implements JuegoManager {
         Mapas map= usuarioDAO.getMapas(idMapas);
         return map;
     }
+    public List<Backpack> getMyBackpack(String mail){
+        UsuarioDAO usuarioDAO = new UsuarioDAOImpl();
+        List<Backpack> backpack = usuarioDAO.getObjetosBackpack(mail);
+        return backpack;
+    }
 }

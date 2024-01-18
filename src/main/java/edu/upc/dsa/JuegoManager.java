@@ -24,5 +24,6 @@ public interface JuegoManager {
 
     public void addMensajesGenerales(List<Mensaje> mensajes);
     public Mapas getMap(int idMapas);
+    public List<Backpack> getMyBackpack(String mail);
 
     }
