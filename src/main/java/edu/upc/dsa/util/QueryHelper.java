@@ -34,7 +34,7 @@ public class QueryHelper {
     }
     public static String createQuerySELECT(Class theClass, String pk) {
         StringBuffer sb = new StringBuffer();
-        sb.append("SELECT * FROM ").append(theClass.getSimpleName().toLowerCase());
+        sb.append("SELECT * FROM ").append(theClass.getSimpleName());
         sb.append(" WHERE "+pk+"= ?");
 
         return sb.toString();
