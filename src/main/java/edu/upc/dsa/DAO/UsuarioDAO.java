@@ -27,6 +27,6 @@ public interface UsuarioDAO {
     public Mapas getMapas(int idMapa);
     public Usuario updateUsuario(Usuario u1, String mail);
     int deleteUsuario(Usuario u1, String mail);
-    public List<Backpack> getObjetosBackpack(String idUsuario);
+    public List<Backpack> getObjetosBackpack(String mail);
 
 }

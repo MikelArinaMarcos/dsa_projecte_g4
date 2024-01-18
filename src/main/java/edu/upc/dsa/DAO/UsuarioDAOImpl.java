@@ -82,12 +82,12 @@ public class UsuarioDAOImpl implements UsuarioDAO {
         return map;
     }
 
-    public List<Backpack> getObjetosBackpack(String idUsuario) {
+    public List<Backpack> getObjetosBackpack(String mail) {
         Sesion sesion = null;
         List<Backpack> backpack = null;
         try {
             sesion = FactorySesion.open();
-            backpack = sesion.findAllbyId(Backpack.class,"idUsuario",idUsuario);
+            backpack = sesion.findAllbyId(Backpack.class,"idUsuario",mail);
         } catch (Exception e) {
             // LOG
         } finally {
