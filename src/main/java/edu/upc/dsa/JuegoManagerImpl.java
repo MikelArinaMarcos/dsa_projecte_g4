@@ -174,11 +174,12 @@ public class JuegoManagerImpl implements JuegoManager {
 
     public Usuario actualizarUsuario(String mail, String newUsername, String newName, String newLastName, String newPassword, String newMail) {
         logger.info("actualizarUsuario(" + mail + ")");
-        /*UsuarioDAO usuarioDAO = new UsuarioDAOImpl();
-        Usuario u1= new Usuario(newUsername, newName, newLastName, newPassword, newMail);
-        usuarioDAO.updateUsuario(u1, 12);*/
+        UsuarioDAO usuarioDAO = new UsuarioDAOImpl();
+        Usuario u1= new Usuario(newUsername, newMail, newName, newLastName, newPassword);
+        Usuario uActualizado= usuarioDAO.updateUsuario(u1, mail);
+        return uActualizado;
         // Verificar si el usuario existe
-        if (lUsuarios.containsKey(mail)) {
+        /*if (lUsuarios.containsKey(mail)) {
             Usuario usuario = lUsuarios.get(mail);
 
             // Verificar que la nueva contraseña sea diferente de la contraseña actual
@@ -217,7 +218,7 @@ public class JuegoManagerImpl implements JuegoManager {
         } else {
             logger.warn("Usuario con correo electrónico " + mail + " no encontrado");
             return null; // Retornar null para indicar que el usuario no fue encontrado
-        }
+        }*/
     }
 
     public ArrayList<Insignia> getInsignias(String username){

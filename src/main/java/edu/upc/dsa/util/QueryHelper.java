@@ -72,7 +72,7 @@ public class QueryHelper {
             sb.append(field).append(" = ?, ");
         }
         sb=sb.replace(sb.length()-2,sb.length()-1,"");
-        sb.append("WHERE id").append(entity.getClass().getSimpleName()).append(" = ?");
+        sb.append("WHERE mail").append(entity.getClass().getSimpleName()).append(" = ?");
         System.out.println("QUERY DEL UPDATE-->\n" +sb.toString());
         return sb.toString();
     }

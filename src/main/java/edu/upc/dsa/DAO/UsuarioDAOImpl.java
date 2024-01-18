@@ -95,17 +95,17 @@ public class UsuarioDAOImpl implements UsuarioDAO {
         return listaUsuarios;
     }
 
-    public void updateUsuario(Usuario u1,int id){
+    public Usuario updateUsuario(Usuario u1,String mail){
         Sesion sesion = null;
         try {
             sesion = FactorySesion.open();
-            sesion.update(u1, id);
+            sesion.update(u1, mail);
         } catch (Exception e) {
 
         } finally {
             sesion.close();
         }
-
+        return u1;
     }
 
     public int deleteUsuario(Usuario u1,String mail){

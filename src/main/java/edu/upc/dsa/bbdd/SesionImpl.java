@@ -113,7 +113,7 @@ public class SesionImpl implements Sesion {
         return null;
     }*/
 @Override
-    public void update(Object object, int id) {
+    public void update(Object object, String mail) {
         String updateQuery  = QueryHelper.createQueryUPDATE(object);
         PreparedStatement ptsm = null;
         try {
@@ -122,7 +122,7 @@ public class SesionImpl implements Sesion {
             for (String field : ObjectHelper.getFields(object)) {
                 ptsm.setObject(i++, ObjectHelper.getter(object, field));
             }
-            ptsm.setObject(i,id);
+            ptsm.setObject(i,mail);
             ptsm.executeQuery();
             System.out.println("SENTENCIA UPDATE\n"+ptsm);
         }
