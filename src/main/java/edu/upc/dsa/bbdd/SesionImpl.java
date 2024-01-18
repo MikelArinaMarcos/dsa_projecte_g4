@@ -134,19 +134,12 @@ public class SesionImpl implements Sesion {
 
 
 @Override
-    public int delete(Object object, HashMap params) {
-        String deleteQuery = QueryHelper.createQueryDELETE(object,params);
+    public int delete(Object object) {
+        String deleteQuery = QueryHelper.createQueryDELETE(object);
         PreparedStatement pstm = null;
         try{
             pstm = conn.prepareStatement(deleteQuery);
             System.out.println("SENTENCIA DELETE:\n"+pstm);
-
-            int i=1;
-            for (Object value : params.values()) {
-                pstm.setObject(i,value.toString());
-                i++;
-            }
-
             System.out.println("SENTENCIA DELETE:\n"+pstm);
             pstm.executeQuery();
             return 1;

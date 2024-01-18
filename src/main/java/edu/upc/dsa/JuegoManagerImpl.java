@@ -85,17 +85,17 @@ public class JuegoManagerImpl implements JuegoManager {
 
     @Override
     public Usuario login(VOCredenciales credencialesu) {
-        /*UsuarioDAO usuarioDAO = new UsuarioDAOImpl();
+        UsuarioDAO usuarioDAO = new UsuarioDAOImpl();
         Usuario usuario1 = usuarioDAO.getUserbymail(credencialesu.getMail());
         if (usuario1.getPassword().equals(credencialesu.getPassword())){
             logger.info("Logeado en la base de datos");
             return usuario1;
         } else {
             logger.info("Contraseña incorrecta");
-            //return null;
-        }*/
+            return null;
+        }
 
-        logger.info("login(" + credencialesu + ")");
+        /*logger.info("login(" + credencialesu + ")");
 
         // Validar el formato del correo electrónico
         if (!isValidEmail(credencialesu.getMail())) {
@@ -117,7 +117,7 @@ public class JuegoManagerImpl implements JuegoManager {
             logger.warn("User with email " + credencialesu.getMail() + " not found");
         }
 
-        return null;
+        return null;*/
     }
 
     public VOCredenciales getCredenciales(Usuario U) {
@@ -127,28 +127,32 @@ public class JuegoManagerImpl implements JuegoManager {
     }
 
     public Usuario getUser(String mail) {
+        UsuarioDAO usuarioDAO = new UsuarioDAOImpl();
+        Usuario user = usuarioDAO.getUserbymail(mail);
         logger.info("getUsername(" + mail + ")");
 
-        if (lUsuarios.containsKey(mail)) {
-            Usuario U = lUsuarios.get(mail);
-            logger.info("Encontrado(" + mail + ")" + U);
-            return U;
+        if (user==null) {
+            logger.info("Ha fallado en encontrar al usuario");
+            return null;
         }
-        logger.warn(mail + "not found");
-        return null;
+        logger.warn("Lo ha encontrado en la base de datos");
+        return user;
     }
 
     public List<Usuario> getallusers() {
-        /*UsuarioDAO usuarioDAO = new UsuarioDAOImpl();
-        new ArrayList<>(usuarioDAO.getUsuarios());*/
-        return new ArrayList<>(this.lUsuarios.values());
+        UsuarioDAO usuarioDAO = new UsuarioDAOImpl();
+        return new ArrayList<>(usuarioDAO.getUsuarios());
+        //return new ArrayList<>(this.lUsuarios.values());
     }
 
     @Override
     public int deleteUsuario(VOCredenciales credenciales) {
-
+        UsuarioDAO usuarioDAO = new UsuarioDAOImpl();
+        Usuario u = usuarioDAO.getUserbymail(credenciales.getMail());
+        int res = usuarioDAO.deleteUsuario(u);
+        return res;
         // Verificar si el usuario existe
-        if (lUsuarios.containsKey(credenciales.getMail())) {
+        /*if (lUsuarios.containsKey(credenciales.getMail())) {
             Usuario usuario = lUsuarios.get(credenciales.getMail());
 
             // Verificar la contraseña
@@ -163,7 +167,7 @@ public class JuegoManagerImpl implements JuegoManager {
         } else {
             logger.warn("User with email " + credenciales.getMail() + " not found");
             return 404; // Código para usuario no encontrado
-        }
+        }*/
     }
 
     public Usuario actualizarUsuario(String mail, String newUsername, String newName, String newLastName, String newPassword, String newMail) {

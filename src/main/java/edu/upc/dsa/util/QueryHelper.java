@@ -77,7 +77,7 @@ public class QueryHelper {
         return sb.toString();
     }
 
-    public static String createQueryDELETE(Object object, HashMap params){
+    public static String createQueryDELETE(Object object){
         StringBuffer sb = new StringBuffer();
         sb.append("DELETE FROM ").append(object.getClass().getSimpleName()); //Por ej employee = DELETE FROM Employee
         sb.append(" WHERE 1=1");

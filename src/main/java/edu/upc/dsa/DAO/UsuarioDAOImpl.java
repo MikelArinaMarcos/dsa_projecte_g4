@@ -107,6 +107,19 @@ public class UsuarioDAOImpl implements UsuarioDAO {
         }
 
     }
+
+    public int deleteUsuario(Usuario u1){
+        Sesion sesion = null;
+        try {
+            sesion = FactorySesion.open();
+            int res = sesion.delete(u1);
+        } catch (Exception e) {
+            return 1;
+        } finally {
+            sesion.close();
+        }
+        return 0;
+    }
     /*public void buyItem(String id, String name, String mail) throws NotSufficientMoneyException, ObjectNotExistException,  SQLException {
 
         logger.info("Comprar objeto "+ id + " Para el usuario con mail " + mail);

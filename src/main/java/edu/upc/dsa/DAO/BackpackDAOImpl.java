@@ -32,14 +32,14 @@ public class BackpackDAOImpl {
         return instance;
     }
 
-    public int addItem(String idUsuario, String idItem) {
+    public int addItem(String idUsuario, String idItems) {
         Sesion sesion = null;
         Backpack backpack = null;
         String newIdObjetos = null;
         try {
             sesion = FactorySesion.open();
             backpack = (Backpack) sesion.get(Backpack.class, "idUsuario", idUsuario);
-            newIdObjetos=backpack.getIdObjetos()+"/"+idItem;
+            newIdObjetos=backpack.getIdObjetos()+"/"+idItems;
             backpack.setIdObjetos(newIdObjetos);
             sesion.save(backpack);
         } catch (Exception e) {

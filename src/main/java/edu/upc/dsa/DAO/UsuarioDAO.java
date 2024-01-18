@@ -23,6 +23,6 @@ public interface UsuarioDAO {
 
     public List<Usuario> getUsuarios();
     public void updateUsuario(Usuario u1, int id);
-
+    int deleteUsuario(Usuario u1);
 
 }
