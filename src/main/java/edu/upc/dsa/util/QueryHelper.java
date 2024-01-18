@@ -72,7 +72,7 @@ public class QueryHelper {
             sb.append(field).append(" = ?, ");
         }
         sb=sb.replace(sb.length()-2,sb.length()-1,"");
-        sb.append("WHERE"+pk+" = ?");
+        sb.append(" WHERE "+pk+" = ?");
         System.out.println("QUERY DEL UPDATE-->\n" +sb.toString());
         return sb.toString();
     }
