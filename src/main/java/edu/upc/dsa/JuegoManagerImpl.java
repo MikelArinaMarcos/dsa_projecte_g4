@@ -149,7 +149,8 @@ public class JuegoManagerImpl implements JuegoManager {
     public int deleteUsuario(VOCredenciales credenciales) {
         UsuarioDAO usuarioDAO = new UsuarioDAOImpl();
         Usuario u = usuarioDAO.getUserbymail(credenciales.getMail());
-        int res = usuarioDAO.deleteUsuario(u,u.getMail());
+        logger.info("deleteUsuario() =" + credenciales.getMail());
+        int res = usuarioDAO.deleteUsuario(u,credenciales.getMail());
         return res;
         // Verificar si el usuario existe
         /*if (lUsuarios.containsKey(credenciales.getMail())) {
