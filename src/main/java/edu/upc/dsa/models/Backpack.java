@@ -2,12 +2,13 @@ package edu.upc.dsa.models;
 
 public class Backpack {
     String idUsuario;
-    String idObjetos;
+    int idItems;
     public Backpack(){};
 
-    public Backpack(String idUsuario, String idObjetos) {
+
+    public Backpack(String idUsuario, int idItems) {
         this.idUsuario = idUsuario;
-        this.idObjetos = idObjetos;
+        this.idItems = idItems;
     }
 
     public String getIdUsuario() {
@@ -18,11 +19,11 @@ public class Backpack {
         this.idUsuario = idUsuario;
     }
 
-    public String getIdObjetos() {
-        return idObjetos;
+    public int getIdItems() {
+        return idItems;
     }
 
-    public void setIdObjetos(String idObjetos) {
-        this.idObjetos = idObjetos;
+    public void setIdItems(int idItems) {
+        this.idItems = idItems;
     }
 }

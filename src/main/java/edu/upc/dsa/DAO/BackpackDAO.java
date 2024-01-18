@@ -1,5 +1,6 @@
 package edu.upc.dsa.DAO;
 
+import edu.upc.dsa.models.Backpack;
 import edu.upc.dsa.models.Objeto;
 import edu.upc.dsa.DAO.BackpackDAOImpl;
 import edu.upc.dsa.exceptions.ObjectNotExistException;
@@ -13,5 +14,5 @@ import java.util.List;
 import java.sql.SQLException;
 
 public interface BackpackDAO {
-    int addItem(String idUsuario, String idItem);
+    int addItem(String idUsuario, int idItems);
 }

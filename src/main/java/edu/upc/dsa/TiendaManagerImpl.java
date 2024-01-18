@@ -1,6 +1,8 @@
 package edu.upc.dsa;
 import edu.upc.dsa.bbdd.Sesion;
 import edu.upc.dsa.DAO.*;
+import edu.upc.dsa.DAO.BackpackDAO;
+import edu.upc.dsa.DAO.BackpackDAOImpl;
 import edu.upc.dsa.models.*;
 import edu.upc.dsa.models.Objeto;
 import edu.upc.dsa.models.Usuario;
@@ -74,21 +76,26 @@ public class TiendaManagerImpl implements TiendaManager{
         logger.info("Size productos " + Objetos.size());
         return Objetos.size();
     }
-/*
     public Objeto comprarObjeto(Objeto o, Usuario u){
         if (o.getPrecio() > u.getBolivares()){
             logger.info("Estás pobre");
             return null;
         }
-        if (u.tieneObjeto(o)) {
+        /*if (u.tieneObjeto(o)) {
             logger.info("Ya tienes el objeto " + o.getNombre());
             return null;
+        }*/
+        BackpackDAO backpackDAO = new BackpackDAOImpl();
+        int res = backpackDAO.addItem(u.getMail(),o.getId());
+        UsuarioDAO usuarioDAO = new UsuarioDAOImpl();
+        if (res == 0){
+            logger.info("Objeto añadido a la mochila");
         }
         logger.info("Comprando objeto " + o.getNombre());
         u.setBolivares(u.getBolivares() - o.getPrecio());
+        Usuario uActualizado= usuarioDAO.updateUsuario(u, u.getMail());
         //u.addObjeto(o);
         return o;
     }
-*/
 }
 
