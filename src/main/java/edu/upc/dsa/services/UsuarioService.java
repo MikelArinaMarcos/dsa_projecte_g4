@@ -185,6 +185,17 @@ public class UsuarioService {
         GenericEntity<List<Mensaje>> entity = new GenericEntity<List<Mensaje>>(mensajes) {};
         return Response.status(201).entity(entity).build();
     }
+    @GET
+    @ApiOperation(value = "get mapa", notes = "asdasd")
+    @ApiResponses(value = {
+            @ApiResponse(code = 201, message = "Successful", response = Mapas.class, responseContainer="List"),
+    })
+    @Path("/mapas")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getMapas(int idMapa) {
+        Mapas mapa = this.jm.getMap(idMapa);
+        return Response.status(201).entity(mapa).build();
 
+    }
 }
 

@@ -23,5 +23,6 @@ public interface JuegoManager {
     List<Mensaje> getMensajesGenerales();
 
     public void addMensajesGenerales(List<Mensaje> mensajes);
+    public Mapas getMap(int idMapas);
 
     }

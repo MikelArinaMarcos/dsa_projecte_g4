@@ -235,5 +235,9 @@ public class JuegoManagerImpl implements JuegoManager {
     public void addMensajesGenerales(List<Mensaje> mensajes) {
         this.MensajesGenerales.addAll(mensajes);
     }
-
+    public Mapas getMap(int idMapas){
+        UsuarioDAO usuarioDAO = new UsuarioDAOImpl();
+        Mapas map= usuarioDAO.getMapas(idMapas);
+        return map;
+    }
 }

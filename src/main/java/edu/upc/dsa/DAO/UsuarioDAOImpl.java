@@ -8,6 +8,7 @@ import edu.upc.dsa.bbdd.Sesion;
 import edu.upc.dsa.bbdd.SesionImpl;
 import edu.upc.dsa.models.Objeto;
 import edu.upc.dsa.models.Usuario;
+import edu.upc.dsa.models.*;
 
 import org.apache.log4j.Logger;
 
@@ -64,6 +65,21 @@ public class UsuarioDAOImpl implements UsuarioDAO {
         }
 
         return user;
+    }
+    public Mapas getMapas(int idMapa) {
+        Sesion sesion = null;
+        Mapas map= null;
+        try {
+            sesion = FactorySesion.open();
+            map = (Mapas) sesion.get(Mapas.class, "idMapa", idMapa);
+        } catch (Exception e) {
+            e.printStackTrace();
+            // LOG
+        } finally {
+            sesion.close();
+        }
+
+        return map;
     }
 
     public List<Objeto> getObjetos() {
