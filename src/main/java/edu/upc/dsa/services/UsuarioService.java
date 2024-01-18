@@ -37,20 +37,27 @@ public class UsuarioService {
             this.jm.addUsuario("a", "a@gmail.com", "A", "B", "1234");
             List<Insignia> i = new LinkedList<Insignia>();
             Insignia ins;
-            i.add(ins = new Insignia("Tienes el pito gordo!", "https://cdn.pixabay.com/photo/2017/07/11/15/51/kermit-2493979_1280.png"));
-            i.add(ins = new Insignia("Tienes el pito pequeño :(", "https://koalarojo.com/12639-large_default/silbato-o-pito-de-animacion-en-varios-colores-con-cordon-a-juego.jpg"));
-            i.add(ins = new Insignia("Tienes el pito mediano!", "https://link.es"));
-            i.add(ins = new Insignia("La homosexualidad deberia ser castigada!", "https://link.es"));
-            i.add(ins = new Insignia("FRANCOFRANCOFRANCOFRANCO!", "https://link.es"));
-            i.add(ins = new Insignia("Porque digo franco?", "https://link.es"));
-            i.add(ins = new Insignia("Se ha matado paco!", "https://link.es"));
-            i.add(ins = new Insignia("LA inquisicion española", "https://link.es"));
-            i.add(ins = new Insignia("1", "https://link.es"));
-            i.add(ins = new Insignia("2", "https://link.es"));
-            i.add(ins = new Insignia("3", "https://link.es"));
-            i.add(ins = new Insignia("4", "https://link.es"));
-            i.add(ins = new Insignia("5", "https://link.es"));
-            jm.addInsignias(i, "a");
+            i.add(ins = new Insignia("Master del universo", "https://media.gq.com.mx/photos/5dec0db85b7e8300097bca15/1:1/w_600,h_600,c_limit/thanos-bebe-marvel.jpg"));
+            i.add(ins = new Insignia("Rey de Catalunya", "https://imagenes.muyinteresante.es/files/composte_image/uploads/2023/08/10/64d49b847013d.jpeg"));
+            i.add(ins = new Insignia("El estudiante", "https://img.freepik.com/vector-premium/lindo-nino-estudiante-levantando-mano-respondiendo-pregunta-sentado-su-escritorio-aula_535862-690.jpg?w=2000"));
+            i.add(ins = new Insignia("Badass badge", "https://www.mundodeportivo.com/alfabeta/hero/2020/10/levi-ackerman-abj.jpg?width=768&aspect_ratio=16:9&format=nowebp"));
+
+            jm.addInsignias(i, "jordi");
+
+            List<Insignia> o = new LinkedList<Insignia>();
+            o.add(ins = new Insignia("Dragon slayer", "https://c4.wallpaperflare.com/wallpaper/705/734/459/dark-dovahkiin-dragon-dragonborn-wallpaper-preview.jpg"));
+            o.add(ins = new Insignia("El estudiante", "https://img.freepik.com/vector-premium/lindo-nino-estudiante-levantando-mano-respondiendo-pregunta-sentado-su-escritorio-aula_535862-690.jpg?w=2000"));
+            jm.addInsignias(o, "pedro");
+
+            List<Insignia> h = new LinkedList<Insignia>();
+            h.add(ins = new Insignia("Cazador furtivo", "https://i.pinimg.com/originals/ef/90/0d/ef900dd70802cd2c5fce596f92f89549.jpg"));
+            h.add(ins = new Insignia("BBDD expert", "https://www.aceinfoway.com/blog/wp-content/uploads/2020/03/best-database-to-work-with-in-2020.jpg"));
+            jm.addInsignias(h, "bryan");
+
+            List<Insignia> k = new LinkedList<Insignia>();
+            k.add(ins = new Insignia("Badass badge", "https://www.mundodeportivo.com/alfabeta/hero/2020/10/levi-ackerman-abj.jpg?width=768&aspect_ratio=16:9&format=nowebp"));
+            k.add(ins = new Insignia("Unity master", "https://cink.es/wp-content/uploads/2022/03/unity-3d-como-hacer-juegos.jpg"));
+            jm.addInsignias(k, "aran");
         }
     }
     @GET
@@ -148,20 +155,19 @@ public class UsuarioService {
     }
 
     @GET
-    @ApiOperation(value = "get all insignias", notes = "asdasd")
+    @ApiOperation(value = "get all Insignias", notes = "asdasd")
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "Successful", response = Insignia.class, responseContainer="List"),
     })
-    @Path("/usuarios/insignias/{Username}")
+    @Path("/listar_insignias_usuario/insignias/{username}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getInsignias(@PathParam("Username") String user) {
+    public Response getInsignias(@PathParam("username") String user) {
 
         List<Insignia> insignias = jm.getInsignias(user);
         GenericEntity<List<Insignia>> entity = new GenericEntity<List<Insignia>>(insignias) {};
         return Response.status(201).entity(entity).build();
 
     }
-
 
 }
 

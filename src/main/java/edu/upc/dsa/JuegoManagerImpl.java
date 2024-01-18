@@ -217,11 +217,11 @@ public class JuegoManagerImpl implements JuegoManager {
         }
     }
 
-    public ArrayList<Insignia> getInsignias(String id){
-        return new ArrayList<>(this.Insignias.get(id));
+    public ArrayList<Insignia> getInsignias(String username){
+        return new ArrayList<>(this.Insignias.get(username));
     }
-    public void addInsignias(List<Insignia> i, String id){
-        Insignias.put(id, i);
+    public void addInsignias(List<Insignia> i, String username){
+        Insignias.put(username, i);
     }
 
 

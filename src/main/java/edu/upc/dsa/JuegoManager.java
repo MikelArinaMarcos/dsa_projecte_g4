@@ -20,7 +20,7 @@ public interface JuegoManager {
 
     public Usuario actualizarUsuario(String mail, String newUsername, String newName, String newLastName, String newPassword, String newMail);
 
-    public ArrayList<Insignia> getInsignias(String id);
-    public void addInsignias(List<Insignia> i, String id);
+    public void addInsignias(List<Insignia> i, String username);
+    public ArrayList<Insignia> getInsignias(String username);
 
     }

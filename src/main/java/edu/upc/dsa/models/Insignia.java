@@ -1,28 +1,29 @@
 package edu.upc.dsa.models;
 
 public class Insignia {
-    private String nombre;
-    private String url;
+    private String name;
+    private String avatar;
 
     public Insignia(){}
-    public Insignia(String nombre, String url) {
-        this.nombre = nombre;
-        this.url = url;
+    public Insignia(String name, String avatar) {
+        this.name = name;
+        this.avatar = avatar;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getName() {
+        return name;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getUrl() {
-        return url;
+    public String getAvatar() {
+        return avatar;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
+
 }
