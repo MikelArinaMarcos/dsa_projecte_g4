@@ -1,5 +1,7 @@
-/*
 package edu.upc.dsa;
+import edu.upc.dsa.bbdd.Sesion;
+import edu.upc.dsa.DAO.*;
+import edu.upc.dsa.models.*;
 import edu.upc.dsa.models.Objeto;
 import edu.upc.dsa.models.Usuario;
 import org.apache.log4j.Logger;
@@ -19,11 +21,16 @@ public class TiendaManagerImpl implements TiendaManager{
         return instance;
     }
     public List<Objeto> listaObjetos(){
-        List<Objeto> lObjetos = new LinkedList<Objeto>(Objetos.values());
+        ObjetosDAO objetosDAO = new ObjetosDAOImpl();
+        List<Objeto> lObjetos = objetosDAO.getObjetos();
+        if (lObjetos != null) {
+            logger.info("Va la lista lokete");
+        }
+        /*List<Objeto> lObjetos = new LinkedList<Objeto>(Objetos.values());
         lObjetos.sort((Objeto o1, Objeto o2) -> Integer.compare(o1.getPrecio(),(o2.getPrecio())));
         for(Objeto obj : lObjetos){
             logger.info("Producto: " + obj.getNombre() + " - Precio: " + obj.getPrecio());
-        }
+        }*/
         return lObjetos;
     }
     public List<Objeto> getProductosTienda(int nivel){
@@ -67,23 +74,21 @@ public class TiendaManagerImpl implements TiendaManager{
         logger.info("Size productos " + Objetos.size());
         return Objetos.size();
     }
-
+/*
     public Objeto comprarObjeto(Objeto o, Usuario u){
         if (o.getPrecio() > u.getBolivares()){
             logger.info("Estás pobre");
             return null;
         }
-/*
         if (u.tieneObjeto(o)) {
             logger.info("Ya tienes el objeto " + o.getNombre());
             return null;
-        }*/
-/*
+        }
         logger.info("Comprando objeto " + o.getNombre());
         u.setBolivares(u.getBolivares() - o.getPrecio());
         //u.addObjeto(o);
         return o;
     }
-
-}
 */
+}
+

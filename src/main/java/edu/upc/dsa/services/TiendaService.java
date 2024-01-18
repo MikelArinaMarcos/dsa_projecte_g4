@@ -1,4 +1,3 @@
-/*
 package edu.upc.dsa.services;
 
 import edu.upc.dsa.JuegoManager;
@@ -55,7 +54,7 @@ public class TiendaService {
         return Response.status(201).entity(entity).build();
     }
 
-    @PUT
+    /*@PUT
     @ApiOperation(value = "Comprar objeto", notes = "asdasd")
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "Successful", response= Objeto.class),
@@ -69,6 +68,5 @@ public class TiendaService {
         Objeto object = tm.comprarObjeto(o, u);
         if (object == null) {return Response.status(404).build();}
         else {return Response.status(201).entity(o).build();}
-    }
+    }*/
 }
-*/
