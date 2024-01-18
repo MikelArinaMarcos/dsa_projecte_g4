@@ -139,7 +139,7 @@ public class SesionImpl implements Sesion {
         PreparedStatement pstm = null;
         try{
             pstm = conn.prepareStatement(deleteQuery);
-            pstm.setObject(1, value);
+            //pstm.setObject(1, value);
             System.out.println("SENTENCIA DELETE:\n"+pstm);
             System.out.println("SENTENCIA DELETE:\n"+pstm);
             pstm.executeQuery();
