@@ -141,7 +141,8 @@ public class JuegoManagerImpl implements JuegoManager {
 
     public List<Usuario> getallusers() {
         UsuarioDAO usuarioDAO = new UsuarioDAOImpl();
-        return new ArrayList<>(usuarioDAO.getUsuarios());
+        List<Usuario> LU= usuarioDAO.getUsuarios();
+        return LU;
         //return new ArrayList<>(this.lUsuarios.values());
     }
 
