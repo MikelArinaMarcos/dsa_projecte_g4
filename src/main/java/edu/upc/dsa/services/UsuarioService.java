@@ -200,7 +200,7 @@ public class UsuarioService {
     @GET
     @ApiOperation(value = "get backpack", notes = "asdasd")
     @ApiResponses(value = {
-            @ApiResponse(code = 201, message = "Successful", response = Mapas.class, responseContainer="List"),
+            @ApiResponse(code = 201, message = "Successful", response = Objeto.class, responseContainer="List"),
     })
     @Path("/backpack/{mail}")
     @Produces(MediaType.APPLICATION_JSON)

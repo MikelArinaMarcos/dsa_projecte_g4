@@ -81,7 +81,7 @@ public class TiendaManagerImpl implements TiendaManager{
         UsuarioDAO usuarioDAO = new UsuarioDAOImpl();
         if (o.getPrecio() > u.getBolivares()){
             logger.info("Estás pobre");
-            return o;
+            return null;
         }
         List<Backpack> backpack = usuarioDAO.getObjetosBackpack(u.getMail());
 
@@ -90,7 +90,7 @@ public class TiendaManagerImpl implements TiendaManager{
             int idItem = mochila.getIdItems();
             if (idItem == o.getId()) {
                 logger.info("Tienes este objeto");
-                return null;
+                return o;
             }
         }
         /*if (u.tieneObjeto(o)) {

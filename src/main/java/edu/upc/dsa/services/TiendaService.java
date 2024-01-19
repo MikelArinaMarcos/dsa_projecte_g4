@@ -66,7 +66,7 @@ public class TiendaService {
     public Response comprarObjeto(Objeto o, @PathParam("mail") String mail) {
         Usuario u = jm.getUser(mail);
         Objeto object = tm.comprarObjeto(o, u);
-        if (object == null) {return Response.status(404).build();}
+        if (object == null) {return Response.status(501).build();}
         else {return Response.status(201).entity(o).build();}
     }
 }
