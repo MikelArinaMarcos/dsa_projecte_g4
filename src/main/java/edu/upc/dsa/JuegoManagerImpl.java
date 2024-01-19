@@ -229,11 +229,17 @@ public class JuegoManagerImpl implements JuegoManager {
     }
 
     protected List<Mensaje> MensajesGenerales = new ArrayList<>();
-    public List<Mensaje> getMensajesGenerales() {
-        return new ArrayList<>(this.MensajesGenerales);
-    }
+   // public List<Mensaje> getMensajesGenerales() {
+     //   return new ArrayList<>(this.MensajesGenerales);
+  //  }
     public void addMensajesGenerales(List<Mensaje> mensajes) {
         this.MensajesGenerales.addAll(mensajes);
+    }
+    public List<Mensaje> getMensajesGenerales() {
+        MensajeDAO mensajeDAO = new MensajeDAOImpl();
+        List<Mensaje> LU= mensajeDAO.getMensaje();
+        return LU;
+
     }
     public Mapas getMap(int idMapas){
         UsuarioDAO usuarioDAO = new UsuarioDAOImpl();

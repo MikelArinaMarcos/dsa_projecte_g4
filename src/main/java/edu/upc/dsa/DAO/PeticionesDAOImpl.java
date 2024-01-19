@@ -24,7 +24,7 @@ import edu.upc.dsa.exceptions.EmailNotValidException;
 import edu.upc.dsa.exceptions.IncorrectCredencialsException;
 import edu.upc.dsa.exceptions.NameUserAlreadyInUseException;
 public class PeticionesDAOImpl implements PeticionesDAO{
-    final static Logger logger = Logger.getLogger(UsuarioDAOImpl.class);
+    final static Logger logger = Logger.getLogger(PeticionesDAOImpl.class);
     private static PeticionesDAOImpl instance;
 
     public static PeticionesDAOImpl getInstance() {
