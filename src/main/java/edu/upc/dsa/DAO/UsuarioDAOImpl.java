@@ -130,11 +130,11 @@ public class UsuarioDAOImpl implements UsuarioDAO {
             sesion = FactorySesion.open();
             int res = sesion.delete(u1,mail,mail);
         } catch (Exception e) {
-            return 1;
+            return 0;
         } finally {
             sesion.close();
         }
-        return 0;
+        return 1;
     }
     /*public void buyItem(String id, String name, String mail) throws NotSufficientMoneyException, ObjectNotExistException,  SQLException {
 
