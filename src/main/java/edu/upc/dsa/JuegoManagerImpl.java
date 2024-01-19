@@ -240,9 +240,23 @@ public class JuegoManagerImpl implements JuegoManager {
         Mapas map= usuarioDAO.getMapas(idMapas);
         return map;
     }
-    public List<Backpack> getMyBackpack(String mail){
+    public List<Objeto> getMyBackpack(String mail){
         UsuarioDAO usuarioDAO = new UsuarioDAOImpl();
+        ObjetosDAO objetoDAO = new ObjetosDAOImpl();
         List<Backpack> backpack = usuarioDAO.getObjetosBackpack(mail);
-        return backpack;
+        List<Objeto> lObjeto= new ArrayList<>();
+        for (Backpack mochila : backpack) {
+            // Supongamos que getIdItems devuelve el ID del objeto en la mochila
+            int idItem = mochila.getIdItems();
+
+            // Supongamos que getObjeto toma un ID de objeto y devuelve un Objeto
+            Objeto objeto = objetoDAO.getObjet(idItem);
+
+            // Verificar si el objeto no es nulo antes de agregarlo a la lista
+            if (objeto != null) {
+                lObjeto.add(objeto);
+            }
+        }
+        return lObjeto;
     }
 }

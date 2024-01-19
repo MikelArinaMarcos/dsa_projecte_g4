@@ -12,10 +12,8 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface ObjetosDAO {
+    public Objeto getObjet(int id);
     public List<Objeto> getObjetos();
     Objeto getObjeto(String idItem) throws ObjectNotExistException, SQLException;
-
-
-
 
 }

@@ -24,9 +24,25 @@ public class ObjetosDAOImpl implements ObjetosDAO {
 
 
     final static Logger logger = Logger.getLogger(ObjetosDAOImpl.class);
+    private static PeticionesDAOImpl instance;
 
+    public static PeticionesDAOImpl getInstance() {
+        if (instance == null) instance = new PeticionesDAOImpl();
+        return instance;
+    }
+    public Objeto getObjet(int id) {
+        Sesion sesion = null;
+        Objeto objeto = null;
+        try {
+            sesion = FactorySesion.open();
+            objeto = (Objeto) sesion.get(Objeto.class,"id", id);
+        } finally {
+            //sesion.save(item);
+            sesion.close();
+        }
 
-
+        return objeto;
+    }
     public Objeto getObjeto(String id) throws ObjectNotExistException {
         Sesion sesion = null;
         Objeto objeto = null;
