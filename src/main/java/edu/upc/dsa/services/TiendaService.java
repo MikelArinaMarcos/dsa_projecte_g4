@@ -58,7 +58,7 @@ public class TiendaService {
     @ApiOperation(value = "Comprar objeto", notes = "asdasd")
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "Successful", response= Objeto.class),
-            @ApiResponse(code = 501, message = "Estas pobre")
+            @ApiResponse(code = 501, message = "No tienes suficiente dinero")
     })
     @Path("/comprarObjeto/{mail}")
     @Consumes(MediaType.APPLICATION_JSON)
