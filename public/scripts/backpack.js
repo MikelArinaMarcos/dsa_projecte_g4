@@ -10,15 +10,15 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(response => response.json())
         .then(data => {
             // Manejamos los datos y llamamos a la función para mostrar la lista de objetos
-            mostrarListaObjetos(data);
+            mostrarBackpack(data);
         })
         .catch(error => console.error('Error al obtener la lista de objetos:', error));
 })
-    function mostrarListaObjetos(listaObjetos) {
-    const listaObjetosContainer = document.getElementById('listaObjetos');
+    function mostrarBackpack(listaObjetosBackpack) {
+    const listaBackpackContainer = document.getElementById('listaObjetosBackpack');
 
     // Iteramos sobre la lista de objetos y creamos dinámicamente las secciones en el DOM
-    listaObjetos.forEach(objeto => {
+    listaObjetosBackpack.forEach(objeto => {
         const itemDiv = document.createElement('div');
         itemDiv.classList.add('item');
 
