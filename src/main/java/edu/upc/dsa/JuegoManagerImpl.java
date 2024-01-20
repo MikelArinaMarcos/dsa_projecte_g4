@@ -166,8 +166,14 @@ public class JuegoManagerImpl implements JuegoManager {
     @Override
     public int deleteUsuario(VOCredenciales credenciales) {
         UsuarioDAO usuarioDAO = new UsuarioDAOImpl();
+        BackpackDAO backpackDAO = new BackpackDAOImpl();
         String mail = credenciales.getMail();
         Usuario u = usuarioDAO.getUserbymail(mail);
+        List<Backpack> lbk = usuarioDAO.getObjetosBackpack(mail);
+        int res2 = 0;
+        for (Backpack bk: lbk){
+            res2 = backpackDAO.deleteBackpack(bk,mail);
+        }
         if (u.getPassword().equals(credenciales.getPassword())){
             logger.info("deleteUsuario() =" + credenciales.getMail());
             int res = usuarioDAO.deleteUsuario(u,mail);
