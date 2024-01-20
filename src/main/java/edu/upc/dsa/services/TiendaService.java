@@ -54,7 +54,7 @@ public class TiendaService {
         return Response.status(201).entity(entity).build();
     }
 
-    @PUT
+    @POST
     @ApiOperation(value = "Comprar objeto", notes = "asdasd")
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "Successful", response= Objeto.class),

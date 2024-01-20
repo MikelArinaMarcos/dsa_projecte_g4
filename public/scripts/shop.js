@@ -10,6 +10,44 @@ document.addEventListener('DOMContentLoaded', function () {
         })
         .catch(error => console.error('Error al obtener la lista de objetos:', error));
 });
+$(document).ready(function(){
+    $('#listaObjetos').on('click', '.comprarBtn', function (event) {
+        event.preventDefault();
+        var objeto = $(this).closest('.item').data('objeto');
+        // Obtener los datos de los objetos
+        var id = objeto.id;
+        var rareza = objeto.rareza;
+        var nombre = objeto.nombre;
+        var precio = objeto.precio;
+        var damage = objeto.damage;
+        var url = objeto.url;
+        const mail = localStorage.getItem('mail'); // Reemplaza esto con el correo electrónico que deseas enviar al servidor
+        var body = {
+            "id": id,
+            "rareza": rareza,
+            "nombre": nombre,
+            "precio": precio,
+            "damage": damage,
+            "url": url
+        };
+
+        // Enviar la solicitud POST al servidor para el inicio de sesión
+        $.post({
+            url:  `/dsaApp/tienda/comprarObjeto/${encodeURIComponent(mail)}`, // Ajusta la URL según tu estructura de carpetas y rutas
+            data: JSON.stringify(body),
+            contentType: 'application/json; charset=utf8'
+        })
+            .done(function (data, status){
+                alert("¡Añadido a tu inventario!");
+                location.href = "/principal.html";
+            })
+            .fail(function(xhr, err){
+                console.log("ERROR", err);
+                alert("No se ha podido comprar");
+            });
+        return true;
+    });
+});
 
 function mostrarListaObjetos(listaObjetos) {
     const listaObjetosContainer = document.getElementById('listaObjetos');
@@ -33,7 +71,7 @@ function mostrarListaObjetos(listaObjetos) {
 
         const atributoDanioP = document.createElement('p');
         atributoDanioP.classList.add('atributo');
-        atributoDanioP.textContent = `Daño: ${objeto.daño}`;
+        atributoDanioP.textContent = `Damage: ${objeto.damage}`;
 
         const comprarBtn = document.createElement('button');
         comprarBtn.classList.add('comprarBtn');
