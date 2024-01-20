@@ -4,4 +4,5 @@ function asegurarRegistro() {
         location.href="/index.html"
     } else {
     }
+    console.log('La página' + mail);
 }
