@@ -87,7 +87,7 @@ public class UsuarioService {
     @ApiOperation(value = "Log in", notes = "ole")
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "Succesfull", response=Usuario.class),
-            @ApiResponse(code = 301, message = "Usuario o contraseña incorrectos"),
+            @ApiResponse(code = 301, message = "Contraseña incorrecta"),
     })
     @Path("/login")
     @Produces(MediaType.APPLICATION_JSON)

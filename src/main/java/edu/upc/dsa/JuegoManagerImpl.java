@@ -62,6 +62,7 @@ public class JuegoManagerImpl implements JuegoManager {
             logger.info("La base de datos funciona");
             return res;
         }
+        /*
         if (!isValidEmail(u.getMail())) {
             logger.info("Formato de correo electrónico no válido");
             return 3;
@@ -80,6 +81,8 @@ public class JuegoManagerImpl implements JuegoManager {
         //u.iniObjetos();
         this.lUsuarios.put(u.getMail(), u);
         logger.info("new user added");
+
+         */
         return 0;
     }
 

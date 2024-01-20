@@ -58,11 +58,13 @@ public class UsuarioDAOImpl implements UsuarioDAO {
             sesion = FactorySesion.open();
             user = (Usuario) sesion.get(Usuario.class, "mail", mail);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("Error al obtener usuario por mail");
             return null;
             // LOG
         } finally {
-            sesion.close();
+            if (sesion != null) {
+                sesion.close();
+            }
         }
 
         return user;
