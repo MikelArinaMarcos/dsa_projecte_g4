@@ -12,4 +12,5 @@ public interface TiendaManager {
     public Objeto getObjeto(String nombre);
     public int productoSize();
     public Objeto comprarObjeto(Objeto o, Usuario u);
+    public int comprobarObjetoBackpack(Objeto o, Usuario u);
 }

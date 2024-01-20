@@ -69,14 +69,14 @@ public class UsuarioService {
     @ApiOperation(value = "get all Users", notes = "asdasd")
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "Successful", response = Usuario.class, responseContainer="List"),
-            @ApiResponse(code = 501, message = "Error al intentar coger todos los usuarios"),
+            @ApiResponse(code = 500, message = "Error al intentar coger todos los usuarios"),
     })
     @Path("/usuarios")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getUsuarios() {
         List<Usuario> Users = this.jm.getallusers();
         if (Users == null){
-            return Response.status(501).build();
+            return Response.status(500).build();
         }
         GenericEntity<List<Usuario>> entity = new GenericEntity<List<Usuario>>(Users) {};
         return Response.status(201).entity(entity).build();
@@ -141,7 +141,7 @@ public class UsuarioService {
             @ApiResponse(code = 201, message = "Actualización exitosa"),
             @ApiResponse(code = 500, message = "Mail incorrecto"),
             @ApiResponse(code = 301, message = "Correo electrónico ya en uso"),
-            @ApiResponse(code = 302, message = "Username electrónico ya en uso"),
+            @ApiResponse(code = 302, message = "Username ya en uso"),
     })
     @Path("/actualizarUsuario/{mail}/{newPassword}/{newUsername}/{newName}/{newLastName}/{newMail}/{newBolivares}")
     @Produces(MediaType.APPLICATION_JSON)

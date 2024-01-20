@@ -76,13 +76,9 @@ public class TiendaManagerImpl implements TiendaManager{
         logger.info("Size productos " + Objetos.size());
         return Objetos.size();
     }
-    public Objeto comprarObjeto(Objeto o, Usuario u){
-        BackpackDAO backpackDAO = new BackpackDAOImpl();
+    public int comprobarObjetoBackpack(Objeto o, Usuario u){
+        logger.info("comprobando objeto único");
         UsuarioDAO usuarioDAO = new UsuarioDAOImpl();
-        if (o.getPrecio() > u.getBolivares()){
-            logger.info("Estás pobre");
-            return null;
-        }
         List<Backpack> backpack = usuarioDAO.getObjetosBackpack(u.getMail());
 
         for (Backpack mochila : backpack) {
@@ -90,8 +86,17 @@ public class TiendaManagerImpl implements TiendaManager{
             int idItem = mochila.getIdItems();
             if (idItem == o.getId()) {
                 logger.info("Tienes este objeto");
-                return o;
+                return 1;
             }
+        }
+        return 0;
+    }
+    public Objeto comprarObjeto(Objeto o, Usuario u){
+        BackpackDAO backpackDAO = new BackpackDAOImpl();
+        UsuarioDAO usuarioDAO = new UsuarioDAOImpl();
+        if (o.getPrecio() > u.getBolivares()){
+            logger.info("Estás pobre");
+            return null;
         }
         /*if (u.tieneObjeto(o)) {
             logger.info("Ya tienes el objeto " + o.getNombre());

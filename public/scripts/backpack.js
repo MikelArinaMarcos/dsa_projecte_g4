@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Realizamos una solicitud al backend para obtener la lista de objetos
     const email = "correo@ejemplo.com"; // Reemplaza esto con el correo electrónico que deseas enviar al servidor
 
-    fetch('/dsaApp/backpack/${encodeURIComponent(mail)}')
+    fetch(`/dsaApp/usuario/backpack/${encodeURIComponent(mail)}`)
         .then(response => response.json())
         .then(data => {
             // Manejamos los datos y llamamos a la función para mostrar la lista de objetos

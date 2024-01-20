@@ -58,13 +58,18 @@ public class TiendaService {
     @ApiOperation(value = "Comprar objeto", notes = "asdasd")
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "Successful", response= Objeto.class),
-            @ApiResponse(code = 501, message = "No tienes suficiente dinero")
+            @ApiResponse(code = 501, message = "No tienes suficiente dinero"),
+            @ApiResponse(code = 301, message = "Ya tienes este objeto"),
     })
     @Path("/comprarObjeto/{mail}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response comprarObjeto(Objeto o, @PathParam("mail") String mail) {
         Usuario u = jm.getUser(mail);
+        int res = tm.comprobarObjetoBackpack(o,u);
+        if (res==1){
+            return Response.status(301).build();
+        }
         Objeto object = tm.comprarObjeto(o, u);
         if (object == null) {return Response.status(501).build();}
         else {return Response.status(201).entity(o).build();}
