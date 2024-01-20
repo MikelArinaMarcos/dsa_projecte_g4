@@ -16,11 +16,11 @@ public class BackpackDAOImpl implements BackpackDAO{
         if (instance == null) instance = new BackpackDAOImpl();
         return instance;
     }
-    public int deleteBackpack(Backpack bk,String idUsuario){
+    public int deleteBackpack(Backpack bk,String mail){
         Sesion sesion = null;
         try {
             sesion = FactorySesion.open();
-            int res = sesion.delete(bk,"idUsuario",idUsuario);
+            int res = sesion.delete(bk,"idUsuario",mail);
         } catch (Exception e) {
             return 1;
         } finally {

@@ -224,6 +224,7 @@ public class JuegoManagerImpl implements JuegoManager {
         int res = 0;
         for (Backpack bk: lbk){
             res = backpackDAO.deleteBackpack(bk,mail);
+            logger.info("actualizarUsuario(" + bk.getIdItems() + ")");
             backpackDAO.addItem(newMail, bk.getIdItems());
         }
         return uActualizado;
