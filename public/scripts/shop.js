@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
         .catch(error => console.error('Error al obtener la lista de objetos:', error));
 });
 $(document).ready(function(){
-    $('#listaObjetos').on('click', '.comprarBtn', function (event) {
+    $('listaObjetos').on('click', '.comprarBtn', function (event) {
         event.preventDefault();
         var objeto = $(this).closest('.item').data('objeto');
         // Obtener los datos de los objetos
