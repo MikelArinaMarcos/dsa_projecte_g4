@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
             // Manejamos los datos y llamamos a la función para mostrar la lista de objetos
             const listaObjetosContainer = document.getElementById('data')
             mostrarListaObjetos(data, listaObjetosContainer);
-            $(listaObjetosContainer).on('click', '.comprarBtn', function (event) {
+            $('listaObjetosContainer').on('click', '.comprarBtn', function (event) {
                 event.preventDefault();
                 var objeto = $(this).closest('.item').data('objeto');
                 comprarObjeto(objeto);
