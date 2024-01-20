@@ -118,7 +118,7 @@ public class UsuarioDAOImpl implements UsuarioDAO {
         Sesion sesion = null;
         try {
             sesion = FactorySesion.open();
-            sesion.update(u1, mail, mail);
+            sesion.update(u1, "mail", mail);
         } catch (Exception e) {
 
         } finally {
