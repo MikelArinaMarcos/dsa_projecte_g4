@@ -166,11 +166,14 @@ public class JuegoManagerImpl implements JuegoManager {
     @Override
     public int deleteUsuario(VOCredenciales credenciales) {
         UsuarioDAO usuarioDAO = new UsuarioDAOImpl();
-        Usuario u = usuarioDAO.getUserbymail(credenciales.getMail());
+        String mail = credenciales.getMail();
+        logger.info("deleteUsuario() =" + credenciales.getMail());
+        Usuario u = usuarioDAO.getUserbymail(mail);
+        logger.info("deleteUsuario() =" + credenciales.getMail());
         if (u.getPassword().equals(credenciales.getPassword())){
             logger.info("deleteUsuario() =" + credenciales.getMail());
-            int res = usuarioDAO.deleteUsuario(u,credenciales.getMail());
-            return res;
+            int res = usuarioDAO.deleteUsuario(u,mail);
+            return 0;
         } else {
             return 2;
         }
