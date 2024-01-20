@@ -11,46 +11,52 @@ document.addEventListener('DOMContentLoaded', function () {
         .catch(error => console.error('Error al obtener la lista de objetos:', error));
 });
 
+function crearElementoObjeto(objeto) {
+    const itemDiv = document.createElement('div');
+    itemDiv.classList.add('item');
+
+    const nombreObjetoHeading = document.createElement('h2');
+    nombreObjetoHeading.classList.add('nombreObjeto');
+    nombreObjetoHeading.textContent = objeto.nombre;
+
+    const descripcionP = document.createElement('p');
+    descripcionP.classList.add('descripcion');
+    descripcionP.textContent = objeto.id;
+
+    const atributoPrecioP = document.createElement('p');
+    atributoPrecioP.classList.add('atributo');
+    atributoPrecioP.textContent = `Precio: $${objeto.precio}`;
+
+    const atributoDanioP = document.createElement('p');
+    atributoDanioP.classList.add('atributo');
+    atributoDanioP.textContent = `Damage: ${objeto.damage}`;
+
+    const comprarBtn = document.createElement('button');
+    comprarBtn.classList.add('comprarBtn');
+    comprarBtn.textContent = 'Comprar';
+
+    // Agregamos los elementos al contenedor
+    itemDiv.appendChild(nombreObjetoHeading);
+    itemDiv.appendChild(descripcionP);
+    itemDiv.appendChild(atributoPrecioP);
+    itemDiv.appendChild(atributoDanioP);
+    itemDiv.appendChild(comprarBtn);
+
+    return itemDiv;
+}
+
 function mostrarListaObjetos(listaObjetos) {
     const listaObjetosContainer = document.getElementById('listaObjetos');
 
     // Iteramos sobre la lista de objetos y creamos dinámicamente las secciones en el DOM
     listaObjetos.forEach(objeto => {
-        const itemDiv = document.createElement('div');
-        itemDiv.classList.add('item');
-
-        const nombreObjetoHeading = document.createElement('h2');
-        nombreObjetoHeading.classList.add('nombreObjeto');
-        nombreObjetoHeading.textContent = objeto.nombre;
-
-        const descripcionP = document.createElement('p');
-        descripcionP.classList.add('descripcion');
-        descripcionP.textContent = objeto.id;
-
-        const atributoPrecioP = document.createElement('p');
-        atributoPrecioP.classList.add('atributo');
-        atributoPrecioP.textContent = `Precio: $${objeto.precio}`;
-
-        const atributoDanioP = document.createElement('p');
-        atributoDanioP.classList.add('atributo');
-        atributoDanioP.textContent = `Damage: ${objeto.damage}`;
-
-        const comprarBtn = document.createElement('button');
-        comprarBtn.classList.add('comprarBtn');
-        comprarBtn.textContent = 'Comprar';
-
-        // Agregamos los elementos al contenedor
-        itemDiv.appendChild(nombreObjetoHeading);
-        itemDiv.appendChild(descripcionP);
-        itemDiv.appendChild(atributoPrecioP);
-        itemDiv.appendChild(atributoDanioP);
-        itemDiv.appendChild(comprarBtn);
-
+        const itemDiv = crearElementoObjeto(objeto);
         listaObjetosContainer.appendChild(itemDiv);
     });
 }
+
 $(document).ready(function(){
-    $('#comprarBtn').click(function (event) {
+    $('#listaObjetos').on('click', '.comprarBtn', function (event) {
         event.preventDefault();
         var objeto = $(this).closest('.item').data('objeto');
         // Obtener los datos de los objetos
