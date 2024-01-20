@@ -1,16 +1,21 @@
 document.addEventListener('DOMContentLoaded', function () {
     // Esperamos a que el contenido del DOM esté cargado antes de ejecutar el código
-    const mail = localStorage.getItem('mail');
+    const mail = localStorage.getItem('mail'); // Reemplaza esto con el correo electrónico que deseas enviar al servidor
+    var body = {
+        "mail": mail,
+    };
+
     // Realizamos una solicitud al backend para obtener la lista de objetos
-    fetch(`/dsaApp/usuario/backpack/${encodeURIComponent(mail)}`)
+    fetch(`/dsaApp/backpack/${encodeURIComponent(mail)}`)
         .then(response => response.json())
         .then(data => {
             // Manejamos los datos y llamamos a la función para mostrar la lista de objetos
             mostrarBackpack(data);
         })
         .catch(error => console.error('Error al obtener la lista de objetos:', error));
-})
-    function mostrarBackpack(listaObjetosBackpack) {
+});
+
+function mostrarBackpack(listaObjetosBackpack) {
     const listaBackpackContainer = document.getElementById('listaObjetosBackpack');
 
     // Iteramos sobre la lista de objetos y creamos dinámicamente las secciones en el DOM
@@ -40,6 +45,6 @@ document.addEventListener('DOMContentLoaded', function () {
         itemDiv.appendChild(atributoPrecioP);
         itemDiv.appendChild(atributoDanioP);
 
-        listaObjetosContainer.appendChild(itemDiv);
+        listaBackpackContainer.appendChild(itemDiv); // Ajuste del nombre de la variable
     });
 }
