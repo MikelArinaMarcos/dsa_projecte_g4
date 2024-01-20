@@ -8,6 +8,11 @@ document.addEventListener('DOMContentLoaded', function () {
             mostrarListaObjetos(data);
         })
         .catch(error => console.error('Error al obtener la lista de objetos:', error));
+    comprarBtn.on('click', function(event) {
+        event.preventDefault();
+        var objeto = $(this).closest('.item').data('objeto');
+        comprarObjeto(objeto);
+    });
 })
 function comprarObjeto(objeto) {
     // Obtener los datos del objeto
@@ -69,12 +74,6 @@ function mostrarListaObjetos(listaObjetos) {
         const comprarBtn = document.createElement('button');
         comprarBtn.classList.add('comprarBtn');
         comprarBtn.textContent = 'Comprar';
-        comprarBtn.on('click', function(event) {
-            event.preventDefault();
-            var objeto = $(this).closest('.item').data('objeto');
-            comprarObjeto(objeto);
-        });
-
         // Agregamos los elementos al contenedor
         itemDiv.appendChild(nombreObjetoHeading);
         itemDiv.appendChild(descripcionP);
