@@ -44,7 +44,7 @@ function mostrarListaObjetos(listaObjetos) {
         itemDiv.appendChild(comprarBtn);
 
         listaObjetosContainer.appendChild(itemDiv);
-        listaObjetosContainer.on('click', '.comprarBtn', function (event) {
+        $('#comprarbtn').click(function(event){
             event.preventDefault();
             var objeto = $(this).closest('.item').data('objeto');
             comprarObjeto(objeto);
