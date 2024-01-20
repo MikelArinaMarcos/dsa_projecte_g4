@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
         })
         .catch(error => console.error('Error al obtener la lista de objetos:', error));
 
-    $('#listaObjetos').on('click', '.comprarBtn', function (event) {
+    $('#listaObjetosContainer').on('click', '.comprarBtn', function (event) {
         event.preventDefault();
         var objeto = $(this).closest('.item').data('objeto');
         comprarObjeto(objeto);
@@ -63,7 +63,7 @@ function comprarObjeto(objeto) {
     var precio = objeto.precio;
     var damage = objeto.damage;
     var url = objeto.url;
-    const mail = localStorage.getItem('mail'); 
+    const mail = localStorage.getItem('mail');
     var body = {
         "id": id,
         "rareza": rareza,
