@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 function mostrarListaObjetos(listaObjetos, listaObjetosContainer) {
+    listaObjetosContainer = document.getElementById('listaObjetos');
     // Iteramos sobre la lista de objetos y creamos dinámicamente las secciones en el DOM
     listaObjetos.forEach(objeto => {
         const itemDiv = document.createElement('div');
