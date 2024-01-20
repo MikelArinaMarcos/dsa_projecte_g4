@@ -167,9 +167,7 @@ public class JuegoManagerImpl implements JuegoManager {
     public int deleteUsuario(VOCredenciales credenciales) {
         UsuarioDAO usuarioDAO = new UsuarioDAOImpl();
         String mail = credenciales.getMail();
-        logger.info("deleteUsuario() =" + credenciales.getMail());
         Usuario u = usuarioDAO.getUserbymail(mail);
-        logger.info("deleteUsuario() =" + credenciales.getMail());
         if (u.getPassword().equals(credenciales.getPassword())){
             logger.info("deleteUsuario() =" + credenciales.getMail());
             int res = usuarioDAO.deleteUsuario(u,mail);
@@ -196,7 +194,20 @@ public class JuegoManagerImpl implements JuegoManager {
             return 404; // Código para usuario no encontrado
         }*/
     }
-
+    public int comprobarUnico(Usuario u){
+        logger.info("comprobando único");
+        UsuarioDAO usuarioDAO = new UsuarioDAOImpl();
+        List<Usuario> lUsuarios = usuarioDAO.getUsuarios();
+        for (Usuario user : lUsuarios) {
+            if (user.getMail().equals(u.getMail())){
+                return 1;
+            }
+            if (user.getUsername().equals(u.getUsername())){
+                return 2;
+            }
+        }
+        return 0;
+    }
     public Usuario actualizarUsuario(String mail, String newUsername, String newName, String newLastName, String newPassword, String newMail) {
         logger.info("actualizarUsuario(" + mail + ")");
         UsuarioDAO usuarioDAO = new UsuarioDAOImpl();

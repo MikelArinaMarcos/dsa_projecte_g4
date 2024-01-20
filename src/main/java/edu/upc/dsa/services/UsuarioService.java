@@ -88,6 +88,7 @@ public class UsuarioService {
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "Succesfull", response=Usuario.class),
             @ApiResponse(code = 301, message = "Contraseña incorrecta"),
+            @ApiResponse(code = 500, message = "Usuario incorrecto"),
     })
     @Path("/login")
     @Produces(MediaType.APPLICATION_JSON)
@@ -138,9 +139,9 @@ public class UsuarioService {
     @ApiOperation(value = "Actualizar usuario", notes = "Actualiza la información del usuario")
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "Actualización exitosa"),
-            @ApiResponse(code = 404, message = "Usuario no encontrado"),
-            @ApiResponse(code = 301, message = "Contraseña incorrecta"),
-            @ApiResponse(code = 5, message = "Correo electrónico ya en uso")
+            @ApiResponse(code = 500, message = "Usuario no encontrado"),
+            @ApiResponse(code = 301, message = "Correo electrónico ya en uso"),
+            @ApiResponse(code = 302, message = "Username electrónico ya en uso")
     })
     @Path("/actualizarUsuario/{mail}/{newPassword}/{newUsername}/{newName}/{newLastName}/{newMail}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -151,13 +152,20 @@ public class UsuarioService {
             @PathParam("newName") String newName,
             @PathParam("newLastName") String newLastName,
             @PathParam("newMail") String newMail) {
-
+        Usuario UC = new Usuario(newUsername, newMail, newName, newLastName, newPassword);
+        int res = this.jm.comprobarUnico(UC);
+        if (res==1){
+            return Response.status(301).build();
+        }
+        if (res==2){
+            return Response.status(302).build();
+        }
         Usuario usuarioActualizado = this.jm.actualizarUsuario(mail, newUsername, newName, newLastName, newPassword, newMail);
 
         if (usuarioActualizado != null) {
             return Response.status(201).entity(usuarioActualizado).build(); // Retornar código 201 para indicar actualización exitosa
         } else {
-            return Response.status(404).build(); // Retornar código 404 para indicar que el usuario no fue encontrado
+            return Response.status(500).build(); // Retornar código 500 para indicar que el usuario no fue encontrado
         }
     }
     @GET
