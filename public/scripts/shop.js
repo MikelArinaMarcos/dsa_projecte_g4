@@ -1,25 +1,23 @@
 document.addEventListener('DOMContentLoaded', function () {
     // Esperamos a que el contenido del DOM esté cargado antes de ejecutar el código
-
     // Realizamos una solicitud al backend para obtener la lista de objetos
     fetch('/dsaApp/tienda/objetos')
         .then(response => response.json())
         .then(data => {
             // Manejamos los datos y llamamos a la función para mostrar la lista de objetos
-            mostrarListaObjetos(data);
+            const listaObjetosContainer = document.getElementById('data')
+            mostrarListaObjetos(data, listaObjetosContainer);
+            $(listaObjetosContainer).on('click', '.comprarBtn', function (event) {
+                event.preventDefault();
+                var objeto = $(this).closest('.item').data('objeto');
+                comprarObjeto(objeto);
         })
         .catch(error => console.error('Error al obtener la lista de objetos:', error));
 
-    $('#listaObjetosContainer').on('click', '.comprarBtn', function (event) {
-        event.preventDefault();
-        var objeto = $(this).closest('.item').data('objeto');
-        comprarObjeto(objeto);
         return true;
     });
 });
-function mostrarListaObjetos(listaObjetos) {
-    const listaObjetosContainer = document.getElementById('listaObjetos');
-
+function mostrarListaObjetos(listaObjetos, listaObjetosContainer) {
     // Iteramos sobre la lista de objetos y creamos dinámicamente las secciones en el DOM
     listaObjetos.forEach(objeto => {
         const itemDiv = document.createElement('div');
