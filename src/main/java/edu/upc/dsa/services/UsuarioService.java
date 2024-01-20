@@ -69,12 +69,15 @@ public class UsuarioService {
     @ApiOperation(value = "get all Users", notes = "asdasd")
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "Successful", response = Usuario.class, responseContainer="List"),
+            @ApiResponse(code = 501, message = "Error al intentar coger todos los usuarios"),
     })
     @Path("/usuarios")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getUsuarios() {
         List<Usuario> Users = this.jm.getallusers();
-
+        if (Users == null){
+            return Response.status(501).build();
+        }
         GenericEntity<List<Usuario>> entity = new GenericEntity<List<Usuario>>(Users) {};
         return Response.status(201).entity(entity).build();
 

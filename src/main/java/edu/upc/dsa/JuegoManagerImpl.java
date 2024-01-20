@@ -86,7 +86,12 @@ public class JuegoManagerImpl implements JuegoManager {
     @Override
     public Usuario login(VOCredenciales credencialesu) {
         UsuarioDAO usuarioDAO = new UsuarioDAOImpl();
-        Usuario usuario1 = usuarioDAO.getUserbymail(credencialesu.getMail());
+        Usuario usuario1 = new Usuario();
+        usuario1 = usuarioDAO.getUserbymail(credencialesu.getMail());
+        if (usuario1==null){
+            logger.info("Error al buscar al usuario");
+            return null;
+        }
         if (usuario1.getPassword().equals(credencialesu.getPassword())){
             logger.info("Logeado en la base de datos");
             return usuario1;
