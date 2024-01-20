@@ -1,4 +1,4 @@
 package edu.upc.dsa.exceptions;
 
-public class EmailNotValidException {
+public class EmailNotValidException extends Throwable{
 }

@@ -2,6 +2,7 @@ package edu.upc.dsa.services;
 
 import edu.upc.dsa.JuegoManager;
 import edu.upc.dsa.JuegoManagerImpl;
+import edu.upc.dsa.exceptions.NotInInventoryException;
 import edu.upc.dsa.models.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -12,10 +13,12 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.sql.SQLException;
 
 @Api(value = "/usuario", description = "Endpoint to usuario Service")
 @Path("/usuario")
@@ -155,6 +158,41 @@ public class UsuarioService {
             return Response.status(404).build(); // Retornar código 404 para indicar que el usuario no fue encontrado
         }
     }
+    @GET
+    @ApiOperation(value = "insignias", notes = "View Badges")
+    @ApiResponses(value = {
+            @ApiResponse(code = 201, message = "Successful"),
+            @ApiResponse(code = 401, message = "The user has no badges"),
+            @ApiResponse(code = 500, message = "SQL Exception")
+    })
+    @Path("/listar_insignias_usuario/insignias/{username}")  // Cambié {mail} a {username}
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getInsignias(@PathParam("username") String username) throws NotInInventoryException {
+        try {
+            List<Insignia> insignias = this.jm.getInsignias(username);
+            GenericEntity<List<Insignia>> entity = new GenericEntity<List<Insignia>>(insignias) {};
+            return Response.status(201).entity(entity).build();
+        } catch (NotInInventoryException e) {
+            return Response.status(401).build();
+        }
+    }
+
+    /* @GET
+    @ApiOperation(value = "View the user's badges", notes = "View Badges")
+    @ApiResponses(value = {
+            @ApiResponse(code = 201, message = "Successful"),
+            @ApiResponse(code = 401, message = "The user has no badges"),
+            @ApiResponse(code = 500, message = "SQL Exception")
+    })
+    @Path("/listar_insignias_usuario/insignias/{username}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getInsignias(@PathParam("username") String mail) throws NotInInventoryException {
+            List<Insignia> insignias = this.jm.getInsignias(mail);
+            GenericEntity<List<Insignia>> entity = new GenericEntity<List<Insignia>>(insignias) {};
+            return Response.status(201).entity(entity).build();
+
+
+    }
 
     @GET
     @ApiOperation(value = "get all Insignias", notes = "asdasd")
@@ -169,7 +207,7 @@ public class UsuarioService {
         GenericEntity<List<Insignia>> entity = new GenericEntity<List<Insignia>>(insignias) {};
         return Response.status(201).entity(entity).build();
 
-    }
+    }*/
     @GET
     @ApiOperation(value = "get all system messages", notes = "asdasd")
     @ApiResponses(value = {

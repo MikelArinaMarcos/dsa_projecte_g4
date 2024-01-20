@@ -1,7 +1,7 @@
 package edu.upc.dsa;
 
-import edu.upc.dsa.bbdd.Sesion;
 import edu.upc.dsa.DAO.*;
+import edu.upc.dsa.exceptions.NotInInventoryException;
 import edu.upc.dsa.models.*;
 import org.apache.log4j.Logger;
 
@@ -221,13 +221,29 @@ public class JuegoManagerImpl implements JuegoManager {
         }*/
     }
 
-    public ArrayList<Insignia> getInsignias(String username){
-        return new ArrayList<>(this.Insignias.get(username));
-    }
-    public void addInsignias(List<Insignia> i, String username){
+    @Override
+    public void addInsignias(List<Insignia> i, String username) {
         Insignias.put(username, i);
     }
 
+
+
+    public List<Insignia> getInsignias(String username) throws NotInInventoryException {
+        if (Insignias.containsKey(username)) {
+            return Insignias.get(username);
+        } else {
+            throw new NotInInventoryException();
+        }
+    }
+
+
+
+
+
+    /*public void addInsignias(List<Insignia> i, String username){
+          Insignias.put(username, i);
+      }
+  */
     protected List<Mensaje> MensajesGenerales = new ArrayList<>();
    // public List<Mensaje> getMensajesGenerales() {
      //   return new ArrayList<>(this.MensajesGenerales);

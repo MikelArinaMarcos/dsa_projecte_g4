@@ -1,9 +1,8 @@
 package edu.upc.dsa;
 
+import edu.upc.dsa.exceptions.NotInInventoryException;
 import edu.upc.dsa.models.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 public interface JuegoManager {
     public int addUsuario(String username, String mail, String name, String lastName, String password);
@@ -18,7 +17,7 @@ public interface JuegoManager {
     public Usuario actualizarUsuario(String mail, String newUsername, String newName, String newLastName, String newPassword, String newMail);
 
     public void addInsignias(List<Insignia> i, String username);
-    public ArrayList<Insignia> getInsignias(String username);
+    public List<Insignia> getInsignias(String username) throws NotInInventoryException;
 
     List<Mensaje> getMensajesGenerales();
 
