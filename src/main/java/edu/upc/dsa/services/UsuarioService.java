@@ -125,7 +125,6 @@ public class UsuarioService {
     @Produces(MediaType.APPLICATION_JSON)
     public Response deleteUser(@PathParam("mail") String mail, @PathParam("password") String password) {
         VOCredenciales voc = new VOCredenciales(mail, password);
-        if (jm.getUser(mail) == null) return Response.status(500).build();
         if(this.jm.deleteUsuario(voc) == 2)
             return Response.status(301).build();
         if(this.jm.deleteUsuario(voc) == 0)
