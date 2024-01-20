@@ -5,19 +5,14 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(response => response.json())
         .then(data => {
             // Manejamos los datos y llamamos a la función para mostrar la lista de objetos
-            const listaObjetosContainer = document.getElementById('data')
-            mostrarListaObjetos(data, listaObjetosContainer);
-            listaObjetosContainer.on('click', '.comprarBtn', function (event) {
-                event.preventDefault();
-                var objeto = $(this).closest('.item').data('objeto');
-                comprarObjeto(objeto);
+            mostrarListaObjetos(data);
         })
         .catch(error => console.error('Error al obtener la lista de objetos:', error));
 
         return true;
     });
 });
-function mostrarListaObjetos(listaObjetos, listaObjetosContainer) {
+function mostrarListaObjetos(listaObjetos) {
     listaObjetosContainer = document.getElementById('listaObjetos');
     // Iteramos sobre la lista de objetos y creamos dinámicamente las secciones en el DOM
     listaObjetos.forEach(objeto => {
@@ -52,6 +47,10 @@ function mostrarListaObjetos(listaObjetos, listaObjetosContainer) {
         itemDiv.appendChild(comprarBtn);
 
         listaObjetosContainer.appendChild(itemDiv);
+        listaObjetosContainer.on('click', '.comprarBtn', function (event) {
+            event.preventDefault();
+            var objeto = $(this).closest('.item').data('objeto');
+            comprarObjeto(objeto);
     });
 }
 function comprarObjeto(objeto) {
