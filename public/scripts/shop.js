@@ -8,10 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
             mostrarListaObjetos(data);
         })
         .catch(error => console.error('Error al obtener la lista de objetos:', error));
-
-        return true;
-    });
-});
+})
 function mostrarListaObjetos(listaObjetos) {
     listaObjetosContainer = document.getElementById('listaObjetos');
     // Iteramos sobre la lista de objetos y creamos dinámicamente las secciones en el DOM
@@ -51,7 +48,8 @@ function mostrarListaObjetos(listaObjetos) {
             event.preventDefault();
             var objeto = $(this).closest('.item').data('objeto');
             comprarObjeto(objeto);
-    });
+        });
+    })
 }
 function comprarObjeto(objeto) {
     // Obtener los datos del objeto
