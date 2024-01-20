@@ -69,6 +69,11 @@ function mostrarListaObjetos(listaObjetos) {
         const comprarBtn = document.createElement('button');
         comprarBtn.classList.add('comprarBtn');
         comprarBtn.textContent = 'Comprar';
+        comprarBtn.onclick(function(event) {
+            event.preventDefault();
+            var objeto = $(this).closest('.item').data('objeto');
+            comprarObjeto(objeto);
+        });
 
         // Agregamos los elementos al contenedor
         itemDiv.appendChild(nombreObjetoHeading);
@@ -78,10 +83,5 @@ function mostrarListaObjetos(listaObjetos) {
         itemDiv.appendChild(comprarBtn);
 
         listaObjetosContainer.appendChild(itemDiv);
-        $('.comprarBtn').click(function(event){
-            event.preventDefault();
-            var objeto = $(this).closest('.item').data('objeto');
-            comprarObjeto(objeto);
-        });
     })
 }
