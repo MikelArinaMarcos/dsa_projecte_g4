@@ -1,10 +1,66 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil de Usuario</title>
+    <style>
+        /* Agrega estilos según sea necesario */
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
 <body>
+
+<h1>Perfil de Usuario</h1>
+
+<label for="username">Nombre de Usuario:</label>
+<div id="usernameContainer">
+    <span id="usernameLabel">Usuario123</span>
+    <input type="text" id="usernameInput" style="display: none;">
+</div>
+
+<label for="email">Correo Electrónico:</label>
+<div id="emailContainer">
+    <span id="emailLabel">usuario123@gmail.com</span>
+    <input type="text" id="emailInput" style="display: none;">
+</div>
+
+<label for="firstName">Nombre:</label>
+<div id="firstNameContainer">
+    <span id="firstNameLabel">Juan</span>
+    <input type="text" id="firstNameInput" style="display: none;">
+</div>
+
+<label for="lastName">Apellido:</label>
+<div id="lastNameContainer">
+    <span id="lastNameLabel">Pérez</span>
+    <input type="text" id="lastNameInput" style="display: none;">
+</div>
+
+<button onclick="editarPerfil()">Editar</button>
+<button onclick="borrarUsuario()">Borrar Usuario</button>
+
+<script>
+    function editarPerfil() {
+        // Mostrar los campos de entrada y ocultar las etiquetas
+        mostrarCampo("username");
+        mostrarCampo("email");
+        mostrarCampo("firstName");
+        mostrarCampo("lastName");
+    }
+
+    function borrarUsuario() {
+        alert("Usuario borrado");
+    }
+
+    function mostrarCampo(id) {
+        document.getElementById(id + "Label").style.display = "none";
+        document.getElementById(id + "Input").style.display = "inline";
+    }
+</script>
 
 </body>
 </html>
