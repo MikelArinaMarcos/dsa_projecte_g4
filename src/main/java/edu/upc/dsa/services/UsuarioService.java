@@ -125,9 +125,10 @@ public class UsuarioService {
     @Produces(MediaType.APPLICATION_JSON)
     public Response deleteUser(@PathParam("mail") String mail, @PathParam("password") String password) {
         VOCredenciales voc = new VOCredenciales(mail, password);
-        if(this.jm.deleteUsuario(voc) == 2)
+        int res = this.jm.deleteUsuario(voc);
+        if(res == 2)
             return Response.status(301).build();
-        if(this.jm.deleteUsuario(voc) == 0)
+        if(res == 0)
             return Response.status(201).build();
         //En caso de un valor inesperado, devolver código de Internal Server Error
         return Response.status(500).build();

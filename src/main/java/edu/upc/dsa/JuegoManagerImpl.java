@@ -173,7 +173,7 @@ public class JuegoManagerImpl implements JuegoManager {
         if (u.getPassword().equals(credenciales.getPassword())){
             logger.info("deleteUsuario() =" + credenciales.getMail());
             int res = usuarioDAO.deleteUsuario(u,mail);
-            return 0;
+            return res;
         } else {
             return 2;
         }
