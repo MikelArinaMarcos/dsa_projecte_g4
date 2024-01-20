@@ -53,7 +53,7 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 
     public Usuario getUserbymail(String mail) {
         Sesion sesion = null;
-        Usuario user = new Usuario();
+        Usuario user = null;
         try {
             sesion = FactorySesion.open();
             user = (Usuario) sesion.get(Usuario.class, "mail", mail);
