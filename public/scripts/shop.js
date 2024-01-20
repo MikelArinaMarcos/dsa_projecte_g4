@@ -9,6 +9,40 @@ document.addEventListener('DOMContentLoaded', function () {
         })
         .catch(error => console.error('Error al obtener la lista de objetos:', error));
 })
+function comprarObjeto(objeto) {
+    // Obtener los datos del objeto
+    var id = objeto.id;
+    var rareza = objeto.rareza;
+    var nombre = objeto.nombre;
+    var precio = objeto.precio;
+    var damage = objeto.damage;
+    var url = objeto.url;
+    const mail = localStorage.getItem('mail');
+    var body = {
+        "id": id,
+        "rareza": rareza,
+        "nombre": nombre,
+        "precio": precio,
+        "damage": damage,
+        "url": url
+    };
+
+    // Enviar la solicitud POST al servidor para comprar el objeto
+    $.post({
+        url: `/dsaApp/tienda/comprarObjeto/${encodeURIComponent(mail)}`,
+        data: JSON.stringify(body),
+        contentType: 'application/json; charset=utf8'
+    })
+        .done(function (data, status) {
+            alert("¡Añadido a tu inventario!");
+            location.href = "/principal.html";
+        })
+        .fail(function (xhr, err) {
+            console.log("ERROR", err);
+            alert("No se ha podido comprar");
+        });
+}
+
 function mostrarListaObjetos(listaObjetos) {
     listaObjetosContainer = document.getElementById('listaObjetos');
     // Iteramos sobre la lista de objetos y creamos dinámicamente las secciones en el DOM
@@ -44,43 +78,10 @@ function mostrarListaObjetos(listaObjetos) {
         itemDiv.appendChild(comprarBtn);
 
         listaObjetosContainer.appendChild(itemDiv);
-        '#comprarbtn'.click(function(event){
+        $('.comprarBtn').click(function(event){
             event.preventDefault();
             var objeto = $(this).closest('.item').data('objeto');
             comprarObjeto(objeto);
         });
     })
-}
-function comprarObjeto(objeto) {
-    // Obtener los datos del objeto
-    var id = objeto.id;
-    var rareza = objeto.rareza;
-    var nombre = objeto.nombre;
-    var precio = objeto.precio;
-    var damage = objeto.damage;
-    var url = objeto.url;
-    const mail = localStorage.getItem('mail');
-    var body = {
-        "id": id,
-        "rareza": rareza,
-        "nombre": nombre,
-        "precio": precio,
-        "damage": damage,
-        "url": url
-    };
-
-    // Enviar la solicitud POST al servidor para comprar el objeto
-    $.post({
-        url: `/dsaApp/tienda/comprarObjeto/${encodeURIComponent(mail)}`,
-        data: JSON.stringify(body),
-        contentType: 'application/json; charset=utf8'
-    })
-        .done(function (data, status) {
-            alert("¡Añadido a tu inventario!");
-            location.href = "/principal.html";
-        })
-        .fail(function (xhr, err) {
-            console.log("ERROR", err);
-            alert("No se ha podido comprar");
-        });
 }
