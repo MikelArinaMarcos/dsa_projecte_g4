@@ -120,7 +120,7 @@ public class UsuarioService {
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "Successful"),
             @ApiResponse(code = 500, message = "User not found"),
-            @ApiResponse(code = 301, message = "Contra incorrecta")
+            @ApiResponse(code = 301, message = "Contra incorrecta"),
     })
     @Path("/deleteUser/{mail}&{password}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -139,11 +139,11 @@ public class UsuarioService {
     @ApiOperation(value = "Actualizar usuario", notes = "Actualiza la información del usuario")
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "Actualización exitosa"),
-            @ApiResponse(code = 500, message = "Usuario no encontrado"),
+            @ApiResponse(code = 500, message = "Mail incorrecto"),
             @ApiResponse(code = 301, message = "Correo electrónico ya en uso"),
-            @ApiResponse(code = 302, message = "Username electrónico ya en uso")
+            @ApiResponse(code = 302, message = "Username electrónico ya en uso"),
     })
-    @Path("/actualizarUsuario/{mail}/{newPassword}/{newUsername}/{newName}/{newLastName}/{newMail}")
+    @Path("/actualizarUsuario/{mail}/{newPassword}/{newUsername}/{newName}/{newLastName}/{newMail}/{newBolivares}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response actualizarUsuario(
             @PathParam("mail") String mail,
@@ -151,7 +151,8 @@ public class UsuarioService {
             @PathParam("newUsername") String newUsername,
             @PathParam("newName") String newName,
             @PathParam("newLastName") String newLastName,
-            @PathParam("newMail") String newMail) {
+            @PathParam("newMail") String newMail,
+            @PathParam("newBolivares") int newBolivares) {
         Usuario UC = new Usuario(newUsername, newMail, newName, newLastName, newPassword);
         int res = this.jm.comprobarUnico(UC);
         if (res==1){
@@ -160,7 +161,7 @@ public class UsuarioService {
         if (res==2){
             return Response.status(302).build();
         }
-        Usuario usuarioActualizado = this.jm.actualizarUsuario(mail, newUsername, newName, newLastName, newPassword, newMail);
+        Usuario usuarioActualizado = this.jm.actualizarUsuario(mail, newUsername, newName, newLastName, newPassword, newMail, newBolivares);
 
         if (usuarioActualizado != null) {
             return Response.status(201).entity(usuarioActualizado).build(); // Retornar código 201 para indicar actualización exitosa
@@ -173,7 +174,7 @@ public class UsuarioService {
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "Successful"),
             @ApiResponse(code = 401, message = "The user has no badges"),
-            @ApiResponse(code = 500, message = "SQL Exception")
+            @ApiResponse(code = 500, message = "SQL Exception"),
     })
     @Path("/listar_insignias_usuario/insignias/{username}")  // Cambié {mail} a {username}
     @Produces(MediaType.APPLICATION_JSON)
@@ -237,6 +238,7 @@ public class UsuarioService {
     @ApiOperation(value = "get mapa", notes = "asdasd")
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "Successful", response = Mapas.class),
+            @ApiResponse(code = 500, message = "No existe ese nivel"),
     })
     @Path("/mapas/{idMapa}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -249,6 +251,7 @@ public class UsuarioService {
     @ApiOperation(value = "get backpack", notes = "asdasd")
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "Successful", response = Objeto.class, responseContainer="List"),
+            @ApiResponse(code = 500, message = "Error al dar la backpack"),
     })
     @Path("/backpack/{mail}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -256,7 +259,6 @@ public class UsuarioService {
         List<Objeto> objeto = this.jm.getMyBackpack(mail);
         GenericEntity<List<Objeto>> entity = new GenericEntity<List<Objeto>>(objeto) {};
         return Response.status(201).entity(entity).build();
-
     }
 }
 

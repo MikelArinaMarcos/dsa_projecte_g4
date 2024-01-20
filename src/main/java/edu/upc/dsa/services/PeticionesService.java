@@ -34,6 +34,7 @@ public class PeticionesService {
     @ApiOperation(value = "addPeticiones", notes = "ole")
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "Succesfull", response=Peticiones.class),
+            @ApiResponse(code = 500, message = "Error al añadir peticiones"),
     })
     @Path("/question")
     @Produces(MediaType.APPLICATION_JSON)
@@ -48,6 +49,7 @@ public class PeticionesService {
     @ApiOperation(value = "get all Peticiones", notes = "asdasd")
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "Successful", response = Peticiones.class, responseContainer="List"),
+            @ApiResponse(code = 500, message = "Error al obtener las peticiones"),
     })
     @Path("/peticiones")
     @Produces(MediaType.APPLICATION_JSON)

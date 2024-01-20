@@ -15,7 +15,7 @@ public interface JuegoManager {
     public int deleteUsuario(VOCredenciales credenciales);
     public int comprobarUnico(Usuario u);
 
-    public Usuario actualizarUsuario(String mail, String newUsername, String newName, String newLastName, String newPassword, String newMail);
+    public Usuario actualizarUsuario(String mail, String newUsername, String newName, String newLastName, String newPassword, String newMail, int newBolivares);
 
     public void addInsignias(List<Insignia> i, String username);
     public List<Insignia> getInsignias(String username) throws NotInInventoryException;

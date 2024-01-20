@@ -208,11 +208,18 @@ public class JuegoManagerImpl implements JuegoManager {
         }
         return 0;
     }
-    public Usuario actualizarUsuario(String mail, String newUsername, String newName, String newLastName, String newPassword, String newMail) {
+    public Usuario actualizarUsuario(String mail, String newUsername, String newName, String newLastName, String newPassword, String newMail, int newBolivares) {
         logger.info("actualizarUsuario(" + mail + ")");
         UsuarioDAO usuarioDAO = new UsuarioDAOImpl();
-        Usuario u1= new Usuario(newUsername, newMail, newName, newLastName, newPassword);
+        BackpackDAO backpackDAO = new BackpackDAOImpl();
+        Usuario u1= new Usuario(newUsername, newMail, newName, newLastName, newPassword, newBolivares);
         Usuario uActualizado= usuarioDAO.updateUsuario(u1, mail);
+        List<Backpack> lbk = usuarioDAO.getObjetosBackpack(mail);
+        int res = 0;
+        for (Backpack bk: lbk){
+            res = backpackDAO.deleteBackpack(bk,mail);
+            backpackDAO.addItem(newMail, bk.getIdItems());
+        }
         return uActualizado;
         // Verificar si el usuario existe
         /*if (lUsuarios.containsKey(mail)) {

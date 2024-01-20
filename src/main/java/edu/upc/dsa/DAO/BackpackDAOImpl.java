@@ -16,6 +16,18 @@ public class BackpackDAOImpl implements BackpackDAO{
         if (instance == null) instance = new BackpackDAOImpl();
         return instance;
     }
+    public int deleteBackpack(Backpack bk,String mail){
+        Sesion sesion = null;
+        try {
+            sesion = FactorySesion.open();
+            int res = sesion.delete(bk,"idUsuario",mail);
+        } catch (Exception e) {
+            return 1;
+        } finally {
+            sesion.close();
+        }
+        return 0;
+    }
 
     public int addItem(String idUsuario, int idItems) {
         Sesion sesion = null;

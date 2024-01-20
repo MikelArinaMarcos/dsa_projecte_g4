@@ -15,4 +15,5 @@ import java.sql.SQLException;
 
 public interface BackpackDAO {
     int addItem(String idUsuario, int idItems);
+    public int deleteBackpack(Backpack bk,String mail);
 }
