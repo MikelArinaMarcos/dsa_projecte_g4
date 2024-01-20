@@ -20,7 +20,7 @@ public class BackpackDAOImpl implements BackpackDAO{
         Sesion sesion = null;
         try {
             sesion = FactorySesion.open();
-            int res = sesion.delete(bk,idUsuario,idUsuario);
+            int res = sesion.delete(bk,"idUsuario",idUsuario);
         } catch (Exception e) {
             return 1;
         } finally {

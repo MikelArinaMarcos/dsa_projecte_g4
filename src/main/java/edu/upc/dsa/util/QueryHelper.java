@@ -89,10 +89,10 @@ public class QueryHelper {
         return sb.toString();
     }
 
-    public static String createQueryDELETE(Object object, String mail){
+    public static String createQueryDELETE(Object object, String pk ,String mail){
         StringBuffer sb = new StringBuffer();
         sb.append("DELETE FROM ").append(object.getClass().getSimpleName()); //Por ej employee = DELETE FROM Employee
-        sb.append(" WHERE mail = "+"'"+mail+"'");
+        sb.append(" WHERE "+ pk +" = "+"'"+mail+"'");
         //params.forEach((k,v)->sb.append(" AND ").append(k.toString()).append(" = ").append("?"));
         System.out.println("DELETE POR PARAMETROS Y HASHMAP\n"+sb.toString());
         return sb.toString();
