@@ -50,7 +50,7 @@ function mostrarListaObjetos(listaObjetos) {
     });
 }
 $(document).ready(function(){
-    $('#listaObjetos').on('click', '.comprarBtn', function (event) {
+    $('#comprarBtn').click(function (event) {
         event.preventDefault();
         var objeto = $(this).closest('.item').data('objeto');
         // Obtener los datos de los objetos
