@@ -57,9 +57,18 @@ public class JuegoManagerImpl implements JuegoManager {
 
     public int registrarUsuario(Usuario u) {
         UsuarioDAO usuarioDAO = new UsuarioDAOImpl();
+        List<Usuario> lUsuarios = usuarioDAO.getUsuarios();
+        for (Usuario user : lUsuarios) {
+            if (user.getMail().equals(u.getMail())){
+                return 1;
+            }
+            if (user.getUsername().equals(u.getUsername())){
+                return 2;
+            }
+        }
         int res = usuarioDAO.addUser(u.getUsername(),u.getMail(),u.getName(),u.getLastName(),u.getPassword(),500);
         if (res == 0) {
-            logger.info("La base de datos funciona");
+            logger.info("Registrado correctamente en la base de datos");
             return res;
         }
         /*

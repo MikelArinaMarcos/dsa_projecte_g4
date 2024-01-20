@@ -100,16 +100,15 @@ public class UsuarioService {
     @ApiOperation(value = "Registrar", notes = "ole")
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "Succesfull", response=Usuario.class),
-            @ApiResponse(code = 301, message = "Mail en uso"),
-            @ApiResponse(code = 302, message = "Usuario en uso"),
+            @ApiResponse(code = 501, message = "Mail en uso"),
+            @ApiResponse(code = 502, message = "Nombre de Usuario en uso"),
     })
     @Path("/register")
     @Produces(MediaType.APPLICATION_JSON)
     public Response RegistrarUsuario(Usuario u){
         int n = this.jm.registrarUsuario(u);
-        if (n==1) return Response.status(301).build();
-        if (n==2) return Response.status(302).build();
-        if (n==3) return Response.status(303).build();
+        if (n==1) return Response.status(501).build();
+        if (n==2) return Response.status(502).build();
         if (n==0) return Response.status(201).build();
 
         //En caso de un valor inesperado, devolver código de Internal Server Error
@@ -119,16 +118,16 @@ public class UsuarioService {
     @ApiOperation(value = "delete user", notes = "asdasd")
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "Successful"),
-            @ApiResponse(code = 404, message = "User not found"),
+            @ApiResponse(code = 500, message = "User not found"),
             @ApiResponse(code = 301, message = "Contra incorrecta")
     })
     @Path("/deleteUser/{mail}&{password}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response deleteUser(@PathParam("mail") String mail, @PathParam("password") String password) {
         VOCredenciales voc = new VOCredenciales(mail, password);
-        if (jm.getUser(mail) == null) return Response.status(404).build();
-        /*if(this.jm.deleteUsuario(voc) == -1)
-            return Response.status(301).build();*/
+        if (jm.getUser(mail) == null) return Response.status(500).build();
+        if(this.jm.deleteUsuario(voc) == -1)
+            return Response.status(301).build();
         if(this.jm.deleteUsuario(voc) == 1)
             return Response.status(201).build();
         //En caso de un valor inesperado, devolver código de Internal Server Error
