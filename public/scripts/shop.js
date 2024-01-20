@@ -69,7 +69,7 @@ function mostrarListaObjetos(listaObjetos) {
         const comprarBtn = document.createElement('button');
         comprarBtn.classList.add('comprarBtn');
         comprarBtn.textContent = 'Comprar';
-        $('.comprarBtn').on('click', function(event) {
+        comprarBtn.on('click', function(event) {
             event.preventDefault();
             var objeto = $(this).closest('.item').data('objeto');
             comprarObjeto(objeto);
