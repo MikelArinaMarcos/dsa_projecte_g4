@@ -9,7 +9,7 @@ body {
     max-width: 800px;
     margin: 50px auto;
     padding: 20px;
-    background: url(../images/12118.png) fixed; /* Cambiado a una imagen de mochila abierta */
+    background: url(../images/12118.png) fixed;
     background-size: cover;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -17,7 +17,7 @@ body {
 
 .tituloTienda {
     text-align: center;
-    color: white; /* Cambiado a color blanco */
+    color: white;
     font-size: 30px;
 }
 
@@ -26,7 +26,7 @@ body {
     border-radius: 10px;
     padding: 20px;
     margin: 20px 0;
-    background-color: rgba(255, 255, 255, 0.8); /* Fondo semi-transparente blanco */
+    background-color: rgba(139, 69, 19, 0.7); /* Fondo semi-transparente blanco */
 }
 
 .nombreObjeto {
