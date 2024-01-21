@@ -26,3 +26,7 @@ $(document).ready(function(){
         return true;
     });
 });
+function editarperfil(){
+    location.href="/cambio_de_perfil.html";
+
+}

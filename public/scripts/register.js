@@ -15,15 +15,6 @@ $(document).ready(function(){
         var username = $('#username').val();
         var lastName = $('#lastName').val();
         var bolivares = parseInt('0',10);
-        var objetos = [
-            {
-                id:parseInt('0',10),
-                rareza:parseInt('0',10),
-                Nombre:"a",
-                Precio:parseInt('0',10),
-                Damage:parseInt('0',10),
-            },
-        ];
         var body = {
             "name": name,
             "password": password,
@@ -31,7 +22,6 @@ $(document).ready(function(){
             "username": username,
             "lastName": lastName,
             "bolivares": bolivares,
-            "objetos": objetos
         };
 
         // Comprobamos si los dos campos de contraseña tienen el mismo contenido o no.
