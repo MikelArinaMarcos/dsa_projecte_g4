@@ -10,14 +10,14 @@ body {
     margin: 50px auto;
     padding: 20px;
     background: url(../images/12118.png) fixed;
-    background-size: cover;
+    background-size: contain;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.tituloTienda {
+.tituloBackpack {
     text-align: center;
-    color: white;
+    color: #8B4513;
     font-size: 30px;
 }
 
