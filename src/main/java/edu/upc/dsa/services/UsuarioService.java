@@ -42,22 +42,22 @@ public class UsuarioService {
             i.add(ins = new Insignia("El estudiante", "https://img.freepik.com/vector-premium/lindo-nino-estudiante-levantando-mano-respondiendo-pregunta-sentado-su-escritorio-aula_535862-690.jpg?w=2000"));
             i.add(ins = new Insignia("Badass badge", "https://www.mundodeportivo.com/alfabeta/hero/2020/10/levi-ackerman-abj.jpg?width=768&aspect_ratio=16:9&format=nowebp"));
 
-            jm.addInsignias(i, "jordi");
+            jm.addInsigniasUsuario(i, "jordi");
 
             List<Insignia> o = new LinkedList<Insignia>();
             o.add(ins = new Insignia("Dragon slayer", "https://c4.wallpaperflare.com/wallpaper/705/734/459/dark-dovahkiin-dragon-dragonborn-wallpaper-preview.jpg"));
             o.add(ins = new Insignia("El estudiante", "https://img.freepik.com/vector-premium/lindo-nino-estudiante-levantando-mano-respondiendo-pregunta-sentado-su-escritorio-aula_535862-690.jpg?w=2000"));
-            jm.addInsignias(o, "pedro");
+            jm.addInsigniasUsuario(o, "pedro");
 
             List<Insignia> h = new LinkedList<Insignia>();
             h.add(ins = new Insignia("Cazador furtivo", "https://i.pinimg.com/originals/ef/90/0d/ef900dd70802cd2c5fce596f92f89549.jpg"));
             h.add(ins = new Insignia("BBDD expert", "https://www.aceinfoway.com/blog/wp-content/uploads/2020/03/best-database-to-work-with-in-2020.jpg"));
-            jm.addInsignias(h, "bryan");
+            jm.addInsigniasUsuario(h, "bryan");
 
             List<Insignia> k = new LinkedList<Insignia>();
             k.add(ins = new Insignia("Badass badge", "https://www.mundodeportivo.com/alfabeta/hero/2020/10/levi-ackerman-abj.jpg?width=768&aspect_ratio=16:9&format=nowebp"));
             k.add(ins = new Insignia("Unity master", "https://cink.es/wp-content/uploads/2022/03/unity-3d-como-hacer-juegos.jpg"));
-            jm.addInsignias(k, "aran");
+            jm.addInsigniasUsuario(k, "aran");
 
             List<Mensaje> mensajesPredeterminados = new LinkedList<>();
             mensajesPredeterminados.add(new Mensaje("Bienvenido a Pollopeta"));
@@ -170,7 +170,7 @@ public class UsuarioService {
         }
     }
     @GET
-    @ApiOperation(value = "insignias", notes = "View Badges")
+    @ApiOperation(value = "insignias", notes = "asdasd")
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "Successful"),
             @ApiResponse(code = 401, message = "The user has no badges"),
@@ -178,14 +178,10 @@ public class UsuarioService {
     })
     @Path("/listar_insignias_usuario/insignias/{username}")  // Cambié {mail} a {username}
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getInsignias(@PathParam("username") String username) throws NotInInventoryException {
-        try {
-            List<Insignia> insignias = this.jm.getInsignias(username);
-            GenericEntity<List<Insignia>> entity = new GenericEntity<List<Insignia>>(insignias) {};
-            return Response.status(201).entity(entity).build();
-        } catch (NotInInventoryException e) {
-            return Response.status(401).build();
-        }
+    public Response getInsignias(@PathParam("username") String username) {
+        List<Insignia> insignias = this.jm.getInsigniasUsuario(username); // Utilizar la función getInsigniasUsuario de JuegoManager
+        GenericEntity<List<Insignia>> entity = new GenericEntity<List<Insignia>>(insignias) {};
+        return Response.status(201).entity(entity).build();
     }
 
     /* @GET

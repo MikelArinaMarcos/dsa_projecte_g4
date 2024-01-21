@@ -25,5 +25,7 @@ public interface JuegoManager {
     public void addMensajesGenerales(List<Mensaje> mensajes);
     public Mapas getMap(int idMapas);
     public List<Objeto> getMyBackpack(String mail);
+    public List<Insignia> getInsigniasUsuario(String username);
 
-    }
+    public void addInsigniasUsuario(List<Insignia> insignias, String username);
+}

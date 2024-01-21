@@ -273,21 +273,13 @@ public class JuegoManagerImpl implements JuegoManager {
 
     @Override
     public void addInsignias(List<Insignia> i, String username) {
-        Insignias.put(username, i);
+
     }
 
-
-
+    @Override
     public List<Insignia> getInsignias(String username) throws NotInInventoryException {
-        if (Insignias.containsKey(username)) {
-            return Insignias.get(username);
-        } else {
-            throw new NotInInventoryException();
-        }
+        return null;
     }
-
-
-
 
 
     /*public void addInsignias(List<Insignia> i, String username){
@@ -330,5 +322,19 @@ public class JuegoManagerImpl implements JuegoManager {
             }
         }
         return lObjeto;
+    }
+
+    public void addInsigniasUsuario(List<Insignia> insignias, String username) {
+        if (Insignias.containsKey(username)) {
+            Insignias.get(username).addAll(insignias);
+        } else {
+            Insignias.put(username, new ArrayList<>(insignias));
+        }
+    }
+    public List<Insignia> getInsigniasUsuario(String username) {
+        UsuarioDAO usuarioDAO = new UsuarioDAOImpl();
+
+        // Obtener las insignias asociadas al usuario directamente desde UsuarioDAO
+        return usuarioDAO.getInsignia(username);
     }
 }

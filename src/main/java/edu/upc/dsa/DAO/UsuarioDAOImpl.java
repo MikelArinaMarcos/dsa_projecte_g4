@@ -98,7 +98,20 @@ public class UsuarioDAOImpl implements UsuarioDAO {
         }
         return backpack;
     }
+    public List<Insignia> getInsignia(String username) {
+        Sesion sesion = null;
+        List<Insignia> listaInsignia = null;
+        try {
+            sesion = FactorySesion.open();
+            HashMap<String, String> criteria = new HashMap<>();
+            criteria.put("username", username);
+            listaInsignia = sesion.findAll(Insignia.class, criteria);
+        } finally {
+            sesion.close();
+        }
 
+        return listaInsignia;
+    }
     public List<Usuario> getUsuarios() {
 
         Sesion sesion = null;

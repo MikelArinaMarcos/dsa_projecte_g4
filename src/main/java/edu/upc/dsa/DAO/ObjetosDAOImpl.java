@@ -43,6 +43,7 @@ public class ObjetosDAOImpl implements ObjetosDAO {
 
         return objeto;
     }
+
     public Objeto getObjeto(String id) throws ObjectNotExistException {
         Sesion sesion = null;
         Objeto objeto = null;
