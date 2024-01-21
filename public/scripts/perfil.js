@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(response => response.json())
         .then(data => {
             // Manejamos los datos y llamamos a la función para mostrar la información de los objetos
-            mostrarInfoUsuarios(data);
+            mostrarInfoUsuario(data);
         })
         .catch(error => console.error('Error al obtener la lista de objetos:', error));
 });
