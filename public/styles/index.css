@@ -3,7 +3,12 @@
       	justify-content: center;
       	margin: 20px;
     }
-
+    body {
+        font-family: Arial, sans-serif;
+        background: url(../images/Granja.jpg) fixed;
+        background-size: contain;
+        margin: 0;
+    }
     .container-fluid button {
         height: 50px;
         width: 300px;
