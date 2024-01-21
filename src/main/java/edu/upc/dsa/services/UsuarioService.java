@@ -256,5 +256,17 @@ public class UsuarioService {
         GenericEntity<List<Objeto>> entity = new GenericEntity<List<Objeto>>(objeto) {};
         return Response.status(201).entity(entity).build();
     }
+    @GET
+    @ApiOperation(value = "get user by mail", notes = "asdasd")
+    @ApiResponses(value = {
+            @ApiResponse(code = 201, message = "Successful", response = Usuario.class),
+            @ApiResponse(code = 500, message = "Error al dar la backpack"),
+    })
+    @Path("/usuario/{mail}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getMyUser(@PathParam("mail") String mail) {
+        Usuario us2 = this.jm.getUser(mail);
+        return Response.status(201).entity(us2).build();
+    }
 }
 

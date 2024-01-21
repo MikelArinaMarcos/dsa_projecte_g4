@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background: url(../images/marron.png) fixed;
+    background: url(../images/militar.jpg) fixed;
     background-size: contain;
     margin: 0;
 }
@@ -9,15 +9,15 @@ body {
     max-width: 800px;
     margin: 50px auto;
     padding: 20px;
-    background: url(../images/12118.png) fixed;
-    background-size: cover;
+    background: url(../images/estampado.jpg) fixed;
+    background-size: contain;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.tituloBackpack {
+.tituloTienda {
     text-align: center;
-    color: #8B4513;
+    color: #e7040f;
     font-size: 30px;
 }
 
@@ -26,7 +26,7 @@ body {
     border-radius: 10px;
     padding: 20px;
     margin: 20px 0;
-    background-color: rgba(139, 69, 19, 0.7); /* Fondo semi-transparente blanco */
+    background-color: rgba(255, 255, 255, 0.8); /* Fondo semi-transparente blanco */
 }
 
 .nombreObjeto {
@@ -64,7 +64,6 @@ body {
     height: 50px;
     width: 300px;
 }
-
 .editBtnDiv {
     display: flex;
     justify-content: center;
@@ -81,3 +80,5 @@ body {
     border-radius: 5px;
     cursor: pointer;
 }
+
+

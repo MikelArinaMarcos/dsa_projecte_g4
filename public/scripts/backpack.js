@@ -1,10 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     // Esperamos a que el contenido del DOM esté cargado antes de ejecutar el código
-    const mail = localStorage.getItem('mail'); // Reemplaza esto con el correo electrónico que deseas enviar al servidor
-    var body = {
-        "mail": mail,
-    };
-
+    const mail = localStorage.getItem('mail');
     // Realizamos una solicitud al backend para obtener la lista de objetos
     fetch(`/dsaApp/usuario/backpack/${encodeURIComponent(mail)}`)
         .then(response => response.json())
