@@ -9,7 +9,6 @@ document.addEventListener('DOMContentLoaded', function () {
         .catch(error => console.error('Error al obtener la lista de objetos:', error));
 });
 function mostrarInfoUsuario(usuario) {
-    usuarioContainer = document.getElementById('usuarioContainer');
     // Crear una etiqueta <label> para el usuario
     const usuarioLabel = document.createElement('label');
     const itemDiv = document.createElement('div');
@@ -41,8 +40,6 @@ function mostrarInfoUsuario(usuario) {
     itemDiv.appendChild(descripcionP2);
     itemDiv.appendChild(descripcionP3);
     itemDiv.appendChild(atributoPrecioP);
-    
-    usuarioContainer.appendChild(itemDiv);
 }
 
 
@@ -55,7 +52,7 @@ $(document).ready(function(){
         // Crear el objeto de datos para enviar al servidor
         // Enviar la solicitud POST al servidor para el inicio de sesión
         $.post({
-            url: `/dsaApp/usuario//deleteUser/${encodeURIComponent(mail)}&${encodeURIComponent(password)}`, // Ajusta la URL según tu estructura de carpetas y rutas
+            url: `/dsaApp/usuario/deleteUser/${encodeURIComponent(mail)}&${encodeURIComponent(password)}`, // Ajusta la URL según tu estructura de carpetas y rutas
             contentType: 'application/json; charset=utf8'
         })
             .done(function (data, status){
