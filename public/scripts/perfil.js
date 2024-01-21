@@ -40,6 +40,12 @@ function mostrarInfoUsuario(usuario) {
     itemDiv.appendChild(descripcionP2);
     itemDiv.appendChild(descripcionP3);
     itemDiv.appendChild(atributoPrecioP);
+
+    const infoUsuariosContainer = document.getElementById('infoUsuariosContainer');
+
+    // Agregamos el itemDiv al contenedor existente
+    infoUsuariosContainer.appendChild(itemDiv);
+
 }
 
 
