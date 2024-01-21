@@ -8,6 +8,7 @@ import edu.upc.dsa.bbdd.Sesion;
 import edu.upc.dsa.bbdd.SesionImpl;
 import edu.upc.dsa.models.Objeto;
 import edu.upc.dsa.models.Usuario;
+import edu.upc.dsa.models.*;
 
 import org.apache.log4j.Logger;
 
@@ -46,7 +47,7 @@ public class UsuarioDAOImpl implements UsuarioDAO {
             sesion.close();
         }
         logger.info("usuario registrado");
-        return 1;
+        return 0;
     }
 
 
@@ -57,29 +58,66 @@ public class UsuarioDAOImpl implements UsuarioDAO {
             sesion = FactorySesion.open();
             user = (Usuario) sesion.get(Usuario.class, "mail", mail);
         } catch (Exception e) {
+            logger.error("Error al obtener usuario por mail");
+            return null;
+            // LOG
+        } finally {
+            if (sesion != null) {
+                sesion.close();
+            }
+        }
+
+        return user;
+    }
+    public Mapas getMapas(int idMapa) {
+        Sesion sesion = null;
+        Mapas map= null;
+        try {
+            sesion = FactorySesion.open();
+            map = (Mapas) sesion.get(Mapas.class, "idMapa", idMapa);
+        } catch (Exception e) {
             e.printStackTrace();
             // LOG
         } finally {
             sesion.close();
         }
 
-        return user;
+        return map;
     }
 
-    public List<Objeto> getObjetos() {
+    public List<Backpack> getObjetosBackpack(String mail) {
         Sesion sesion = null;
-        List<Objeto> objetos = null;
+        List<Backpack> backpack = null;
         try {
             sesion = FactorySesion.open();
-            objetos = sesion.findAll(Objeto.class);
+            backpack = sesion.findAllbyId(Backpack.class,"idUsuario",mail);
         } catch (Exception e) {
             // LOG
         } finally {
             sesion.close();
         }
-        return objetos;
+        return backpack;
     }
+    public List<Insignia> getInsignia(String username) {
+        Sesion sesion = null;
+        List<Insignia> listaInsignia = null;
+        /*try {
+            sesion = FactorySesion.open();
+            HashMap<String, String> criteria = new HashMap<>();
+            criteria.put("username", username);
+            listaInsignia = sesion.findAll(Insignia.class, criteria);
+        }*/
+        try {
+            sesion = FactorySesion.open();
+            listaInsignia = sesion.findAllbyId(Insignia.class,"username",username);
+        } catch (Exception e) {
+            // LOG
+        } finally {
+            sesion.close();
+        }
 
+        return listaInsignia;
+    }
     public List<Usuario> getUsuarios() {
 
         Sesion sesion = null;
@@ -95,6 +133,31 @@ public class UsuarioDAOImpl implements UsuarioDAO {
         return listaUsuarios;
     }
 
+    public Usuario updateUsuario(Usuario u1,String mail){
+        Sesion sesion = null;
+        try {
+            sesion = FactorySesion.open();
+            sesion.update(u1, "mail", mail);
+        } catch (Exception e) {
+
+        } finally {
+            sesion.close();
+        }
+        return u1;
+    }
+
+    public int deleteUsuario(Usuario u1,String mail){
+        Sesion sesion = null;
+        try {
+            sesion = FactorySesion.open();
+            int res = sesion.delete(u1,"mail",mail);
+        } catch (Exception e) {
+            return 1;
+        } finally {
+            sesion.close();
+        }
+        return 0;
+    }
     /*public void buyItem(String id, String name, String mail) throws NotSufficientMoneyException, ObjectNotExistException,  SQLException {
 
         logger.info("Comprar objeto "+ id + " Para el usuario con mail " + mail);
@@ -124,13 +187,4 @@ public class UsuarioDAOImpl implements UsuarioDAO {
             sesion.close();
         }
 }}*/
-
-
-
-
-
-
-
-
-
 }

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NUEVO PERFIL</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" type="text/css" href="styles/register.css">
+
+    <script src="https://kit.fontawesome.com/fbbddd9141.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="scripts/cambio_de_perfil.js"></script>
+</head>
+<body>
+<form action="" method="post">
+    <h1 class="title">REGISTER</h1>
+    <label>
+        <i class="fa-solid fa-user"></i>
+        <input type="name" id="nname" name="nname" class="nname" placeholder="New name">
+    </label>
+    <label>
+        <i class="fa-solid fa-user"></i>
+        <input type="lastName" id="nlastName" name="nlastName" class="nlastName" placeholder="New last Name">
+    </label>
+    <label>
+        <i class="fa-regular fa-envelope"></i>
+        <input type="mail" id="nnmail" name="nmail" class="nmail" placeholder="New mail">
+    </label>
+    <label>
+        <i class="fa-regular fa-user"></i>
+        <input type="text" id="nusername" name="nusername" class="nusername" placeholder="New username">
+    </label>
+    <label>
+        <i class="fa-solid fa-lock"></i>
+        <input type="password" id="opassword" name="opassword" class="password" placeholder="Insert the new password">
+    </label>
+    <label>
+        <i class="fa-solid fa-lock"></i>
+        <input type="password" id="npassword" name="npassword" class="password" placeholder="Insert the new password again">
+    </label>
+    <button class="button" id="editarperfilButton" onclick=""><a>Editar perfil</a></button>
+    <div class="container-fluid">
+        <button type="button" class="btn" value="Cancelar" onclick="cancelar()">CANCELAR</button>
+    </div>
+</form>
+</body>
+</html>

@@ -147,7 +147,7 @@ public class Usuario {
         this.setName(name);
         this.setLastName(lastName);
         this.setPassword(password);
-        this.bolivares = 500;
+        this.bolivares = bolivares;
     }
 
 

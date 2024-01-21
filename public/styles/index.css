@@ -1,10 +1,50 @@
-    .container-fluid {
-    	display: flex;
-      	justify-content: center;
-      	margin: 20px;
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        width: 100%
+        height: 100vh;
+        /* Establece la imagen de fondo y configura el tamaño y la posición */
+        background-image: url('../images/Granja.jpg');
+        background-position: center; /* Centra la imagen */
+        background-repeat: no-repeat; /* Evita que la imagen se repita */
+    }
+    .principal {
+        height: 100vh;
+        text-align: center;
+        padding: 50px;
     }
 
-    .container-fluid button {
-        height: 50px;
-        width: 300px;
+    h1 {
+        font-size: 100px;
+        margin-bottom: 10px;
+    }
+
+    p {
+        font-style: italic;
+        font-size: 25px;
+        margin-bottom: 75px;
+    }
+
+    .btn-container {
+        display: flex;
+        justify-content: center;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        margin: 0 10px;
+        text-decoration: none;
+        font-size: none;
+        color: #fff;
+        background-color: #000000;
+        border: 1px solid #000000;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .btn:hover {
+        background-color: #0056b3;
+        border-color: #0056b3;
     }

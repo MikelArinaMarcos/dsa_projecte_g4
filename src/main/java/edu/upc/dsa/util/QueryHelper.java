@@ -34,7 +34,7 @@ public class QueryHelper {
     }
     public static String createQuerySELECT(Class theClass, String pk) {
         StringBuffer sb = new StringBuffer();
-        sb.append("SELECT * FROM ").append(theClass.getSimpleName().toLowerCase());
+        sb.append("SELECT * FROM ").append(theClass.getSimpleName());
         sb.append(" WHERE "+pk+"= ?");
 
         return sb.toString();
@@ -54,6 +54,11 @@ public class QueryHelper {
         sb.append("SELECT * FROM ").append(theClass.getSimpleName()); //Por ej employee = SELECT * FROM Employee
         return sb.toString();
     }
+    public static String createQuerySELECTAllbyId(Class theClass){
+        StringBuffer sb = new StringBuffer();
+        sb.append("SELECT * FROM ").append(theClass.getSimpleName()); //Por ej employee = SELECT * FROM Employee
+        return sb.toString();
+    }
     public static String createQuerySELECTByParams(Object object, HashMap params){
         StringBuffer sb = new StringBuffer();
         sb.append("SELECT * FROM ").append(object.getClass().getSimpleName()).append(" ");
@@ -63,7 +68,7 @@ public class QueryHelper {
         System.out.println(sb.toString());
         return sb.toString();
     }
-    public static String createQueryUPDATE(Object entity){
+    public static String createQueryUPDATE(Object entity, String pk){
         System.out.println("VAMOS A HACER UPDATE DE "+entity.getClass().getSimpleName());
         StringBuffer sb = new StringBuffer();
         sb.append("UPDATE ").append(entity.getClass().getSimpleName()).append(" SET "); //UPDATE Cosa SET
@@ -72,15 +77,22 @@ public class QueryHelper {
             sb.append(field).append(" = ?, ");
         }
         sb=sb.replace(sb.length()-2,sb.length()-1,"");
-        sb.append("WHERE id").append(entity.getClass().getSimpleName()).append(" = ?");
+        sb.append(" WHERE "+pk+" = ?");
         System.out.println("QUERY DEL UPDATE-->\n" +sb.toString());
         return sb.toString();
     }
+    public static String createQueryDELETE(Object object, String pk) {
+        StringBuffer sb = new StringBuffer();
+        sb.append("DELETE FROM ").append(object.getClass().getSimpleName());
+        sb.append(" WHERE "+pk+"= ?");
 
-    public static String createQueryDELETE(Object object, HashMap params){
+        return sb.toString();
+    }
+
+    public static String createQueryDELETE2(Object object, String pk ,String mail){
         StringBuffer sb = new StringBuffer();
         sb.append("DELETE FROM ").append(object.getClass().getSimpleName()); //Por ej employee = DELETE FROM Employee
-        sb.append(" WHERE 1=1");
+        sb.append(" WHERE "+ pk +" = "+"'"+mail);
         //params.forEach((k,v)->sb.append(" AND ").append(k.toString()).append(" = ").append("?"));
         System.out.println("DELETE POR PARAMETROS Y HASHMAP\n"+sb.toString());
         return sb.toString();

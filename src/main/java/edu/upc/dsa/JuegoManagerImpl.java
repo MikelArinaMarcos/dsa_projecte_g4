@@ -1,8 +1,8 @@
 package edu.upc.dsa;
 
-import edu.upc.dsa.models.Objeto;
-import edu.upc.dsa.models.Usuario;
-import edu.upc.dsa.models.VOCredenciales;
+import edu.upc.dsa.DAO.*;
+import edu.upc.dsa.exceptions.NotInInventoryException;
+import edu.upc.dsa.models.*;
 import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
@@ -17,6 +17,7 @@ public class JuegoManagerImpl implements JuegoManager {
     private static JuegoManager instance;
     protected List<Usuario> Usuarios;
     protected HashMap<String, Usuario> lUsuarios = new HashMap<String, Usuario>();
+    protected HashMap<String, List<Insignia>> Insignias = new HashMap<String, List<Insignia>>();
     final static Logger logger = Logger.getLogger(JuegoManagerImpl.class);
 
     public static JuegoManager getInstance() {
@@ -55,7 +56,22 @@ public class JuegoManagerImpl implements JuegoManager {
     }
 
     public int registrarUsuario(Usuario u) {
-
+        UsuarioDAO usuarioDAO = new UsuarioDAOImpl();
+        List<Usuario> lUsuarios = usuarioDAO.getUsuarios();
+        for (Usuario user : lUsuarios) {
+            if (user.getMail().equals(u.getMail())){
+                return 1;
+            }
+            if (user.getUsername().equals(u.getUsername())){
+                return 2;
+            }
+        }
+        int res = usuarioDAO.addUser(u.getUsername(),u.getMail(),u.getName(),u.getLastName(),u.getPassword(),500);
+        if (res == 0) {
+            logger.info("Registrado correctamente en la base de datos");
+            return res;
+        }
+        /*
         if (!isValidEmail(u.getMail())) {
             logger.info("Formato de correo electrónico no válido");
             return 3;
@@ -74,12 +90,29 @@ public class JuegoManagerImpl implements JuegoManager {
         //u.iniObjetos();
         this.lUsuarios.put(u.getMail(), u);
         logger.info("new user added");
+
+         */
         return 0;
     }
 
     @Override
     public Usuario login(VOCredenciales credencialesu) {
-        logger.info("login(" + credencialesu + ")");
+        UsuarioDAO usuarioDAO = new UsuarioDAOImpl();
+        Usuario usuario1 = new Usuario();
+        usuario1 = usuarioDAO.getUserbymail(credencialesu.getMail());
+        if (usuario1==null){
+            logger.info("Error al buscar al usuario");
+            return null;
+        }
+        if (usuario1.getPassword().equals(credencialesu.getPassword())){
+            logger.info("Logeado en la base de datos");
+            return usuario1;
+        } else {
+            logger.info("Contraseña incorrecta");
+            return null;
+        }
+
+        /*logger.info("login(" + credencialesu + ")");
 
         // Validar el formato del correo electrónico
         if (!isValidEmail(credencialesu.getMail())) {
@@ -101,7 +134,7 @@ public class JuegoManagerImpl implements JuegoManager {
             logger.warn("User with email " + credencialesu.getMail() + " not found");
         }
 
-        return null;
+        return null;*/
     }
 
     public VOCredenciales getCredenciales(Usuario U) {
@@ -111,26 +144,46 @@ public class JuegoManagerImpl implements JuegoManager {
     }
 
     public Usuario getUser(String mail) {
+        UsuarioDAO usuarioDAO = new UsuarioDAOImpl();
+        Usuario user = usuarioDAO.getUserbymail(mail);
         logger.info("getUsername(" + mail + ")");
 
-        if (lUsuarios.containsKey(mail)) {
-            Usuario U = lUsuarios.get(mail);
-            logger.info("Encontrado(" + mail + ")" + U);
-            return U;
+        if (user==null) {
+            logger.info("Ha fallado en encontrar al usuario");
+            return null;
         }
-        logger.warn(mail + "not found");
-        return null;
+        logger.warn("Lo ha encontrado en la base de datos");
+        return user;
     }
 
     public List<Usuario> getallusers() {
-        return new ArrayList<>(this.lUsuarios.values());
+        UsuarioDAO usuarioDAO = new UsuarioDAOImpl();
+        List<Usuario> LU= usuarioDAO.getUsuarios();
+        return LU;
+        //return new ArrayList<>(this.lUsuarios.values());
     }
 
     @Override
     public int deleteUsuario(VOCredenciales credenciales) {
+        UsuarioDAO usuarioDAO = new UsuarioDAOImpl();
+        BackpackDAO backpackDAO = new BackpackDAOImpl();
+        String mail = credenciales.getMail();
+        Usuario u = usuarioDAO.getUserbymail(mail);
+        List<Backpack> lbk = usuarioDAO.getObjetosBackpack(mail);
+        int res2 = 0;
+        for (Backpack bk: lbk){
+            res2 = backpackDAO.deleteBackpack(bk,mail);
+        }
+        if (u.getPassword().equals(credenciales.getPassword())){
+            logger.info("deleteUsuario() =" + credenciales.getMail());
+            int res = usuarioDAO.deleteUsuario(u,mail);
+            return res;
+        } else {
+            return 2;
+        }
 
         // Verificar si el usuario existe
-        if (lUsuarios.containsKey(credenciales.getMail())) {
+        /*if (lUsuarios.containsKey(credenciales.getMail())) {
             Usuario usuario = lUsuarios.get(credenciales.getMail());
 
             // Verificar la contraseña
@@ -145,14 +198,38 @@ public class JuegoManagerImpl implements JuegoManager {
         } else {
             logger.warn("User with email " + credenciales.getMail() + " not found");
             return 404; // Código para usuario no encontrado
-        }
+        }*/
     }
-
-    public Usuario actualizarUsuario(String mail, String newUsername, String newName, String newLastName, String newPassword, String newMail) {
+    public int comprobarUnico(Usuario u){
+        logger.info("comprobando único");
+        UsuarioDAO usuarioDAO = new UsuarioDAOImpl();
+        List<Usuario> lUsuarios = usuarioDAO.getUsuarios();
+        for (Usuario user : lUsuarios) {
+            if (user.getMail().equals(u.getMail())){
+                return 1;
+            }
+            if (user.getUsername().equals(u.getUsername())){
+                return 2;
+            }
+        }
+        return 0;
+    }
+    public Usuario actualizarUsuario(String mail, String newUsername, String newName, String newLastName, String newPassword, String newMail, int newBolivares) {
         logger.info("actualizarUsuario(" + mail + ")");
-
+        UsuarioDAO usuarioDAO = new UsuarioDAOImpl();
+        BackpackDAO backpackDAO = new BackpackDAOImpl();
+        Usuario u1= new Usuario(newUsername, newMail, newName, newLastName, newPassword, newBolivares);
+        Usuario uActualizado= usuarioDAO.updateUsuario(u1, mail);
+        List<Backpack> lbk = usuarioDAO.getObjetosBackpack(mail);
+        int res = 0;
+        for (Backpack bk: lbk){
+            res = backpackDAO.deleteBackpack(bk,mail);
+            logger.info("actualizarUsuario(" + bk.getIdItems() + ")");
+            backpackDAO.addItem(newMail, bk.getIdItems());
+        }
+        return uActualizado;
         // Verificar si el usuario existe
-        if (lUsuarios.containsKey(mail)) {
+        /*if (lUsuarios.containsKey(mail)) {
             Usuario usuario = lUsuarios.get(mail);
 
             // Verificar que la nueva contraseña sea diferente de la contraseña actual
@@ -191,10 +268,72 @@ public class JuegoManagerImpl implements JuegoManager {
         } else {
             logger.warn("Usuario con correo electrónico " + mail + " no encontrado");
             return null; // Retornar null para indicar que el usuario no fue encontrado
-        }
+        }*/
+    }
+
+    @Override
+    public void addInsignias(List<Insignia> i, String username) {
+
+    }
+
+    @Override
+    public List<Insignia> getInsignias(String username) throws NotInInventoryException {
+        return null;
     }
 
 
+    /*public void addInsignias(List<Insignia> i, String username){
+          Insignias.put(username, i);
+      }
+  */
+    protected List<Mensaje> MensajesGenerales = new ArrayList<>();
+   // public List<Mensaje> getMensajesGenerales() {
+     //   return new ArrayList<>(this.MensajesGenerales);
+  //  }
+    public void addMensajesGenerales(List<Mensaje> mensajes) {
+        this.MensajesGenerales.addAll(mensajes);
+    }
+    public List<Mensaje> getMensajesGenerales() {
+        MensajeDAO mensajeDAO = new MensajeDAOImpl();
+        List<Mensaje> LU= mensajeDAO.getMensaje();
+        return LU;
 
+    }
+    public Mapas getMap(int idMapas){
+        UsuarioDAO usuarioDAO = new UsuarioDAOImpl();
+        Mapas map= usuarioDAO.getMapas(idMapas);
+        return map;
+    }
+    public List<Objeto> getMyBackpack(String mail){
+        UsuarioDAO usuarioDAO = new UsuarioDAOImpl();
+        ObjetosDAO objetoDAO = new ObjetosDAOImpl();
+        List<Backpack> backpack = usuarioDAO.getObjetosBackpack(mail);
+        List<Objeto> lObjeto= new ArrayList<>();
+        for (Backpack mochila : backpack) {
+            // Supongamos que getIdItems devuelve el ID del objeto en la mochila
+            int idItem = mochila.getIdItems();
 
+            // Supongamos que getObjeto toma un ID de objeto y devuelve un Objeto
+            Objeto objeto = objetoDAO.getObjet(idItem);
+
+            // Verificar si el objeto no es nulo antes de agregarlo a la lista
+            if (objeto != null) {
+                lObjeto.add(objeto);
+            }
+        }
+        return lObjeto;
+    }
+
+    public void addInsigniasUsuario(List<Insignia> insignias, String username) {
+        if (Insignias.containsKey(username)) {
+            Insignias.get(username).addAll(insignias);
+        } else {
+            Insignias.put(username, new ArrayList<>(insignias));
+        }
+    }
+    public List<Insignia> getInsigniasUsuario(String username) {
+        UsuarioDAO usuarioDAO = new UsuarioDAOImpl();
+        // Obtener las insignias asociadas al usuario directamente desde UsuarioDAO
+        return usuarioDAO.getInsignia(username);
+    }
 }

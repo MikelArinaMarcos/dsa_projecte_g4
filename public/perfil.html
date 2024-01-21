@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Perfil de usuario</title>
+    <link rel="stylesheet" type="text/css" href="styles/perfil.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <script src="https://kit.fontawesome.com/fbbddd9141.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="scripts/principal.js"></script>
+    <script src="scripts/perfil.js"></script>
+</head>
+<body onload="asegurarRegistro()">
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="principal.html"><img src="images/gallina-combatiendo-con-arma-y-traje-de-camuflaje-upscaled.png" width="90px" alt=""></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="principal.html">HOME</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="shop.html">TIENDA</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="backpack.html">MOCHILA</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="peticiones.html">PETICIONES</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">PERFIL</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="formLogin">
+    <form action="" class="form">
+        <h1 class="tituloLogin">Perfil</h1>
+
+        <div class="infoContainer">
+            <label class="infoLabel">Nombre de usuario:</label>
+            <label id="username" class="infoValue"></label>
+        </div>
+
+        <div class="infoContainer">
+            <label class="infoLabel">Correo electrónico:</label>
+            <label id="mail" class="infoValue"></label>
+        </div>
+
+        <div class="infoContainer">
+            <label class="infoLabel">Nombre:</label>
+            <label id="name" class="infoValue"></label>
+        </div>
+
+        <div class="infoContainer">
+            <label class="infoLabel">Apellido:</label>
+            <label id="lastName" class="infoValue"></label>
+        </div>
+
+        <div class="infoContainer">
+            <label class="infoLabel">Bolivares:</label>
+            <label id="bolivares" class="infoValue"></label>
+        </div>
+
+        <div class="inputContainer">
+            <label class="labelLogin">Contraseña</label><label class="obligatorio">*</label>
+            <i class="fa-solid fa-user"></i>
+            <input id="password" type="password" name="password" class="input" placeholder="Introduzca su password">
+        </div>
+
+
+        <div class="editBtn">
+            <button type="button" class="editBtn" id="eliminarperfilBtn" onclick="">Eliminarcuenta</button>
+        </div>
+        <div class="editBtn">
+            <button type="button" class="editbtn" value="Editar perfil" onclick="editarperfil()">EDITAR PERFIL</button>
+        </div>
+    </form>
+</div>
+<div class="container">
+    <h1 class="tituloTienda">Perfil</h1>
+
+    <!-- Aquí se inicia la sección de la lista de objetos -->
+    <div class="listaUsuarios" id="listaUsuarios">
+        <!-- Los objetos se insertarán aquí dinámicamente -->
+    </div>
+    <!-- Aquí finaliza la sección de la lista de objetos -->
+
+</div>
+</body>
+</html>

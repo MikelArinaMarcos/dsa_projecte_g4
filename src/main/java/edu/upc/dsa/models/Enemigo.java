@@ -1,27 +1,27 @@
 package edu.upc.dsa.models;
 
 public class Enemigo {
-    private int Vida;
-    private int Damage;
+    private int vida;
+    private int damage;
 
     public Enemigo(int vida, int damage) {
-        Vida = vida;
-        Damage = damage;
+        this.vida = vida;
+        this.damage = damage;
     }
 
     public int getVida() {
-        return Vida;
+        return vida;
     }
 
     public void setVida(int vida) {
-        Vida = vida;
+        this.vida = vida;
     }
 
     public int getDamage() {
-        return Damage;
+        return damage;
     }
 
     public void setDamage(int damage) {
-        Damage = damage;
+        this.damage = damage;
     }
 }

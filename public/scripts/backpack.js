@@ -1,52 +1,21 @@
 document.addEventListener('DOMContentLoaded', function () {
     // Esperamos a que el contenido del DOM esté cargado antes de ejecutar el código
+    const mail = localStorage.getItem('mail');
     // Realizamos una solicitud al backend para obtener la lista de objetos
-    fetch('/dsaApp/tienda/objetos')
+    fetch(`/dsaApp/usuario/backpack/${encodeURIComponent(mail)}`)
         .then(response => response.json())
         .then(data => {
             // Manejamos los datos y llamamos a la función para mostrar la lista de objetos
-            mostrarListaObjetos(data);
+            mostrarBackpack(data);
         })
         .catch(error => console.error('Error al obtener la lista de objetos:', error));
-})
-function comprarObjeto(objeto) {
-    // Obtener los datos del objeto
-    var id = objeto.id;
-    var rareza = objeto.rareza;
-    var nombre = objeto.nombre;
-    var precio = objeto.precio;
-    var damage = objeto.damage;
-    var url = objeto.url;
-    const mail = localStorage.getItem('mail');
-    var body = {
-        "id": id,
-        "rareza": rareza,
-        "nombre": nombre,
-        "precio": precio,
-        "damage": damage,
-        "url": url
-    };
+});
 
-    // Enviar la solicitud POST al servidor para comprar el objeto
-    $.post({
-        url: `/dsaApp/tienda/comprarObjeto/${encodeURIComponent(mail)}`,
-        data: JSON.stringify(body),
-        contentType: 'application/json; charset=utf8'
-    })
-        .done(function (data, status) {
-            alert("¡Añadido a tu inventario!");
-            location.href = "/shop.html";
-        })
-        .fail(function (xhr, err) {
-            console.log("ERROR", err);
-            alert("No se ha podido comprar");
-        });
-}
+function mostrarBackpack(listaObjetosBackpack) {
+    const listaBackpackContainer = document.getElementById('listaObjetosBackpack');
 
-function mostrarListaObjetos(listaObjetos) {
-    listaObjetosContainer = document.getElementById('listaObjetos');
     // Iteramos sobre la lista de objetos y creamos dinámicamente las secciones en el DOM
-    listaObjetos.forEach(objeto => {
+    listaObjetosBackpack.forEach(objeto => {
         const itemDiv = document.createElement('div');
         itemDiv.classList.add('item');
 
@@ -66,20 +35,12 @@ function mostrarListaObjetos(listaObjetos) {
         atributoDanioP.classList.add('atributo');
         atributoDanioP.textContent = `Damage: ${objeto.damage}`;
 
-        const comprarBtn = document.createElement('button');
-        comprarBtn.classList.add('comprarBtn');
-        comprarBtn.textContent = 'Comprar';
-        comprarBtn.onclick = function() {
-            comprarObjeto(objeto);
-        };
-
         // Agregamos los elementos al contenedor
         itemDiv.appendChild(nombreObjetoHeading);
         itemDiv.appendChild(descripcionP);
         itemDiv.appendChild(atributoPrecioP);
         itemDiv.appendChild(atributoDanioP);
-        itemDiv.appendChild(comprarBtn);
 
-        listaObjetosContainer.appendChild(itemDiv);
-    })
+        listaBackpackContainer.appendChild(itemDiv); // Ajuste del nombre de la variable
+    });
 }

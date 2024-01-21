@@ -1,4 +1,4 @@
 package edu.upc.dsa.exceptions;
 
-public class IncorrectCredencialsException {
+public class IncorrectCredencialsException extends Throwable{
 }

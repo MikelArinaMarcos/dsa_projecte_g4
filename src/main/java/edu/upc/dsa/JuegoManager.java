@@ -1,10 +1,8 @@
 package edu.upc.dsa;
 
-import edu.upc.dsa.models.Objeto;
-import edu.upc.dsa.models.Usuario;
-import edu.upc.dsa.models.VOCredenciales;
+import edu.upc.dsa.exceptions.NotInInventoryException;
+import edu.upc.dsa.models.*;
 
-import java.util.HashMap;
 import java.util.List;
 public interface JuegoManager {
     public int addUsuario(String username, String mail, String name, String lastName, String password);
@@ -15,7 +13,19 @@ public interface JuegoManager {
     public List<Usuario> getallusers();
     public int sizeUsers();
     public int deleteUsuario(VOCredenciales credenciales);
+    public int comprobarUnico(Usuario u);
 
-    public Usuario actualizarUsuario(String mail, String newUsername, String newName, String newLastName, String newPassword, String newMail);
+    public Usuario actualizarUsuario(String mail, String newUsername, String newName, String newLastName, String newPassword, String newMail, int newBolivares);
 
-    }
+    public void addInsignias(List<Insignia> i, String username);
+    public List<Insignia> getInsignias(String username) throws NotInInventoryException;
+
+    List<Mensaje> getMensajesGenerales();
+
+    public void addMensajesGenerales(List<Mensaje> mensajes);
+    public Mapas getMap(int idMapas);
+    public List<Objeto> getMyBackpack(String mail);
+    public List<Insignia> getInsigniasUsuario(String username);
+
+    public void addInsigniasUsuario(List<Insignia> insignias, String username);
+}
