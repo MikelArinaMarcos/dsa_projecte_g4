@@ -22,11 +22,8 @@ function mostrarInfoUsuario(usuario) {
         <label class="info-label">Nombre: ${usuario.name}</label><br>
         <label class="info-label">Apellido: ${usuario.lastName}</label><br>
         <label class="info-label">Correo Electrónico: ${usuario.mail}</label><br>
+        <label class="info-label">Bolivares: ${usuario.bolivares}</label><br>
     `;
-
-    // Limpiamos cualquier contenido anterior en el contenedor
-    infoUsuarioContainer.innerHTML = '';
-
     // Agregamos la etiqueta al contenedor
     infoUsuarioContainer.appendChild(usuarioLabel);
 }

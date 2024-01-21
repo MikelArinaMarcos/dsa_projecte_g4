@@ -35,7 +35,7 @@ function comprarObjeto(objeto) {
     })
         .done(function (data, status) {
             alert("¡Añadido a tu inventario!");
-            location.href = "/principal.html";
+            location.href = "/shop.html";
         })
         .fail(function (xhr, err) {
             console.log("ERROR", err);
