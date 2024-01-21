@@ -333,7 +333,6 @@ public class JuegoManagerImpl implements JuegoManager {
     }
     public List<Insignia> getInsigniasUsuario(String username) {
         UsuarioDAO usuarioDAO = new UsuarioDAOImpl();
-
         // Obtener las insignias asociadas al usuario directamente desde UsuarioDAO
         return usuarioDAO.getInsignia(username);
     }

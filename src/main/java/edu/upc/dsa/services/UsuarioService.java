@@ -172,7 +172,7 @@ public class UsuarioService {
     @GET
     @ApiOperation(value = "insignias", notes = "asdasd")
     @ApiResponses(value = {
-            @ApiResponse(code = 201, message = "Successful"),
+            @ApiResponse(code = 201, message = "Successful", response = Insignia.class, responseContainer="List"),
             @ApiResponse(code = 401, message = "The user has no badges"),
             @ApiResponse(code = 500, message = "SQL Exception"),
     })

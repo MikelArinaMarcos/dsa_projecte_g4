@@ -101,11 +101,17 @@ public class UsuarioDAOImpl implements UsuarioDAO {
     public List<Insignia> getInsignia(String username) {
         Sesion sesion = null;
         List<Insignia> listaInsignia = null;
-        try {
+        /*try {
             sesion = FactorySesion.open();
             HashMap<String, String> criteria = new HashMap<>();
             criteria.put("username", username);
             listaInsignia = sesion.findAll(Insignia.class, criteria);
+        }*/
+        try {
+            sesion = FactorySesion.open();
+            listaInsignia = sesion.findAllbyId(Insignia.class,"username",username);
+        } catch (Exception e) {
+            // LOG
         } finally {
             sesion.close();
         }
