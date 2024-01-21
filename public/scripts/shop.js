@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function () {
+$(document).addEventListener('DOMContentLoaded', function () {
     // Esperamos a que el contenido del DOM esté cargado antes de ejecutar el código
     // Realizamos una solicitud al backend para obtener la lista de objetos
     fetch('/dsaApp/tienda/objetos')
