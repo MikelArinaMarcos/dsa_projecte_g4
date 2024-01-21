@@ -1,4 +1,4 @@
-$(document).addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function () {
     // Esperamos a que el contenido del DOM esté cargado antes de ejecutar el código
     // Realizamos una solicitud al backend para obtener la lista de objetos
     fetch('/dsaApp/tienda/objetos')
@@ -69,7 +69,7 @@ function mostrarListaObjetos(listaObjetos) {
         const comprarBtn = document.createElement('button');
         comprarBtn.classList.add('comprarBtn');
         comprarBtn.textContent = 'Comprar';
-        $(comprarBtn).click = function() {
+        comprarBtn.onclick = function() {
             comprarObjeto(objeto);
         };
 
