@@ -5,14 +5,9 @@ $(document).ready(function(){
         // Obtener los datos del formulario
         var password = $('#passwordeliminar').val();
         // Crear el objeto de datos para enviar al servidor
-        var body = {
-            "mail": mail,
-            "password": password
-        };
         // Enviar la solicitud POST al servidor para el inicio de sesión
         $.post({
-            url: '/dsaApp/usuario/login', // Ajusta la URL según tu estructura de carpetas y rutas
-            data: JSON.stringify(body),
+            url: `/dsaApp/usuario//deleteUser/${encodeURIComponent(mail)}&${encodeURIComponent(password)}`, // Ajusta la URL según tu estructura de carpetas y rutas
             contentType: 'application/json; charset=utf8'
         })
             .done(function (data, status){
