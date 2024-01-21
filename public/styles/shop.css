@@ -54,7 +54,10 @@ body {
     cursor: pointer;
     font-size: 18px;
 }
-
+.container-fluid button {
+    height: 50px;
+    width: 300px;
+}
 .comprarBtn:hover {
     background-color: #d3d3d3;
 }
