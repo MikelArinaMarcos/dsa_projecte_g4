@@ -8,28 +8,29 @@ document.addEventListener('DOMContentLoaded', function () {
         })
         .catch(error => console.error('Error al obtener la lista de objetos:', error));
 });
-function mostrarInfoUsuarios(listaUsuarios) {
+function mostrarInfoUsuario(usuario) {
     // Seleccionamos el contenedor donde queremos mostrar la información
-    const infoUsuariosContainer = document.getElementById('infoUsuariosContainer');
+    const infoUsuarioContainer = document.getElementById('infoUsuariosContainer');
 
-    // Iteramos sobre la lista de objetos y creamos dinámicamente las etiquetas en el DOM
-    listaUsuarios.forEach(usuario => {
-        // Crear una etiqueta <label> para cada objeto
-        const usuarioLabel = document.createElement('label');
-        usuarioLabel.classList.add('objeto-label');
+    // Crear una etiqueta <label> para el usuario
+    const usuarioLabel = document.createElement('label');
+    usuarioLabel.classList.add('objeto-label');
 
-        // Configurar el contenido de la etiqueta con la información del objeto
-        usuarioLabel.innerHTML = `
-            <label class="info-label">Nombre de Usuario: ${usuario.username}</label><br>
-            <label class="info-label">Nombre: ${usuario.name}</label><br>
-            <label class="info-label">Apellido: ${usuario.lastName}</label><br>
-            <label class="info-label">Correo Electrónico: ${usuario.mail}</label><br>
-        `;
+    // Configurar el contenido de la etiqueta con la información del usuario
+    usuarioLabel.innerHTML = `
+        <label class="info-label">Nombre de Usuario: ${usuario.username}</label><br>
+        <label class="info-label">Nombre: ${usuario.name}</label><br>
+        <label class="info-label">Apellido: ${usuario.lastName}</label><br>
+        <label class="info-label">Correo Electrónico: ${usuario.mail}</label><br>
+    `;
 
-        // Agregamos la etiqueta al contenedor
-        infoUsuariosContainer.appendChild(usuarioLabel);
-    });
+    // Limpiamos cualquier contenido anterior en el contenedor
+    infoUsuarioContainer.innerHTML = '';
+
+    // Agregamos la etiqueta al contenedor
+    infoUsuarioContainer.appendChild(usuarioLabel);
 }
+
 
 $(document).ready(function(){
     $('#eliminarperfilBtn').click(function(event){
