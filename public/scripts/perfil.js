@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
         .catch(error => console.error('Error al obtener la lista de objetos:', error));
 });
 function mostrarInfoUsuario(usuario) {
+    const infoUsuarioContainer = document.getElementById('usuario');
     // Crear una etiqueta <label> para el usuario
     const usuarioLabel = document.createElement('label');
     usuarioLabel.classList.add('objeto-label');
@@ -21,6 +22,8 @@ function mostrarInfoUsuario(usuario) {
         <label class="info-label">Correo Electrónico: ${usuario.mail}</label><br>
         <label class="info-label">Bolivares: ${usuario.bolivares}</label><br>
     `;
+    infoUsuarioContainer.innerHTML = '';
+    infoUsuarioContainer.appendChild(usuarioLabel);
 }
 
 
