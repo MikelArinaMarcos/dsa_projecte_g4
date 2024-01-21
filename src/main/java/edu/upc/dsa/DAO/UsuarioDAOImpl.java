@@ -187,13 +187,4 @@ public class UsuarioDAOImpl implements UsuarioDAO {
             sesion.close();
         }
 }}*/
-
-
-
-
-
-
-
-
-
 }
