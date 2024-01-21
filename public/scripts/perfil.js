@@ -9,21 +9,41 @@ document.addEventListener('DOMContentLoaded', function () {
         .catch(error => console.error('Error al obtener la lista de objetos:', error));
 });
 function mostrarInfoUsuario(usuario) {
-    const infoUsuarioContainer = document.getElementById('usuario');
+    usuarioContainer = document.getElementById('usuario');
     // Crear una etiqueta <label> para el usuario
     const usuarioLabel = document.createElement('label');
-    usuarioLabel.classList.add('objeto-label');
+    const itemDiv = document.createElement('div');
+    itemDiv.classList.add('item');
 
-    // Configurar el contenido de la etiqueta con la información del usuario
-    usuarioLabel.innerHTML = `
-        <label class="info-label">Nombre de Usuario: ${usuario.username}</label><br>
-        <label class="info-label">Nombre: ${usuario.name}</label><br>
-        <label class="info-label">Apellido: ${usuario.lastName}</label><br>
-        <label class="info-label">Correo Electrónico: ${usuario.mail}</label><br>
-        <label class="info-label">Bolivares: ${usuario.bolivares}</label><br>
-    `;
-    infoUsuarioContainer.innerHTML = '';
-    infoUsuarioContainer.appendChild(usuarioLabel);
+    const nombreObjetoHeading = document.createElement('h2');
+    nombreObjetoHeading.classList.add('nombreObjeto');
+    nombreObjetoHeading.textContent = usuario.username;
+
+    const descripcionP = document.createElement('p');
+    descripcionP.classList.add('descripcion');
+    descripcionP.textContent = usuario.name;
+
+    const descripcionP2 = document.createElement('p');
+    descripcionP2.classList.add('descripcion');
+    descripcionP2.textContent = usuario.lastName;
+
+    const descripcionP3 = document.createElement('p');
+    descripcionP3.classList.add('descripcion');
+    descripcionP3.textContent = usuario.mail;
+
+    const atributoPrecioP = document.createElement('p');
+    atributoPrecioP.classList.add('atributo');
+    atributoPrecioP.textContent = `Bolivares= ${usuario.bolivares}`;
+
+    // Agregamos los elementos al contenedor
+    itemDiv.appendChild(nombreObjetoHeading);
+    itemDiv.appendChild(descripcionP);
+    itemDiv.appendChild(descripcionP2);
+    itemDiv.appendChild(descripcionP3);
+    itemDiv.appendChild(atributoPrecioP);
+
+    usuarioContainer.innerHTML = '';
+    usuarioContainer.appendChild(itemDiv);
 }
 
 
