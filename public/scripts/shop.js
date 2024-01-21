@@ -8,11 +8,6 @@ document.addEventListener('DOMContentLoaded', function () {
             mostrarListaObjetos(data);
         })
         .catch(error => console.error('Error al obtener la lista de objetos:', error));
-    comprarBtn.on('click', function(event) {
-        event.preventDefault();
-        var objeto = $(this).closest('.item').data('objeto');
-        comprarObjeto(objeto);
-    });
 })
 function comprarObjeto(objeto) {
     // Obtener los datos del objeto
